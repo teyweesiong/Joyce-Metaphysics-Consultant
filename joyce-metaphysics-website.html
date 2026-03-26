@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyce Metaphysics Consultant | Energy Numerology & Life Guidance</title>
+    <meta name="description" content="Joyce offers personalized energy numerology readings and Qi Men Dun Jia guidance for women seeking clarity in career and relationships. 30+ years experience.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #E8D4A0;
+            --gold-dark: #B8941F;
+            --green: #1B5E3F;
+            --green-light: #2A7A5A;
+            --green-dark: #0F3D28;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E4DD;
+            --gray: #4A4A4A;
+            --gray-light: #6B6B6B;
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--gray);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--cream);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            color: var(--green-dark);
+            line-height: 1.2;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--green);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--green);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .lang-toggle {
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .lang-toggle:hover {
+            background: var(--gold);
+            color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--green);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            padding: 5rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+        }
+        
+        .hero-text .highlight {
+            color: var(--gold);
+            font-weight: 500;
+        }
+        
+        .hero-text p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            color: var(--gray-light);
+            line-height: 1.8;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(27, 94, 63, 0.25);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--green);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--green);
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--green);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--green) 100%);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+        
+        .ginkgo-decoration {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--white);
+            padding: 2rem 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        
+        .trust-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .trust-item h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .trust-item p {
+            font-size: 0.95rem;
+            color: var(--gray-light);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-light);
+        }
+        
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--green) 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .service-card p {
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-card li {
+            padding: 0.4rem 0;
+            color: var(--gray);
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 50%, var(--cream) 100%);
+        }
+        
+        .steps {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 16%;
+            right: 16%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--green) 50%, var(--gold) 100%);
+            opacity: 0.3;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .step p {
+            color: var(--gray-light);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+        
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .about-text p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray-light);
+            line-height: 1.8;
+        }
+        
+        .credentials {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .credentials h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--green);
+        }
+        
+        .credentials ul {
+            list-style: none;
+        }
+        
+        .credentials li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .credentials li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-box {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-box h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-box p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+            color: white;
+        }
+        
+        .testimonials .section-header h2,
+        .testimonials .section-header p {
+            color: white;
+        }
+        
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-initial {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .author-info h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: var(--cream);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .cta-content p {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            color: var(--gray-light);
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20BA5A;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--green-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 2rem 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-about h3 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-about p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                gap: 1.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .trust-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo" data-en="Joyce Metaphysics" data-zh="Joyce 形而上學顧問">Joyce Metaphysics</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services" data-en="Services" data-zh="服務">Services</a></li>
+                <li><a href="#how-it-works" data-en="How It Works" data-zh="如何運作">How It Works</a></li>
+                <li><a href="#about" data-en="About Joyce" data-zh="關於Joyce">About Joyce</a></li>
+                <li><a href="#testimonials" data-en="Testimonials" data-zh="客戶評價">Testimonials</a></li>
+                <li><a href="#contact" data-en="Contact" data-zh="聯絡">Contact</a></li>
+                <li><button class="lang-toggle" onclick="toggleLanguage()">中文</button></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in-up">
+            <div class="hero-text">
+                <h1 data-en="Find clarity for your <span class='highlight'>next chapter</span>" 
+                    data-zh="為您的<span class='highlight'>人生新篇章</span>找到方向">
+                    Find clarity for your <span class="highlight">next chapter</span>
+                </h1>
+                <p data-en="Through Energy Numerology and Qi Men Dun Jia, I help women gain clarity on their career path, relationships, and life's most important decisions. With over 30 years of experience, I guide you to understand your direction and take action at the right time."
+                   data-zh="透過能量數字學和奇門遁甲，我幫助女性在事業、感情和人生重要決策上獲得清晰方向。擁有30多年經驗，我引導您了解自己的方向，並在正確的時機採取行動。">
+                    Through Energy Numerology and Qi Men Dun Jia, I help women gain clarity on their career path, relationships, and life's most important decisions. With over 30 years of experience, I guide you to understand your direction and take action at the right time.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn-primary">
+                        <span data-en="Book Your Reading" data-zh="預約諮詢">Book Your Reading</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#services" class="btn-secondary" data-en="Learn More" data-zh="了解更多">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-container">
+                    <img src="/mnt/user-data/uploads/Joyce_Corporate_Website_Profile_Pic.png" alt="Joyce - Energy Numerology Mentor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="trust-content">
+            <div class="trust-item">
+                <h3>30+</h3>
+                <p data-en="Years of Experience" data-zh="年專業經驗">Years of Experience</p>
+            </div>
+            <div class="trust-item">
+                <h3>1000+</h3>
+                <p data-en="Lives Transformed" data-zh="客戶成功案例">Lives Transformed</p>
+            </div>
+            <div class="trust-item">
+                <h3>2</h3>
+                <p data-en="Ancient Systems Mastered" data-zh="掌握古老智慧系統">Ancient Systems Mastered</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2 data-en="Services Designed for Your Journey" data-zh="為您量身打造的服務">Services Designed for Your Journey</h2>
+            <p data-en="Personalized guidance using ancient wisdom combined with modern insight"
+               data-zh="結合古老智慧與現代洞察力的個人化指導">
+                Personalized guidance using ancient wisdom combined with modern insight
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔮</div>
+                <h3 data-en="Energy Numerology Reading" data-zh="能量數字學解讀">Energy Numerology Reading</h3>
+                <p data-en="Discover your soul blueprint and understand the energetic patterns shaping your life journey"
+                   data-zh="發掘您的靈魂藍圖，了解塑造您人生旅程的能量模式">
+                    Discover your soul blueprint and understand the energetic patterns shaping your life journey
+                </p>
+                <ul>
+                    <li data-en="Life path analysis" data-zh="人生道路分析">Life path analysis</li>
+                    <li data-en="Career clarity and direction" data-zh="事業方向與清晰定位">Career clarity and direction</li>
+                    <li data-en="Relationship compatibility" data-zh="關係相容性分析">Relationship compatibility</li>
+                    <li data-en="Identify key blockages" data-zh="識別關鍵障礙">Identify key blockages</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3 data-en="Qi Men Dun Jia Forecasting" data-zh="奇門遁甲預測">Qi Men Dun Jia Forecasting</h3>
+                <p data-en="Strategic timing insights for your most important life decisions and business moves"
+                   data-zh="為您最重要的人生決策和商業行動提供戰略時機洞察">
+                    Strategic timing insights for your most important life decisions and business moves
+                </p>
+                <ul>
+                    <li data-en="Optimal decision timing" data-zh="最佳決策時機">Optimal decision timing</li>
+                    <li data-en="Business strategy guidance" data-zh="商業策略指導">Business strategy guidance</li>
+                    <li data-en="Life transition planning" data-zh="人生轉折規劃">Life transition planning</li>
+                    <li data-en="Opportunity analysis" data-zh="機會分析">Opportunity analysis</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💫</div>
+                <h3 data-en="Women's Empowerment Programs" data-zh="女性賦能課程">Women's Empowerment Programs</h3>
+                <p data-en="Tailored programs for women seeking personal growth and transformation, especially single mothers"
+                   data-zh="專為尋求個人成長和轉變的女性量身定制，特別是單親媽媽">
+                    Tailored programs for women seeking personal growth and transformation, especially single mothers
+                </p>
+                <ul>
+                    <li data-en="Self-discovery workshops" data-zh="自我發現工作坊">Self-discovery workshops</li>
+                    <li data-en="Confidence building" data-zh="建立自信">Confidence building</li>
+                    <li data-en="Life balance strategies" data-zh="生活平衡策略">Life balance strategies</li>
+                    <li data-en="Community support" data-zh="社群支持">Community support</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3 data-en="Corporate Consulting" data-zh="企業諮詢">Corporate Consulting</h3>
+                <p data-en="Transform your organization with strategic HR structuring and team energy optimization"
+                   data-zh="通過戰略性人力資源架構和團隊能量優化來改造您的組織">
+                    Transform your organization with strategic HR structuring and team energy optimization
+                </p>
+                <ul>
+                    <li data-en="HR structure optimization" data-zh="人力資源架構優化">HR structure optimization</li>
+                    <li data-en="Team compatibility analysis" data-zh="團隊相容性分析">Team compatibility analysis</li>
+                    <li data-en="Leadership development" data-zh="領導力發展">Leadership development</li>
+                    <li data-en="Strategic planning" data-zh="策略規劃">Strategic planning</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <h2 data-en="Your Journey to Clarity" data-zh="您的清晰之旅">Your Journey to Clarity</h2>
+            <p data-en="A simple, transformative process designed to bring you profound insight"
+               data-zh="一個簡單而富有轉變性的過程，為您帶來深刻洞察">
+                A simple, transformative process designed to bring you profound insight
+            </p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3 data-en="Initial Consultation" data-zh="初步諮詢">Initial Consultation</h3>
+                <p data-en="We begin with a conversation about your current situation, challenges, and goals. Share your birth date and the questions on your mind."
+                   data-zh="我們從談論您目前的狀況、挑戰和目標開始。分享您的出生日期和心中的疑問。">
+                    We begin with a conversation about your current situation, challenges, and goals. Share your birth date and the questions on your mind.
+                </p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3 data-en="Deep Analysis" data-zh="深入分析">Deep Analysis</h3>
+                <p data-en="Using Energy Numerology and Qi Men Dun Jia, I analyze your soul blueprint and the energetic patterns influencing your life path."
+                   data-zh="運用能量數字學和奇門遁甲，我分析您的靈魂藍圖和影響您人生道路的能量模式。">
+                    Using Energy Numerology and Qi Men Dun Jia, I analyze your soul blueprint and the energetic patterns influencing your life path.
+                </p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3 data-en="Actionable Guidance" data-zh="可行的指導">Actionable Guidance</h3>
+                <p data-en="Receive clear insights and practical strategies. Know when to act, what to focus on, and how to navigate your next 10 years with confidence."
+                   data-zh="獲得清晰的洞察和實用策略。了解何時行動、專注什麼，以及如何自信地規劃未來10年。">
+                    Receive clear insights and practical strategies. Know when to act, what to focus on, and how to navigate your next 10 years with confidence.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 data-en="About Joyce" data-zh="關於 Joyce">About Joyce</h2>
+                <p data-en="With over 30 years of experience in corporate management and market development, I bring a unique blend of business acumen and spiritual wisdom to guide individuals and organizations toward clarity and success."
+                   data-zh="擁有超過30年的企業管理和市場開發經驗，我將商業智慧和靈性智慧獨特地結合，引導個人和組織走向清晰與成功。">
+                    With over 30 years of experience in corporate management and market development, I bring a unique blend of business acumen and spiritual wisdom to guide individuals and organizations toward clarity and success.
+                </p>
+                <p data-en="As an active entrepreneur and Energy Numerology Mentor, I specialize in helping women—especially those aged 35 and above—navigate critical life transitions. Through soul blueprint analysis and energy reading, I help identify blockages and illuminate the path forward."
+                   data-zh="作為一名活躍的企業家和能量數字學導師，我專門幫助女性——尤其是35歲以上的女性——渡過關鍵的人生轉折。通過靈魂藍圖分析和能量解讀，我幫助識別障礙並照亮前進的道路。">
+                    As an active entrepreneur and Energy Numerology Mentor, I specialize in helping women—especially those aged 35 and above—navigate critical life transitions. Through soul blueprint analysis and energy reading, I help identify blockages and illuminate the path forward.
+                </p>
+                <p data-en="My approach combines ancient Eastern wisdom with practical modern strategies, ensuring that guidance is both spiritually aligned and actionable in today's world."
+                   data-zh="我的方法結合了古老的東方智慧和實用的現代策略，確保指導既符合靈性又在當今世界具有可操作性。">
+                    My approach combines ancient Eastern wisdom with practical modern strategies, ensuring that guidance is both spiritually aligned and actionable in today's world.
+                </p>
+                
+                <div class="credentials">
+                    <h4 data-en="Areas of Expertise" data-zh="專業領域">Areas of Expertise</h4>
+                    <ul>
+                        <li data-en="Energy Numerology & Soul Blueprint Analysis" data-zh="能量數字學與靈魂藍圖分析">Energy Numerology & Soul Blueprint Analysis</li>
+                        <li data-en="Qi Men Dun Jia Strategic Forecasting" data-zh="奇門遁甲策略預測">Qi Men Dun Jia Strategic Forecasting</li>
+                        <li data-en="Women's Personal Growth & Empowerment" data-zh="女性個人成長與賦能">Women's Personal Growth & Empowerment</li>
+                        <li data-en="Corporate HR Structuring & Team Optimization" data-zh="企業人力資源架構與團隊優化">Corporate HR Structuring & Team Optimization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="about-stats">
+                <div class="stat-box">
+                    <h3>30+</h3>
+                    <p data-en="Years in Corporate Management" data-zh="年企業管理經驗">Years in Corporate Management</p>
+                </div>
+                <div class="stat-box">
+                    <h3>1000+</h3>
+                    <p data-en="Successful Consultations" data-zh="成功諮詢案例">Successful Consultations</p>
+                </div>
+                <div class="stat-box">
+                    <h3>100%</h3>
+                    <p data-en="Personalized Approach" data-zh="個人化服務">Personalized Approach</p>
+                </div>
+                <div class="stat-box">
+                    <h3>∞</h3>
+                    <p data-en="Commitment to Growth" data-zh="成長承諾">Commitment to Growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <h2 data-en="Transformation Stories" data-zh="轉變故事">Transformation Stories</h2>
+            <p data-en="Hear from those who found clarity and direction" data-zh="聆聽那些找到清晰方向的人們">Hear from those who found clarity and direction</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text" data-en='"Joyce helped me see patterns I never noticed before. After our session, I finally understood why certain relationships weren't working. Her insights gave me the confidence to make changes I'd been afraid to make for years."'
+                   data-zh='"Joyce 幫助我看到了我從未注意到的模式。在我們的會談之後，我終於明白為什麼某些關係不起作用。她的洞察力給了我勇氣去做出我多年來一直害怕做出的改變。"'>
+                    "Joyce helped me see patterns I never noticed before. After our session, I finally understood why certain relationships weren't working. Her insights gave me the confidence to make changes I'd been afraid to make for years."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-initial">S</div>
+                    <div class="author-info">
+                        <h4>Sarah L.</h4>
+                        <p data-en="Marketing Executive" data-zh="市場經理">Marketing Executive</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text" data-en='"As a single mother, I was struggling to balance everything. Joyce's reading showed me my strengths and helped me align my career with my values. I'm now running my own business and feeling more fulfilled than ever."'
+                   data-zh='"作為一名單親媽媽，我努力平衡一切。Joyce 的解讀向我展示了我的優勢，並幫助我將事業與價值觀相結合。我現在經營著自己的事業，比以往任何時候都更有成就感。"'>
+                    "As a single mother, I was struggling to balance everything. Joyce's reading showed me my strengths and helped me align my career with my values. I'm now running my own business and feeling more fulfilled than ever."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-initial">M</div>
+                    <div class="author-info">
+                        <h4>Michelle T.</h4>
+                        <p data-en="Entrepreneur" data-zh="創業家">Entrepreneur</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text" data-en='"The timing insights from Qi Men Dun Jia were incredibly accurate. Joyce advised me on when to launch my new venture, and everything fell into place perfectly. Her corporate consulting transformed our team dynamics."'
+                   data-zh='"奇門遁甲的時機洞察非常準確。Joyce 為我提供了何時推出新事業的建議，一切都完美地落實了。她的企業諮詢改變了我們的團隊動態。"'>
+                    "The timing insights from Qi Men Dun Jia were incredibly accurate. Joyce advised me on when to launch my new venture, and everything fell into place perfectly. Her corporate consulting transformed our team dynamics."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-initial">J</div>
+                    <div class="author-info">
+                        <h4>James W.</h4>
+                        <p data-en="Business Owner" data-zh="企業老闆">Business Owner</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2 data-en="Ready to Find Your Clarity?" data-zh="準備好找到您的清晰方向了嗎？">Ready to Find Your Clarity?</h2>
+            <p data-en="Book a one-on-one consultation and discover the insights that will guide your next chapter. When you understand your direction and act at the right time, life flows naturally."
+               data-zh="預約一對一諮詢，發現將指引您下一個篇章的洞察。當您了解自己的方向並在正確的時機行動時，生活會自然流暢。">
+                Book a one-on-one consultation and discover the insights that will guide your next chapter. When you understand your direction and act at the right time, life flows naturally.
+            </p>
+            <a href="https://wa.me/60167286134?text=Hello%20Joyce%2C%20I%27d%20like%20to%20book%20a%20consultation" class="whatsapp-btn" target="_blank">
+                <span class="whatsapp-icon">💬</span>
+                <span data-en="WhatsApp: 016-728 6134" data-zh="WhatsApp: 016-728 6134">WhatsApp: 016-728 6134</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Joyce Metaphysics</h3>
+                <p data-en="Empowering individuals and organizations through ancient wisdom and modern insights. Transform your life with clarity and confidence."
+                   data-zh="透過古老智慧和現代洞察力賦能個人和組織。以清晰和自信改變您的生活。">
+                    Empowering individuals and organizations through ancient wisdom and modern insights. Transform your life with clarity and confidence.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4 data-en="Services" data-zh="服務">Services</h4>
+                <ul>
+                    <li><a href="#services" data-en="Energy Numerology" data-zh="能量數字學">Energy Numerology</a></li>
+                    <li><a href="#services" data-en="Qi Men Dun Jia" data-zh="奇門遁甲">Qi Men Dun Jia</a></li>
+                    <li><a href="#services" data-en="Women's Programs" data-zh="女性課程">Women's Programs</a></li>
+                    <li><a href="#services" data-en="Corporate Consulting" data-zh="企業諮詢">Corporate Consulting</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 data-en="Quick Links" data-zh="快速連結">Quick Links</h4>
+                <ul>
+                    <li><a href="#about" data-en="About Joyce" data-zh="關於Joyce">About Joyce</a></li>
+                    <li><a href="#how-it-works" data-en="How It Works" data-zh="如何運作">How It Works</a></li>
+                    <li><a href="#testimonials" data-en="Testimonials" data-zh="客戶評價">Testimonials</a></li>
+                    <li><a href="#contact" data-en="Book Consultation" data-zh="預約諮詢">Book Consultation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 data-en="Connect" data-zh="聯絡方式">Connect</h4>
+                <ul>
+                    <li><a href="https://wa.me/60167286134" target="_blank">WhatsApp: 016-728 6134</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=61572509262878" target="_blank">Facebook</a></li>
+                    <li><a href="mailto:info@joycemetaphysics.com">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p data-en="© 2024 Joyce Metaphysics Consultant. All rights reserved. | Designed for transformation and clarity."
+               data-zh="© 2024 Joyce 形而上學顧問。版權所有。| 為轉變和清晰而設計。">
+                © 2024 Joyce Metaphysics Consultant. All rights reserved. | Designed for transformation and clarity.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle
+        let currentLang = 'en';
+        
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            const langBtn = document.querySelector('.lang-toggle');
+            langBtn.textContent = currentLang === 'en' ? '中文' : 'English';
+            
+            // Update all elements with language attributes
+            document.querySelectorAll('[data-en]').forEach(element => {
+                const content = element.getAttribute(`data-${currentLang}`);
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = content;
+                } else {
+                    element.innerHTML = content;
+                }
+            });
+        }
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Smooth scroll offset for fixed header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+        
+        // Fade in animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe service cards and other elements for fade-in
+        document.querySelectorAll('.service-card, .step, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+        
+        // Header shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.03)';
+            }
+        });
+    </script>
+</body>
+</html>
