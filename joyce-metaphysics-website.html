@@ -129,7 +129,28 @@
             background: var(--gold);
             color: white;
         }
-          
+        
+        .calculator-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--green) 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .calculator-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -239,27 +260,6 @@
             background: var(--green);
             color: white;
             transform: translateY(-2px);
-        }
-
-           .calculator-btn {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--green) 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-            font-family: 'Lato', sans-serif;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-        
-        .calculator-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
         
         .hero-image {
@@ -885,7 +885,8 @@
                 <li><a href="#about" data-en="About Joyce Yap" data-zh="關於Joyce Yap">About Joyce Yap</a></li>
                 <li><a href="#testimonials" data-en="Testimonials" data-zh="客戶評價">Testimonials</a></li>
                 <li><a href="#contact" data-en="Contact" data-zh="聯絡">Contact</a></li>
-                <li><<button class="lang-toggle">中文</button></li>
+                <li><a href="https://teyweesiong.github.io/Life-Path-Calculator/lifepath-calculator.html" target="_blank" class="calculator-btn" data-en="Life Path Calculator" data-zh="生命路徑計算器">Life Path Calculator</a></li>
+                <li><button class="lang-toggle" onclick="toggleLanguage()">中文</button></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
@@ -909,10 +910,7 @@
                         <span data-en="Book Your Reading" data-zh="預約諮詢">Book Your Reading</span>
                         <span>→</span>
                     </a>
-                    <a href="#services" class="btn-secondary" data-en="Learn More" data-zh="了解更多">Learn More</span>
-                    <span>→</span>    
-                    </a>
-                    <a href="https://teyweesiong.github.io/Life-Path-Calculator/lifepath-calculator.html" target="_blank" class="calculator-btn" data-en="Life Path Calculator" data-zh="生命路徑計算器">Life Path Calculator</a>
+                    <a href="#services" class="btn-secondary" data-en="Learn More" data-zh="了解更多">Learn More</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -1219,27 +1217,21 @@
         // Language Toggle
         let currentLang = 'en';
         
-       function toggleLanguage() {
-    currentLang = currentLang === 'en' ? 'zh' : 'en';
-
-    const langBtn = document.querySelector('.lang-toggle');
-    langBtn.textContent = currentLang === 'en' ? '中文' : 'EN';
-
-    document.querySelectorAll('[data-en]').forEach(element => {
-        const content = element.getAttribute(`data-${currentLang}`);
-        if (!content) return;
-
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            element.placeholder = content;
-        } else if (element.children.length > 0) {
-            element.innerHTML = content; // for elements with HTML inside
-        } else {
-            element.textContent = content; // safer for plain text
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            const langBtn = document.querySelector('.lang-toggle');
+            langBtn.textContent = currentLang === 'en' ? '中文' : 'English';
+            
+            // Update all elements with language attributes
+            document.querySelectorAll('[data-en]').forEach(element => {
+                const content = element.getAttribute(`data-${currentLang}`);
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = content;
+                } else {
+                    element.innerHTML = content;
+                }
+            });
         }
-    });
-}
-document.querySelector('.lang-toggle').addEventListener('click', toggleLanguage);
-});
         
         // Mobile Menu Toggle
         function toggleMobileMenu() {
@@ -1267,7 +1259,7 @@ document.querySelector('.lang-toggle').addEventListener('click', toggleLanguage)
                 }
             });
         });
-      
+        
         // Fade in animations on scroll
         const observerOptions = {
             threshold: 0.1,
@@ -1296,4 +1288,3 @@ document.querySelector('.lang-toggle').addEventListener('click', toggleLanguage)
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
                 header.style.boxShadow = '0 4px 20px rgba(0,
- 
