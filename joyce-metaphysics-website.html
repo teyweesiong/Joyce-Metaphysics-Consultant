@@ -885,7 +885,7 @@
                 <li><a href="#about" data-en="About Joyce Yap" data-zh="關於Joyce Yap">About Joyce Yap</a></li>
                 <li><a href="#testimonials" data-en="Testimonials" data-zh="客戶評價">Testimonials</a></li>
                 <li><a href="#contact" data-en="Contact" data-zh="聯絡">Contact</a></li>
-                <li><button class="lang-toggle" onclick="toggleLanguage()">中文</button></li>
+                <li><<button class="lang-toggle">中文</button></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
@@ -1238,7 +1238,9 @@
         }
     });
 }
-        
+document.querySelector('.lang-toggle').addEventListener('click', toggleLanguage);
+    </script>
+    
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navLinks = document.getElementById('navLinks');
