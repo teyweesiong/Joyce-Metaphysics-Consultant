@@ -1219,21 +1219,25 @@
         // Language Toggle
         let currentLang = 'en';
         
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'zh' : 'en';
-            const langBtn = document.querySelector('.lang-toggle');
-            langBtn.textContent = currentLang === 'en' ? '中文' : 'English';
-            
-            // Update all elements with language attributes
-            document.querySelectorAll('[data-en]').forEach(element => {
-                const content = element.getAttribute(`data-${currentLang}`);
-                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                    element.placeholder = content;
-                } else {
-                    element.innerHTML = content;
-                }
-            });
+       function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+
+    const langBtn = document.querySelector('.lang-toggle');
+    langBtn.textContent = currentLang === 'en' ? '中文' : 'EN';
+
+    document.querySelectorAll('[data-en]').forEach(element => {
+        const content = element.getAttribute(`data-${currentLang}`);
+        if (!content) return;
+
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = content;
+        } else if (element.children.length > 0) {
+            element.innerHTML = content; // for elements with HTML inside
+        } else {
+            element.textContent = content; // safer for plain text
         }
+    });
+}
         
         // Mobile Menu Toggle
         function toggleMobileMenu() {
