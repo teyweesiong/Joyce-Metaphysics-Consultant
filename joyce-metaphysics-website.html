@@ -812,22 +812,66 @@
                 padding: 2rem;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                 gap: 1.5rem;
+                z-index: 999;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
-            
+
+            /* ── Hero mobile fix ── */
+            .hero {
+                padding: 3rem 1.25rem 2.5rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            /* Show image second on mobile (below text) */
+            .hero-image {
+                order: 2;
+            }
+
+            .hero-text {
+                order: 1;
+            }
+
             .hero-text h1 {
-                font-size: 2.2rem;
+                font-size: 1.9rem;
+                line-height: 1.2;
             }
             
             .hero-text p {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
-            
+
+            /* Image shrinks to fit the screen */
+            .hero-image-container {
+                width: min(260px, 72vw);
+                height: min(260px, 72vw);
+            }
+
+            .ginkgo-decoration {
+                width: 90px;
+                height: 90px;
+                top: -15px;
+                right: -15px;
+            }
+            /* ── End hero mobile fix ── */
+
             .cta-buttons {
                 flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary,
+            .calculator-btn {
+                width: 100%;
+                justify-content: center;
             }
             
             .trust-content {
@@ -849,6 +893,25 @@
             
             .footer-content {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* Extra-small screens (older Android / small iPhones) */
+        @media (max-width: 400px) {
+            .hero-text h1 {
+                font-size: 1.65rem;
+            }
+
+            .hero-image-container {
+                width: min(220px, 78vw);
+                height: min(220px, 78vw);
+            }
+
+            .btn-primary,
+            .btn-secondary,
+            .calculator-btn {
+                padding: 0.85rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
         
@@ -1203,6 +1266,8 @@
                 <ul>
                     <li><a href="https://wa.me/60167286134" target="_blank">WhatsApp: 016-728 6134</a></li>
                     <li><a href="https://www.facebook.com/profile.php?id=61572509262878" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/joyce_metaphysics_consultant?igsh=Nzd0cGpzcDhkaTI3" target="_blank">Instagram</a></li>
+                    <li><a href="https://youtube.com/@joyceyapmetaphysics?si=0bjL0LXUaF3I4a29" target="_blank">YouTube</a></li>
                     <li><a href="/cdn-cgi/l/email-protection#e58f8a9c868088809184958d9c968c8696868a8b96908991848b91a58288848c89cb868a88">Email</a></li>
                 </ul>
             </div>
