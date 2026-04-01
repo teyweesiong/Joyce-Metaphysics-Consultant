@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Path Calculator — Joyce Metaphysics Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #F5F0E8;
+    --parchment: #EDE5D5;
+    --taupe: #C4B5A0;
+    --stone: #8C7B6B;
+    --mocha: #5C4A38;
+    --espresso: #2E2018;
+    --deep: #1A1208;
+    --gold: #B8922A;
+    --gold-light: #D4AF5A;
+    --gold-pale: #EDD98A;
+    --blush: #C4897A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--espresso);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Chinese font override */
+  body.zh,
+  body.zh .field label,
+  body.zh .section-label,
+  body.zh .hero-eyebrow,
+  body.zh .privacy-note,
+  body.zh .btn-reveal .btn-label,
+  body.zh .greeting-line,
+  body.zh .path-keyword,
+  body.zh .strength-tag,
+  body.zh .teaser-label,
+  body.zh .cta-eyebrow,
+  body.zh .consultant-title,
+  body.zh .slot-note,
+  body.zh .footer-links,
+  body.zh .cookie-text,
+  body.zh .btn-cookie-accept,
+  body.zh .btn-cookie-decline,
+  body.zh .modal-body p,
+  body.zh .modal-body h4 {
+    font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', serif;
+  }
+  body.zh .hero h1,
+  body.zh .path-name,
+  body.zh .cta-heading,
+  body.zh .teaser-title,
+  body.zh .modal-title {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 600;
+  }
+  body.zh .insight-intro,
+  body.zh .insight-body,
+  body.zh .teaser-text,
+  body.zh .cta-sub {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 300;
+  }
+  body.zh .field input,
+  body.zh .field select {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.6;
+  }
+  .page { position: relative; z-index: 1; }
+
+  /* ── LANGUAGE SWITCHER ── */
+  .lang-bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--deep);
+    display: flex; justify-content: flex-end; align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(184,146,42,0.15);
+  }
+  .lang-toggle {
+    display: flex; align-items: center;
+    gap: 0;
+    padding: 10px 0;
+  }
+  .lang-btn {
+    padding: 6px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    background: none; border: none;
+    color: rgba(250,247,242,0.4);
+    cursor: pointer;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .lang-btn.active {
+    color: var(--gold-light);
+  }
+  .lang-btn.active::after {
+    content: '';
+    position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+    width: 20px; height: 2px;
+    background: var(--gold);
+  }
+  .lang-divider {
+    width: 1px; height: 14px;
+    background: rgba(250,247,242,0.15);
+    flex-shrink: 0;
+  }
+  /* pill style for the active state */
+  .lang-pill {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,146,42,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .lang-pill .lang-btn { padding: 7px 18px; }
+  .lang-pill .lang-btn.active {
+    background: rgba(184,146,42,0.15);
+    color: var(--gold-light);
+  }
+  .lang-pill .lang-btn.active::after { display: none; }
+  .lang-pill .lang-divider { margin: 6px 0; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--espresso); color: var(--cream);
+    padding: 60px 24px 52px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 30% 20%, rgba(184,146,42,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 90%, rgba(196,137,122,0.08) 0%, transparent 50%);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,146,42,0.4), transparent);
+  }
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500;
+    letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 20px; position: relative;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; width: 28px; height: 1px; background: var(--gold-light); opacity: 0.5;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 7vw, 56px); font-weight: 400; line-height: 1.15;
+    color: var(--cream); margin-bottom: 20px; position: relative;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-pale); }
+  .hero-sub {
+    font-size: clamp(15px, 2.5vw, 18px); font-weight: 300;
+    color: rgba(250,247,242,0.65); max-width: 460px;
+    margin: 0 auto; line-height: 1.75; position: relative;
+  }
+
+  /* ── FORM ── */
+  .form-section { max-width: 560px; margin: 0 auto; padding: 52px 24px; }
+  .section-label {
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 32px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--parchment); }
+
+  .field { margin-bottom: 24px; }
+  .field label {
+    display: block; font-family: 'Jost', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 8px;
+  }
+  .field input, .field select {
+    width: 100%; background: #fff;
+    border: 1px solid var(--parchment);
+    border-bottom: 2px solid var(--parchment); border-radius: 0;
+    color: var(--espresso); font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 400; padding: 13px 16px;
+    outline: none; transition: border-color 0.25s, box-shadow 0.25s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .field input::placeholder { color: var(--taupe); font-style: italic; }
+  .field input:focus, .field select:focus {
+    border-color: var(--taupe); border-bottom-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(44,28,12,0.06);
+  }
+  .phone-row { display: flex; gap: 10px; }
+  .code-wrap { flex: 0 0 148px; position: relative; }
+  .code-wrap::after {
+    content: '▾'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--stone); font-size: 11px; pointer-events: none;
+  }
+  .code-wrap select { padding-right: 30px; }
+  .num-wrap { flex: 1; }
+  input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
+
+  /* ── DOB DROPDOWN (Android fallback) ── */
+  .dob-row {
+    display: flex; gap: 10px;
+  }
+  .dob-col { flex: 1; position: relative; }
+  .dob-col-year { flex: 1.4; }
+  .dob-col::after {
+    content: "▾"; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--stone); font-size: 11px; pointer-events: none;
+  }
+  .dob-part {
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--parchment);
+    border-bottom: 2px solid var(--parchment);
+    border-radius: 0;
+    color: var(--espresso);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px; font-weight: 400;
+    padding: 13px 32px 13px 14px;
+    outline: none;
+    -webkit-appearance: none; appearance: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .dob-part:focus {
+    border-color: var(--taupe); border-bottom-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(44,28,12,0.06);
+  }
+  .dob-part option[data-ph="true"] { color: var(--taupe); font-style: italic; }
+  body.zh .dob-part { font-family: "Noto Serif SC", serif; font-size: 15px; }
+
+  .err {
+    font-family: 'Jost', sans-serif; font-size: 11px;
+    color: var(--blush); margin-top: 5px; display: none; letter-spacing: 0.5px;
+  }
+  .field.invalid input, .field.invalid select { border-bottom-color: var(--blush); }
+  .field.invalid .err { display: block; }
+
+  /* ── BUTTON ── */
+  .btn-reveal {
+    width: 100%; padding: 18px 24px;
+    background: var(--espresso); color: var(--cream);
+    border: none; font-family: 'Jost', sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 5px; text-transform: uppercase;
+    cursor: pointer; position: relative; overflow: hidden;
+    transition: letter-spacing 0.35s; margin-top: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 58px;
+  }
+  .btn-reveal::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--mocha); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .btn-reveal:hover::before { transform: scaleX(1); }
+  .btn-reveal:hover { letter-spacing: 6px; }
+  .btn-reveal:active { transform: scale(0.99); }
+  .btn-reveal .btn-label { position: relative; }
+  .btn-reveal .btn-spinner {
+    display: none; position: relative; width: 18px; height: 18px;
+    border: 2px solid rgba(250,247,242,0.3); border-top-color: var(--cream);
+    border-radius: 50%; animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .btn-reveal.loading .btn-label { opacity: 0.5; }
+  .btn-reveal.loading .btn-spinner { display: block; }
+  .btn-reveal.loading { pointer-events: none; }
+
+  /* ── PRIVACY NOTE ── */
+  .privacy-note {
+    font-family: 'Jost', sans-serif; font-size: 11px;
+    color: var(--stone); text-align: center;
+    margin-top: 16px; line-height: 1.8; letter-spacing: 0.3px;
+  }
+  .privacy-note a { color: var(--gold); text-decoration: underline; cursor: pointer; }
+
+  /* ── RESULT ── */
+  #result { display: none; animation: rise 0.7s cubic-bezier(0.4,0,0.2,1) forwards; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .number-banner {
+    background: var(--espresso); color: var(--cream);
+    padding: 56px 24px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .number-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,146,42,0.1) 0%, transparent 70%);
+  }
+  .greeting-line {
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 28px; position: relative;
+  }
+  .number-ring {
+    width: 140px; height: 140px; border-radius: 50%;
+    border: 1px solid rgba(184,146,42,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px; position: relative;
+    animation: breathe 4s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(184,146,42,0.15); }
+    50% { box-shadow: 0 0 0 16px rgba(184,146,42,0), 0 0 60px rgba(184,146,42,0.12); }
+  }
+  .number-ring::before {
+    content: ''; position: absolute; inset: 10px; border-radius: 50%;
+    border: 1px solid rgba(184,146,42,0.15);
+  }
+  .big-num {
+    font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 700;
+    color: var(--gold-pale); line-height: 1; position: relative;
+  }
+  .path-name {
+    font-family: 'Playfair Display', serif; font-size: clamp(22px, 5vw, 34px);
+    font-weight: 400; font-style: italic;
+    color: var(--cream); margin-bottom: 8px; position: relative;
+  }
+  .path-keyword {
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 300;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--taupe); position: relative;
+  }
+
+  .insight-section { max-width: 560px; margin: 0 auto; padding: 48px 24px; }
+  .insight-intro {
+    font-size: 19px; font-weight: 300; line-height: 1.8; color: var(--mocha);
+    margin-bottom: 28px; font-style: italic;
+    border-left: 3px solid var(--gold-light); padding-left: 20px;
+  }
+  .insight-body {
+    font-size: 17px; font-weight: 400; line-height: 1.85;
+    color: var(--espresso); margin-bottom: 28px;
+  }
+  .strength-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 28px 0; }
+  .strength-tag {
+    background: var(--warm-white); border: 1px solid var(--parchment);
+    padding: 10px 14px; font-family: 'Jost', sans-serif;
+    font-size: 12px; font-weight: 400; letter-spacing: 1.5px;
+    color: var(--mocha); text-transform: uppercase; text-align: center;
+    transition: background 0.2s;
+  }
+  body.zh .strength-tag { font-size: 13px; letter-spacing: 1px; }
+  .strength-tag:hover { background: var(--parchment); }
+
+  .teaser-block {
+    background: var(--warm-white); border: 1px solid var(--parchment);
+    border-top: 3px solid var(--gold); padding: 32px 28px; margin: 32px 0;
+  }
+  .teaser-label {
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+  }
+  .teaser-title {
+    font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 600;
+    color: var(--espresso); margin-bottom: 12px; line-height: 1.35;
+  }
+  .teaser-text { font-size: 16px; line-height: 1.8; color: var(--stone); margin-bottom: 20px; }
+  .teaser-list { list-style: none; }
+  .teaser-list li {
+    font-size: 14px; font-family: 'Jost', sans-serif; color: var(--mocha);
+    padding: 9px 0; border-bottom: 1px solid var(--parchment);
+    display: flex; align-items: flex-start; gap: 10px;
+    letter-spacing: 0.3px; line-height: 1.5;
+  }
+  body.zh .teaser-list li { font-family: 'Noto Serif SC', serif; font-size: 14px; }
+  .teaser-list li:last-child { border-bottom: none; }
+  .teaser-list li::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0; margin-top: 6px;
+  }
+
+  /* ── CTA ── */
+  .cta-block {
+    background: var(--espresso); padding: 56px 24px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-block::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184,146,42,0.08) 0%, transparent 60%);
+  }
+  .cta-block::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,146,42,0.4), transparent);
+  }
+  .cta-eyebrow {
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 20px; position: relative;
+  }
+  .cta-heading {
+    font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px);
+    font-weight: 400; color: var(--cream); line-height: 1.3; margin-bottom: 16px;
+    max-width: 480px; margin-left: auto; margin-right: auto; position: relative;
+  }
+  .cta-heading em { font-style: italic; color: var(--gold-pale); }
+  .cta-sub {
+    font-size: 16px; color: rgba(250,247,242,0.6); line-height: 1.75;
+    max-width: 400px; margin: 0 auto 36px; font-weight: 300; position: relative;
+  }
+  .consultant-card {
+    display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(184,146,42,0.2);
+    padding: 18px 36px; margin-bottom: 32px; position: relative;
+  }
+  .consultant-name {
+    font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600;
+    color: var(--cream); letter-spacing: 0.5px;
+  }
+  body.zh .consultant-name { font-family: 'Noto Serif SC', serif; }
+  .consultant-title {
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 300;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--taupe);
+  }
+
+  /* ── GOLD WHATSAPP BUTTON ── */
+  .btn-wa {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    max-width: 400px; margin: 0 auto;
+    padding: 20px 36px;
+    background: linear-gradient(135deg, var(--gold) 0%, #9A7820 50%, var(--gold) 100%);
+    background-size: 200% 100%;
+    border: none; color: var(--deep);
+    font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.4s ease; position: relative;
+    animation: gold-shimmer 3s ease infinite;
+  }
+  body.zh .btn-wa { font-family: 'Noto Serif SC', serif; letter-spacing: 2px; font-size: 13px; }
+  @keyframes gold-shimmer {
+    0%, 100% { background-position: 0% 0%; }
+    50%       { background-position: 100% 0%; }
+  }
+  .btn-wa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(184,146,42,0.45);
+  }
+  .btn-wa:active { transform: translateY(0); }
+
+  .slot-note {
+    font-family: 'Jost', sans-serif; font-size: 11px; color: var(--taupe);
+    text-align: center; margin-top: 20px; letter-spacing: 1px; position: relative;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep); padding: 32px 24px 48px; text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif; font-size: 14px;
+    color: rgba(250,247,242,0.4); letter-spacing: 2px; margin-bottom: 10px;
+  }
+  body.zh .footer-name { font-family: 'Noto Serif SC', serif; }
+  .footer-links {
+    font-family: 'Jost', sans-serif; font-size: 11px;
+    color: rgba(250,247,242,0.25); letter-spacing: 0.5px; line-height: 1.8;
+  }
+  .footer-links a {
+    color: rgba(184,146,42,0.5); text-decoration: underline; cursor: pointer; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+
+  /* ── COOKIE BANNER ── */
+  .cookie-banner {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: var(--deep); color: rgba(250,247,242,0.85);
+    padding: 20px 24px;
+    border-top: 1px solid rgba(184,146,42,0.25);
+    display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px;
+    transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.3);
+  }
+  .cookie-banner.visible { transform: translateY(0); }
+  .cookie-text {
+    flex: 1; min-width: 200px;
+    font-family: 'Jost', sans-serif; font-size: 12px;
+    font-weight: 300; line-height: 1.7; letter-spacing: 0.3px;
+  }
+  .cookie-text strong {
+    display: block; font-weight: 500; color: var(--gold-light);
+    margin-bottom: 4px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .cookie-text a { color: var(--gold-light); text-decoration: underline; cursor: pointer; }
+  .cookie-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+  .btn-cookie-accept {
+    padding: 10px 20px; background: var(--gold); color: var(--deep);
+    border: none; font-family: 'Jost', sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: background 0.25s; white-space: nowrap;
+  }
+  .btn-cookie-accept:hover { background: var(--gold-light); }
+  .btn-cookie-decline {
+    padding: 10px 16px; background: transparent;
+    border: 1px solid rgba(250,247,242,0.2); color: rgba(250,247,242,0.5);
+    font-family: 'Jost', sans-serif; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.25s; white-space: nowrap;
+  }
+  .btn-cookie-decline:hover { border-color: rgba(250,247,242,0.4); color: rgba(250,247,242,0.8); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(26,18,8,0.8); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--cream); max-width: 540px; width: 100%;
+    max-height: 80vh; overflow-y: auto;
+    padding: 40px 36px; position: relative;
+    border-top: 3px solid var(--gold);
+    animation: rise 0.3s ease;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; font-size: 22px;
+    color: var(--stone); cursor: pointer; line-height: 1; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--espresso); }
+  .modal-title {
+    font-family: 'Playfair Display', serif; font-size: 22px;
+    font-weight: 600; color: var(--espresso); margin-bottom: 20px;
+  }
+  .modal-body p {
+    font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300;
+    line-height: 1.8; color: var(--mocha); margin-bottom: 16px;
+  }
+  .modal-body h4 {
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold); margin: 20px 0 8px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .strength-row { grid-template-columns: 1fr; }
+    .code-wrap { flex: 0 0 126px; }
+    .teaser-block { padding: 24px 18px; }
+    .cta-block { padding: 40px 20px; }
+    .cookie-banner { padding: 16px; }
+    .modal-box { padding: 28px 20px; }
+    .lang-btn { padding: 7px 12px; font-size: 10px; }
+  }
+</style>
+</head>
+<body class="en">
+<div class="page">
+
+  <!-- ── LANGUAGE BAR ── -->
+  <div class="lang-bar">
+    <div class="lang-pill">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中文</button>
+    </div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-eyebrow" data-key="eyebrow"></div>
+    <h1 data-key="h1"></h1>
+    <p class="hero-sub" data-key="heroSub"></p>
+  </section>
+
+  <!-- ── FORM ── -->
+  <section class="form-section">
+    <div class="section-label" data-key="formLabel"></div>
+
+    <div class="field" id="f-name">
+      <label data-key="labelName"></label>
+      <input type="text" id="inp-name" autocomplete="name">
+      <div class="err" data-key="errName"></div>
+    </div>
+
+    <div class="field" id="f-email">
+      <label data-key="labelEmail"></label>
+      <input type="email" id="inp-email" placeholder="your@email.com" autocomplete="email">
+      <div class="err" data-key="errEmail"></div>
+    </div>
+
+    <div class="field" id="f-phone">
+      <label data-key="labelPhone"></label>
+      <div class="phone-row">
+        <div class="code-wrap">
+          <select id="inp-code">
+            <option value="+60">🇲🇾 +60</option>
+            <option value="+65">🇸🇬 +65</option>
+            <option value="+62">🇮🇩 +62</option>
+            <option value="+66">🇹🇭 +66</option>
+            <option value="+63">🇵🇭 +63</option>
+            <option value="+84">🇻🇳 +84</option>
+            <option value="+86">🇨🇳 +86</option>
+            <option value="+852">🇭🇰 +852</option>
+            <option value="+886">🇹🇼 +886</option>
+            <option value="+81">🇯🇵 +81</option>
+            <option value="+82">🇰🇷 +82</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+61">🇦🇺 +61</option>
+            <option value="+1">🇺🇸 +1</option>
+          </select>
+        </div>
+        <div class="num-wrap">
+          <input type="tel" id="inp-phone" autocomplete="tel">
+        </div>
+      </div>
+      <div class="err" data-key="errPhone"></div>
+    </div>
+
+    <div class="field" id="f-dob">
+      <label data-key="labelDob"></label>
+
+      <!-- Desktop & iOS: native date input -->
+      <input type="date" id="inp-dob" class="dob-native">
+
+      <!-- Android: three-dropdown fallback -->
+      <div class="dob-selects" id="dob-selects" style="display:none;">
+        <div class="dob-row">
+          <div class="dob-col"><select id="dob-day"   class="dob-part"></select></div>
+          <div class="dob-col"><select id="dob-month" class="dob-part"></select></div>
+          <div class="dob-col dob-col-year"><select id="dob-year" class="dob-part"></select></div>
+        </div>
+      </div>
+
+      <div class="err" data-key="errDob"></div>
+    </div>
+
+    <button class="btn-reveal" id="calc-btn" onclick="doCalculate()">
+      <span class="btn-label" data-key="btnCalc"></span>
+      <span class="btn-spinner"></span>
+    </button>
+
+    <p class="privacy-note">
+      <span data-key="privacyText"></span>
+      <a onclick="openModal()" data-key="privacyLink"></a>
+    </p>
+  </section>
+
+  <!-- ── RESULT ── -->
+  <div id="result">
+    <div class="number-banner">
+      <p class="greeting-line" id="r-greeting"></p>
+      <div class="number-ring">
+        <div class="big-num" id="r-num"></div>
+      </div>
+      <p class="path-name" id="r-name"></p>
+      <p class="path-keyword" id="r-keyword"></p>
+    </div>
+
+    <section class="insight-section">
+      <div class="section-label" data-key="resultLabel"></div>
+      <p class="insight-intro" id="r-intro"></p>
+      <p class="insight-body" id="r-body"></p>
+      <div class="strength-row" id="r-strengths"></div>
+      <div class="teaser-block">
+        <div class="teaser-label" data-key="teaserLabel"></div>
+        <h3 class="teaser-title" id="r-teaser-title"></h3>
+        <p class="teaser-text" id="r-teaser-text"></p>
+        <ul class="teaser-list" id="r-teaser-list"></ul>
+      </div>
+    </section>
+
+    <div class="cta-block">
+      <p class="cta-eyebrow" data-key="ctaEyebrow"></p>
+      <h2 class="cta-heading" id="cta-heading"></h2>
+      <p class="cta-sub" data-key="ctaSub"></p>
+      <div class="consultant-card">
+        <span class="consultant-name">Joyce Metaphysics Consultant</span>
+        <span class="consultant-title" data-key="consultantTitle"></span>
+      </div>
+      <a class="btn-wa" id="btn-wa" href="#" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-key="btnWa"></span>
+      </a>
+      <p class="slot-note" data-key="slotNote"></p>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p class="footer-name">Joyce Metaphysics Consultant &nbsp;·&nbsp; © 2025</p>
+    <p class="footer-links">
+      <span data-key="footerPrivacy"></span> &nbsp;·&nbsp;
+      <a onclick="openModal()" data-key="footerLink"></a>
+    </p>
+  </footer>
+
+</div><!-- .page -->
+
+<!-- ── COOKIE BANNER ── -->
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-text">
+    <strong data-key="cookieTitle"></strong>
+    <span data-key="cookieBody"></span>
+    <a onclick="openModal()" data-key="cookieLink"></a>
+  </div>
+  <div class="cookie-actions">
+    <button class="btn-cookie-decline" onclick="dismissCookie(false)" data-key="cookieDecline"></button>
+    <button class="btn-cookie-accept"  onclick="dismissCookie(true)"  data-key="cookieAccept"></button>
+  </div>
+</div>
+
+<!-- ── PRIVACY MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 class="modal-title" data-key="modalTitle"></h2>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────
+// ── PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ──────────────
+const SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzbrpBT7ifciLsYiyhbXG5xcoprJkdz5eRX0UTb8Ow9CfSE_OH3c1u3uANizExOGwnR/exec';
+// ─────────────────────────────────────────────────────────────────
+const WA_NUMBER     = '60167286134';
+
+// ── TRANSLATIONS ────────────────────────────────────
+const T = {
+  en: {
+    eyebrow:         'Life Path Numerology',
+    h1:              'What does your <em>birth date</em> reveal about you?',
+    heroSub:         'Uncover the hidden patterns in your personality, purpose, and the path your life is naturally drawn towards.',
+    formLabel:       'Your Details',
+    labelName:       'Your Name',
+    placeholderName: 'What would you like to be called?',
+    placeholderPhone:'Phone number',
+    labelEmail:      'Email Address',
+    labelPhone:      'Phone Number',
+    labelDob:        'Date of Birth',
+    errName:         'Please enter your name',
+    errEmail:        'Please enter a valid email address',
+    errPhone:        'Please enter your phone number',
+    errDob:          'Please select your date of birth',
+    btnCalc:         'Calculate My Life Path',
+    btnCalcLoading:  'Calculating…',
+    privacyText:     '🔒 Your details are kept strictly private and will never be shared with third parties. By submitting, you agree to our use of cookies and consent to receiving relevant updates. ',
+    privacyLink:     'Learn more',
+    resultLabel:     'What This Means For You',
+    greetingSuffix:  ', YOUR LIFE PATH NUMBER IS',
+    teaserLabel:     '✦   There is more beneath the surface',
+    ctaEyebrow:      'Ready to go deeper?',
+    ctaHeading:      "Your numbers hold answers you haven't thought to ask <em>yet.</em>",
+    ctaSub:          'A personal consultation uncovers the full picture — your timing, your patterns, and what\'s truly possible for you.',
+    consultantTitle: 'Metaphysics Consultant',
+    btnWa:           'Chat on WhatsApp',
+    slotNote:        'Limited consultation slots available monthly',
+    footerPrivacy:   'Your privacy matters to us',
+    footerLink:      'Cookie & Privacy Policy',
+    cookieTitle:     'Cookies & Privacy',
+    cookieBody:      'This site uses cookies to improve your experience and to help us understand how you engage with our content. Your details may be used to send you relevant updates from Joyce Metaphysics Consultant. Your information will never be sold or shared. ',
+    cookieLink:      'Read our full policy.',
+    cookieDecline:   'Decline',
+    cookieAccept:    'I Understand',
+    modalTitle:      'Cookie & Privacy Policy',
+    modalSections: [
+      { h: 'What We Collect',       p: 'When you use this calculator, we collect the name, email address, phone number, and date of birth you provide. This is used solely to calculate your life path number and to follow up with you about consultation services.' },
+      { h: 'How We Use Your Information', p: 'Your details may be used to contact you with information relevant to your reading and to inform you of upcoming consultations, events, or offers from Joyce Metaphysics Consultant. We will not send unsolicited messages unrelated to these services.' },
+      { h: 'Cookies',               p: 'This site uses cookies to remember your preferences, such as your language choice and cookie consent. No personally identifiable information is stored in cookies, and cookies do not track you across other websites.' },
+      { h: 'Marketing Use',         p: 'By submitting your details, you consent to Joyce Metaphysics Consultant reaching out via the contact information provided — including via WhatsApp — for relevant insights, consultation availability, and offers. You may opt out at any time by notifying Joyce directly.' },
+      { h: 'Data Sharing',          p: 'Your personal information is kept strictly confidential. It will never be sold, rented, or shared with any third party outside of Joyce Metaphysics Consultant. Data is stored securely and accessed only by authorised personnel.' },
+      { h: 'Your Rights',           p: 'You have the right to request access to, correction of, or deletion of your personal data at any time. Please contact Joyce Metaphysics Consultant via WhatsApp at +60 16-728 6134.' }
+    ]
+  },
+  zh: {
+    eyebrow:         '生命灵数测算',
+    h1:              '你的<em>出生日期</em>揭示了什么？',
+    heroSub:         '探索隐藏在你性格、使命与人生轨迹中的深层规律。',
+    formLabel:       '填写您的资料',
+    labelName:       '您的姓名',
+    placeholderName: '您希望如何称呼？',
+    placeholderPhone:'手机号码',
+    labelEmail:      '电子邮件',
+    labelPhone:      '联系电话',
+    labelDob:        '出生日期',
+    errName:         '请输入您的姓名',
+    errEmail:        '请输入有效的电子邮件',
+    errPhone:        '请输入您的手机号码',
+    errDob:          '请选择您的出生日期',
+    btnCalc:         '计算我的生命灵数',
+    btnCalcLoading:  '计算中…',
+    privacyText:     '🔒 您的个人资料将被严格保密，绝不与第三方共享。提交即表示您同意我们使用Cookie，并同意接收来自Joyce Metaphysics Consultant的相关资讯。',
+    privacyLink:     '了解更多',
+    resultLabel:     '这对您意味着什么',
+    greetingSuffix:  '，您的生命灵数是',
+    teaserLabel:     '✦   表面之下，还有更多',
+    ctaEyebrow:      '准备深入了解？',
+    ctaHeading:      '您的数字中藏着<em>您尚未追问过的答案。</em>',
+    ctaSub:          '一次专属咨询，将为您揭开完整的人生蓝图——时机、模式，以及属于您的真正可能性。',
+    consultantTitle: '玄学顾问',
+    btnWa:           'WhatsApp 联系我们',
+    slotNote:        '每月咨询名额有限',
+    footerPrivacy:   '我们重视您的隐私',
+    footerLink:      'Cookie 与隐私政策',
+    cookieTitle:     'Cookie 与隐私',
+    cookieBody:      '本网站使用Cookie以改善您的体验，并帮助我们了解您与页面的互动方式。您提交的资料可能用于向您发送来自Joyce Metaphysics Consultant的相关资讯，绝不出售或共享。',
+    cookieLink:      '查看完整政策。',
+    cookieDecline:   '拒绝',
+    cookieAccept:    '我明白了',
+    modalTitle:      'Cookie 与隐私政策',
+    modalSections: [
+      { h: '我们收集的资料',     p: '当您使用本测算工具时，我们会收集您填写的姓名、电子邮件、手机号码及出生日期。这些资料仅用于计算您的生命灵数，以及后续提供咨询服务之用。' },
+      { h: '我们如何使用您的资料', p: '您的资料可能用于向您发送与测算结果相关的资讯，以及来自Joyce Metaphysics Consultant的咨询预约、活动或优惠通知。我们不会发送与上述服务无关的垃圾信息。' },
+      { h: 'Cookie 说明',      p: '本网站使用Cookie记录您的偏好设置，例如语言选择及Cookie同意状态。Cookie中不存储任何可识别身份的个人资料，且不会跨网站追踪您的行为。' },
+      { h: '营销用途',          p: '提交资料即表示您同意Joyce Metaphysics Consultant通过您提供的联系方式（包括WhatsApp）与您联系，分享玄学见解、咨询资讯及相关优惠。您可随时通过直接联系Joyce来选择退出。' },
+      { h: '资料共享',          p: '您的个人资料将被严格保密，绝不出售、出租或与Joyce Metaphysics Consultant以外的任何第三方共享。资料经安全存储，仅授权人员可访问。' },
+      { h: '您的权利',          p: '您有权随时要求查阅、更正或删除您的个人资料。请通过WhatsApp联系Joyce Metaphysics Consultant：+60 16-728 6134。' }
+    ]
+  }
+};
+
+// ── PATH DATA ─────────────────────────────────────
+const paths = {
+  en: {
+    1:  { name:"The Leader",        keyword:"Independence · Vision · Initiative",      intro:"You were born with a natural drive to carve your own path — not follow someone else's.",                                                                       body:"People around you often sense your confidence before you say a word. You think independently, act decisively, and are at your best when you have the freedom to lead — whether that's a team, a project, or simply your own life. The quiet challenge you carry is learning when to let others in.",                                                                                                      strengths:["Self-Motivated","Decisive Thinker","Natural Authority","Original Ideas","Resilient Spirit","Bold Initiator"],             teaserTitle:"Why do you sometimes feel meant for more — but hold yourself back?",                                                             teaserText:"Your number reveals specific patterns about how you approach ambition, relationships, and success — including the blind spots that tend to repeat.",       teaserList:["What your peak years look like — and when they arrive","The relationship dynamic that either fuels or drains you most","Why some of your greatest strengths can quietly work against you","What you are here to build in this lifetime"] },
+    2:  { name:"The Peacemaker",    keyword:"Sensitivity · Intuition · Connection",    intro:"You feel things deeply — and that is not a weakness. It is your most underestimated strength.",                                                                 body:"You have a rare ability to read a room, sense what people need, and create harmony where there was tension. You are the person others come to when things fall apart. The difficulty is that you sometimes give so much of yourself that you lose track of what you want. Your intuition is almost always right — the work is learning to trust it.",                                                   strengths:["Highly Intuitive","Natural Mediator","Deeply Empathic","Patient Listener","Detail-Oriented","Quietly Powerful"],           teaserTitle:"You've always understood others — but who truly understands you?",                                                               teaserText:"Your full reading explores the hidden tensions in your path — why certain relationships repeat, and what your numbers say about finding balance without losing yourself.",     teaserList:["The life phase where your sensitivity becomes your greatest asset","Why you attract the people you do — and what that means","Your natural decision-making pattern and how to use it well","What fulfilment specifically looks like for your number"] },
+    3:  { name:"The Expresser",     keyword:"Creativity · Communication · Joy",        intro:"You are built for expression — and when you go quiet, something essential in you dims.",                                                                         body:"Whether through words, ideas, creativity, or humour — you have a gift for making people feel alive in your presence. You think vividly and communicate in ways that stick. The tension in your path is between your extraordinary potential and the self-doubt that sometimes convinces you not to bother.",                                                                                         strengths:["Naturally Creative","Magnetic Communicator","Emotionally Expressive","Inspiring Presence","Quick Wit","Gifted with Ideas"],  teaserTitle:"You have more to offer than you have let yourself show yet.",                                                                     teaserText:"Your reading digs into the patterns around your creativity — why you sometimes scatter your energy, and what it looks like when you step into your full voice.",                teaserList:["Where your creativity translates into real, lasting success","Why self-expression can feel vulnerable — and how to move past it","The timing cycles that favour your biggest opportunities","What your path reveals about love and how you connect"] },
+    4:  { name:"The Builder",       keyword:"Stability · Discipline · Legacy",         intro:"You don't just dream — you build. And what you build tends to last.",                                                                                             body:"You have an instinct for structure and an ability to work steadily toward a goal long after others have given up. People rely on you — sometimes more than is fair. You take your responsibilities seriously, perhaps too seriously at times. The question your path quietly asks is: are you building the life you actually want, or the one that simply felt safe?",                                  strengths:["Exceptionally Reliable","Long-term Thinker","Hardworking","Grounded & Practical","Loyal Commitment","Detail Mastery"],      teaserTitle:"You carry a great deal. But is all of it actually yours to carry?",                                                              teaserText:"A deeper reading reveals the specific areas where your strengths are fully rewarded — and where they may be quietly costing you more than you realise.",                       teaserList:["The career and financial patterns embedded in your number","Relationship dynamics specific to your life path","When your most significant life shifts are likely to occur","The version of stability that feels like freedom, not a cage"] },
+    5:  { name:"The Free Spirit",   keyword:"Freedom · Adaptability · Experience",     intro:"You need variety the way others need air. Routine feels like a slow fade.",                                                                                      body:"You are multi-talented, quick-thinking, and magnetic — people are drawn to your energy. You adapt where others freeze. But your path carries a real tension: the desire for freedom can keep you just beyond the commitment that would actually set you free. You are meant to experience a great deal of life — the work is learning which experiences to stay for.",                                    strengths:["Highly Adaptable","Naturally Charismatic","Adventurous","Versatile Mind","Quick Learner","Energetically Bold"],             teaserTitle:"What does it look like when someone like you settles — into the right things?",                                                  teaserText:"Your full reading explores the patterns around commitment, restlessness, and how your specific number interacts with timing — because for your path, when matters enormously.", teaserList:["Why certain doors keep opening — and which ones to walk through","The relationship style that works for your number","How to channel your energy so it compounds rather than scatters","The life chapters where you truly come alive"] },
+    6:  { name:"The Nurturer",      keyword:"Care · Responsibility · Harmony",         intro:"You love deeply. And the people in your life know it — even when you say nothing.",                                                                              body:"You have a strong pull toward caring for others — family, friends, sometimes people you barely know. You create environments where people feel genuinely welcome. The cost, if you're not careful, is that your own needs become an afterthought. Your path asks you to learn that caring for yourself is not a betrayal of the people you love.",                                                       strengths:["Deeply Compassionate","Natural Caretaker","Strong Aesthetic Sense","Devoted & Loyal","Community-minded","Emotionally Wise"],  teaserTitle:"You give generously. The question is — are you also receiving?",                                                                 teaserText:"Your reading looks at the specific life areas where your nurturing nature is a true gift — and where it may be creating invisible resentment.",                                teaserList:["The relationship pattern most common to your life path","Where your path naturally leads in terms of purpose and vocation","How to set boundaries without feeling like you've become someone else","The timing of your most meaningful life chapters"] },
+    7:  { name:"The Seeker",        keyword:"Depth · Wisdom · Inner Truth",            intro:"Surface-level answers have never been enough for you. You need to understand why.",                                                                               body:"You have a naturally analytical mind and a depth that most people only glimpse. You need quiet the way others need company — it's where you process, recharge, and find clarity. The path can feel lonely at times, not because you are alone, but because few conversations go deep enough to satisfy you.",                                                                                         strengths:["Deeply Analytical","Perceptive","Quiet Inner Strength","Research-minded","Emotionally Considered","Truth-seeking"],         teaserTitle:"You already sense things others miss. Your number explains why.",                                                                teaserText:"A full reading unpacks the specific knowledge your path is designed to find — and the life areas where your depth is genuinely rare.",                                         teaserList:["Why certain people and experiences keep finding you","The vocational paths that align with your way of thinking","How your introspective nature shapes your relationships","What your number says about trust — and who has truly earned yours"] },
+    8:  { name:"The Achiever",      keyword:"Power · Abundance · Mastery",             intro:"You understand effort. You understand results. And you respect both.",                                                                                            body:"You have an instinct for how things work — systems, people, resources, strategy. Success is something you can see clearly and move toward with focus. What is less clear sometimes is whether the version of success you're chasing is actually the one that would truly satisfy you.",                                                                                                              strengths:["Strategically Minded","Natural Executive","Financially Intuitive","Goal-Oriented","Authoritative Presence","Resilient Under Pressure"], teaserTitle:"You know how to achieve. The deeper question is — achieve what, exactly?",                                              teaserText:"Your full reading looks at the specific patterns in your chart — and the personal dimensions of your path that matter just as much as the professional ones.",                 teaserList:["The financial and career cycles embedded in your number","Why certain achievements feel hollow — and what that signals","The relationship dynamics most relevant to your path","When your peak influence periods are most likely to arrive"] },
+    9:  { name:"The Wise One",      keyword:"Compassion · Wisdom · Completion",        intro:"You have seen enough of life to know that most things are more complicated than they appear.",                                                                    body:"You carry a quiet wisdom — an ability to understand people's experience without needing them to explain it. You have a deep sense of fairness and are often drawn toward causes larger than yourself. The weight of this path is that you feel things broadly, which can be exhausting. Learning what to hold and what to release is the central practice of your life.",                               strengths:["Broadly Compassionate","Emotionally Mature","Naturally Wise","Idealistic Realist","Generous Spirit","Deeply Perceptive"],   teaserTitle:"You have been learning your whole life. This is what it has been preparing you for.",                                            teaserText:"Your reading reveals the larger patterns at work — the cycles completing, the purpose assembling, and what the next chapter is asking of you.",                                 teaserList:["What your life path says about your sense of calling","The completion cycles that shape your major life transitions","Relationships that carry particular significance for your number","How to move from doing good to living well — at the same time"] },
+    11: { name:"The Intuitive",     keyword:"Inspiration · Sensitivity · Illumination",intro:"You pick things up that others miss. You always have — even when you couldn't explain it.",                                                                      body:"Yours is one of the rarer paths — carrying both extraordinary sensitivity and an almost inexplicable ability to inspire. You are often ahead of your time. The difficulty is the gap between your inner knowing and the courage to act on it. You were not built for an ordinary life, yet ordinary life keeps demanding your attention.",                                                             strengths:["Deeply Intuitive","Visionary Thinker","Emotionally Attuned","Quietly Inspiring","Perceptive","Creative Intelligence"],      teaserTitle:"You came here with something specific to offer. A reading can help you see what it is.",                                         teaserText:"A full reading for your path explores the depth of your sensitivity, the purpose embedded in your number, and how to live it without burning out.",                            teaserList:["Why your path feels different from those around you — and why that is correct","The life areas where your intuition is most reliable","How to work with high sensitivity rather than against it","The moments in your timeline that will define what comes after"] },
+    22: { name:"The Master Builder",keyword:"Vision · Manifestation · Legacy",         intro:"You think at a scale that most people find difficult to follow. That has always been the case.",                                                                  body:"You carry one of the most ambitious paths — built for turning large visions into tangible reality. You have the practicality of a builder and the imagination of a visionary. The challenge is that the weight of what you're capable of can become paralysing. The question is not whether you can do it. It's whether you'll let yourself.",                                                        strengths:["Large-scale Thinking","Practical Visionary","Disciplined Ambition","Natural Leadership","Strong Manifestor","Enduring Impact"], teaserTitle:"The scope of what you're capable of is not something most people can hold alongside you.",                                  teaserText:"Your reading explores the architecture of your path — the environments, relationships, and timing that allow your capacity to translate into lasting impact.",                  teaserList:["The structures and environments best suited to your number","Why your journey has felt unusually demanding — and what it has been building toward","The partnership dynamics most aligned with your path","When the larger phases of your life are likely to fall into place"] }
+  },
+  zh: {
+    1:  { name:"领导者",   keyword:"独立 · 远见 · 主动",     intro:"您天生具备开辟自己道路的驱动力，而不是跟随他人的脚步。",                       body:"身边的人往往在您开口之前就能感受到您的自信。您独立思考，果断行动，当拥有领导的自由时——无论是团队、项目还是自己的生活——您都能发挥最佳状态。您内心深处的功课，是学会在适当的时候向他人打开心扉。",                             strengths:["自我驱动","果断思考","天然权威","原创思维","坚韧精神","大胆开拓"],  teaserTitle:"您是否有时觉得自己命中注定更多——却又在无形中退缩？",          teaserText:"您的数字揭示了您在抱负、关系和成功方面的特定模式——包括那些反复出现的盲点。",                 teaserList:["您的高峰年份是什么样的——以及何时到来","对您影响最深的人际关系模式","为何您最大的优势有时会悄然成为阻力","您此生来到这里要建造什么"] },
+    2:  { name:"和平使者", keyword:"敏感 · 直觉 · 连接",     intro:"您感受深刻——这不是弱点，而是您最被低估的力量。",                           body:"您拥有罕见的能力——能洞察氛围、感知他人所需，并在紧张中创造和谐。您是他人在困境中第一个想到的人。困难在于，您有时给予太多，以至于忘记了自己想要什么。您的直觉几乎总是正确的——功课在于学会信任它。",                          strengths:["高度直觉","天然调解者","深度共情","耐心倾听","注重细节","低调而有力"], teaserTitle:"您总是理解他人——但谁真正理解您？",                          teaserText:"您的完整解读探讨您道路中隐藏的张力——为何某些关系不断重复，以及如何在不迷失自我的情况下找到平衡。", teaserList:["您的敏感成为最大优势的人生阶段","您为何吸引特定类型的人——以及这意味着什么","您天然的决策模式及如何善用它","您的数字所对应的独特满足感"] },
+    3:  { name:"表达者",   keyword:"创造力 · 沟通 · 喜悦",   intro:"您天生为表达而生——当您沉默时，内心深处有某样东西在悄然黯淡。",               body:"无论是通过语言、创意、幽默还是艺术，您都有让他人在您身旁感到充满活力的天赋。您思维生动，表达有力，令人难忘。您道路上的张力，在于您非凡的潜力与那个时常劝说您\"算了吧\"的自我怀疑之间。",                            strengths:["天然创造力","磁性沟通者","情感表达力","感召力","机智幽默","充满创意"],   teaserTitle:"您还有更多未曾展现的东西。",                               teaserText:"您的解读深入探讨您创造力周围的模式——为何您有时分散精力，以及当您真正绽放时是什么样子。",         teaserList:["您的创造力在哪些领域能转化为真实而持久的成功","为何自我表达有时令人感到脆弱——以及如何跨越","对您最有利的时机周期","您的数字揭示的爱与连接方式"] },
+    4:  { name:"建造者",   keyword:"稳定 · 纪律 · 传承",     intro:"您不只是做梦——您建造。而您建造的东西，经得起时间。",                        body:"您天生具备结构感，能在他人放弃很久之后仍稳步朝目标前进。人们依赖您——有时超出了公平的程度。您认真对待自己的责任，有时甚至过于认真。您的道路悄悄在问：您正在建造的，是您真正想要的生活，还是那个\"感觉安全\"的生活？",         strengths:["极度可靠","长远思考","勤勉努力","脚踏实地","忠诚承诺","精通细节"],   teaserTitle:"您承担着很多。但其中有多少，真的是您该承担的？",               teaserText:"更深入的解读将揭示您的优势在哪些领域得到充分回报——以及在哪些领域它们可能正悄悄消耗您。",       teaserList:["隐藏在您数字中的职业与财务模式","您生命路径特有的人际关系动态","您最重要的人生转变何时可能发生","那个既感到自由又感到稳定的生活是什么样的"] },
+    5:  { name:"自由灵魂", keyword:"自由 · 适应力 · 体验",   intro:"您需要变化，就像其他人需要空气。一成不变的日子对您来说是一种缓慢的消逝。",      body:"您多才多艺、思维敏捷、充满磁性——人们被您的能量所吸引。您在他人僵住的地方灵活变通。但您的道路承载着真实的张力：对自由的渴望，有时会让您止步于那个真正能解放您的承诺面前。您注定要体验生命的诸多面向——功课是学会辨别哪些值得留下。", strengths:["高度适应力","天然魅力","冒险精神","多才多艺","快速学习","能量充沛"],   teaserTitle:"像您这样的人安定下来——在对的事情上——会是什么样子？",             teaserText:"您的完整解读探讨承诺与躁动的模式，以及您的数字如何与时机相互作用——因为对您的道路而言，\"何时\"至关重要。", teaserList:["为何某些门一再向您打开——以及该走哪扇","最适合您数字的关系方式","如何引导您的能量，使其积累而非分散","您真正活得最充实的人生章节"] },
+    6:  { name:"养育者",   keyword:"关爱 · 责任 · 和谐",     intro:"您爱得深沉。您生命中的人都能感受到——即使您什么都没说。",                    body:"您对照顾他人有强烈的牵引——家人、朋友，有时甚至是陌生人。您营造的环境让人真正感到被欢迎。代价是，如果您不加留意，自己的需求会变成一个事后才想到的念头。您的道路要您学会：照顾自己，并不是对所爱之人的背叛。",                  strengths:["深度慈悲","天然照顾者","强烈美感","忠诚奉献","以社区为中心","情感智慧"], teaserTitle:"您慷慨给予。问题是——您也在接受吗？",                         teaserText:"您的解读着眼于您养育天性在哪些生活领域是真正的礼物——以及在哪些地方可能正在积累隐形的委屈。",    teaserList:["您生命路径中最常见的关系模式","您的道路在使命与职业上的自然走向","如何设立界限而不感觉变成了另一个人","您最具意义的人生章节的时机"] },
+    7:  { name:"探索者",   keyword:"深度 · 智慧 · 内在真相", intro:"表面的答案对您从来不够。您需要理解背后的原因。",                             body:"您天生具备分析力与深度，而大多数人只能隐约感受到这一点。您需要安静，就像他人需要陪伴——那是您处理、充电和获得清晰的地方。这条道路有时令人感到孤独，不是因为您真的孤独，而是因为很少有对话能够深入到让您真正满足的程度。",       strengths:["深度分析","洞察力","内在力量","研究导向","情感深思","追寻真相"],     teaserTitle:"您已经能感知到他人忽略的事物。您的数字解释了原因。",             teaserText:"完整解读将揭示您的道路所要寻找的特定知识——以及您的深度在哪些生活领域是真正罕见而珍贵的。",      teaserList:["为何某些人与经历不断在您生命中出现","最契合您思维方式的职业路径","您内省的本质如何塑造您的关系","您的数字对信任的看法——以及谁真正赢得了您的信任"] },
+    8:  { name:"成就者",   keyword:"力量 · 丰盛 · 掌握",     intro:"您懂得努力，您懂得成果。两者您都尊重。",                                    body:"您天生理解事物运作的方式——系统、人、资源、策略。成功对您来说是可以清晰看见并坚定追求的目标。有时不太清楚的，是您所追求的那个成功版本，是否真的能让您感到满足。",                                                      strengths:["战略思维","天然领导者","财务直觉","目标导向","权威气场","抗压力强"],   teaserTitle:"您知道如何成就。更深的问题是——成就什么，究竟？",                  teaserText:"您的完整解读着眼于您图表中的特定模式——以及您道路中与职业同等重要的个人维度。",                 teaserList:["隐藏在您数字中的财务与职业周期","为何某些成就感觉空洞——以及这意味着什么","与您道路最相关的人际关系动态","您的影响力高峰期最可能何时到来"] },
+    9:  { name:"智者",     keyword:"慈悲 · 智慧 · 圆满",     intro:"您阅历足够丰富，深知大多数事情都比表面看起来复杂得多。",                    body:"您携带着一种安静的智慧——无需他人解释，就能理解他们的处境。您有深厚的公正感，常被更宏大的使命所吸引。这条道路的重量，在于您广泛地感受万物，这有时令人疲惫。学会什么该承载、什么该放下，是您人生最核心的修炼。",              strengths:["广博慈悲","情感成熟","天然智慧","理想现实主义者","慷慨精神","深度洞察"], teaserTitle:"您一生都在学习。而这些，正是它为您准备的。",                    teaserText:"您的解读揭示生命中运作的更大模式——正在完成的周期，正在成形的使命，以及下一章节对您的呼唤。",    teaserList:["您的生命路径所揭示的使命感","塑造您重大人生过渡的完成周期","对您数字具有特殊意义的关系","如何同时做好事与活得好"] },
+    11: { name:"直觉者",   keyword:"灵感 · 敏感 · 启迪",     intro:"您能感知到他人所错过的东西。一直如此——即使您当时无法解释。",                 body:"您拥有一条较为罕见的道路——同时承载着非凡的敏感性与一种近乎神秘的感召力。您常常在时代之前看见事物。困难在于您内心的感知与付诸行动的勇气之间的落差。您并非为平凡的生活而生，然而平凡的生活一直在叩门。",                         strengths:["深度直觉","有远见的思想家","情感共鸣","静默感召","洞察力","创造性智慧"], teaserTitle:"您带着某种独特的使命而来。一次解读，能帮您看清那是什么。",         teaserText:"您道路的完整解读，探讨您敏感性的深度、数字中蕴藏的使命，以及如何活出它而不精疲力竭。",          teaserList:["为何您的道路与身边人感觉不同——以及为何这是正确的","您的直觉在哪些生活领域最为可靠","如何与高度敏感性共处而非对抗","您时间线上将定义此后一切的关键时刻"] },
+    22: { name:"大师建造者",keyword:"愿景 · 显化 · 传承",    intro:"您的思维格局是大多数人难以跟上的。一直如此。",                              body:"您拥有最具抱负的道路之一——为将宏大愿景转化为切实现实而生。您兼具建造者的实用性与梦想家的想象力，这是一种罕见的组合。挑战在于，您所能承载之物的重量，有时会让您陷入停滞。问题不在于您能否做到，而在于您是否愿意允许自己去做。",    strengths:["宏观思维","实干型理想家","纪律与抱负","天然领导力","强大显化力","持久影响"], teaserTitle:"您所能达到的高度，不是大多数人能与您并肩的。",                  teaserText:"您的解读探讨您道路的架构——什么样的环境、关系和时机，能让您的潜力真正转化为持久的影响力。",      teaserList:["最适合您数字的结构与环境","为何您的旅途感觉异常艰难——以及它一直在建造什么","最契合您道路的伙伴关系动态","您人生更宏大篇章何时可能落定"] }
+  }
+};
+
+// ── STATE ────────────────────────────────────────────
+let lang = 'en';
+let lastNum = null;
+let lastName = '';
+
+// ── LANGUAGE SWITCH ──────────────────────────────────
+function setLang(l) {
+  lang = l;
+  document.body.className = l;
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+
+  // toggle active buttons
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
+
+  // render all data-key elements
+  renderUI();
+
+  // update placeholder text
+  document.getElementById('inp-name').placeholder  = T[l].placeholderName;
+  document.getElementById('inp-phone').placeholder = T[l].placeholderPhone;
+
+  // re-render result if already shown
+  if (lastNum !== null) renderResult(lastNum, lastName);
+
+  // rebuild Android date dropdowns with new language labels
+  if (window._buildDobDropdowns) window._buildDobDropdowns(l);
+
+  // store preference
+  localStorage.setItem('preferred_lang', l);
+}
+
+function renderUI() {
+  const t = T[lang];
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (!(key in t)) return;
+    if (key === 'h1' || key === 'ctaHeading') {
+      el.innerHTML = t[key];
+    } else {
+      el.textContent = t[key];
+    }
+  });
+  // rebuild modal body
+  const mb = document.getElementById('modal-body');
+  if (mb) {
+    mb.innerHTML = t.modalSections.map(s =>
+      `<h4>${s.h}</h4><p>${s.p}</p>`
+    ).join('');
+  }
+}
+
+// ── COOKIE ───────────────────────────────────────────
+function initCookie() {
+  if (!localStorage.getItem('cookie_consent')) {
+    setTimeout(() => document.getElementById('cookie-banner').classList.add('visible'), 1400);
+  }
+}
+function dismissCookie(accepted) {
+  localStorage.setItem('cookie_consent', accepted ? 'accepted' : 'declined');
+  document.getElementById('cookie-banner').classList.remove('visible');
+}
+function openModal()  { document.getElementById('modal-overlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+function closeModalOutside(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+
+// ── VALIDATION & CALC ────────────────────────────────
+function validate(inputId, groupId, check) {
+  const val = document.getElementById(inputId).value.trim();
+  const ok  = check(val);
+  document.getElementById(groupId).classList.toggle('invalid', !ok);
+  return ok;
+}
+function reduce(n) {
+  while (n > 9 && n !== 11 && n !== 22)
+    n = String(n).split('').reduce((a,b) => a + parseInt(b), 0);
+  return n;
+}
+function calcLifePath(dob) {
+  const d = new Date(dob);
+  return reduce(reduce(d.getDate()) + reduce(d.getMonth() + 1) + reduce(d.getFullYear()));
+}
+function sendToSheet(payload) {
+  if (!SHEET_WEBHOOK || SHEET_WEBHOOK === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') return;
+  try {
+    // Hidden iframe + form POST — the only cross-domain method that reliably
+    // delivers all fields to Google Apps Script without CORS issues.
+    const iframeId = '_gs_' + Date.now();
+    const iframe = document.createElement('iframe');
+    iframe.name = iframeId;
+    iframe.style.cssText = 'display:none;width:0;height:0;border:0;';
+    document.body.appendChild(iframe);
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = SHEET_WEBHOOK;
+    form.target = iframeId;
+    form.style.cssText = 'display:none;';
+
+    Object.entries(payload).forEach(([k, v]) => {
+      const input = document.createElement('input');
+      input.type  = 'hidden';
+      input.name  = k;
+      input.value = (v === null || v === undefined) ? '' : String(v);
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(() => {
+      if (form.parentNode)   form.parentNode.removeChild(form);
+      if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+    }, 10000);
+  } catch(err) {
+    console.warn('Sheet send failed:', err);
+  }
+}
+
+function renderResult(num, firstName) {
+  const t  = T[lang];
+  const pd = (paths[lang][num] || paths[lang][9]);
+  document.getElementById('r-greeting').textContent     = firstName.toUpperCase() + t.greetingSuffix;
+  document.getElementById('r-num').textContent          = num;
+  document.getElementById('r-name').textContent         = pd.name;
+  document.getElementById('r-keyword').textContent      = pd.keyword;
+  document.getElementById('r-intro').textContent        = pd.intro;
+  document.getElementById('r-body').textContent         = pd.body;
+  document.getElementById('r-strengths').innerHTML      = pd.strengths.map(s => `<div class="strength-tag">${s}</div>`).join('');
+  document.getElementById('r-teaser-title').textContent = pd.teaserTitle;
+  document.getElementById('r-teaser-text').textContent  = pd.teaserText;
+  document.getElementById('r-teaser-list').innerHTML    = pd.teaserList.map(i => `<li>${i}</li>`).join('');
+  // refresh static data-key texts inside result too
+  renderUI();
+  // wa link
+  const msgEn = `Hi Joyce, I just discovered my Life Path Number is ${num} — ${paths.en[num]?.name || paths.en[9].name}. I'd love to find out more. My name is ${firstName}.`;
+  const msgZh = `你好Joyce，我刚测出我的生命灵数是 ${num}——${paths.zh[num]?.name || paths.zh[9].name}。我很想进一步了解更多，我的名字是${firstName}。`;
+  const msg = encodeURIComponent(lang === 'zh' ? msgZh : msgEn);
+  document.getElementById('btn-wa').href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+}
+
+function doCalculate() {
+  const t  = T[lang];
+  const n1 = validate('inp-name',  'f-name',  v => v.length >= 2);
+  const n2 = validate('inp-email', 'f-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+  const n3 = validate('inp-phone', 'f-phone', v => /^\d{5,15}$/.test(v.replace(/[\s\-]/g,'')));
+  const dobVal = getDobValue();
+  const n4 = (() => { const ok = dobVal !== ''; document.getElementById('f-dob').classList.toggle('invalid', !ok); return ok; })();
+  if (!n1||!n2||!n3||!n4) return;
+
+  const name  = document.getElementById('inp-name').value.trim();
+  const email = document.getElementById('inp-email').value.trim();
+  const code  = document.getElementById('inp-code').value;
+  const phone = document.getElementById('inp-phone').value.trim();
+  const dob   = getDobValue();
+
+  const btn = document.getElementById('calc-btn');
+  btn.classList.add('loading');
+  btn.querySelector('.btn-label').textContent = t.btnCalcLoading;
+
+  const num = calcLifePath(dob);
+  lastNum   = num;
+  lastName  = name.split(' ')[0];
+
+  sendToSheet({
+    timestamp:     new Date().toLocaleString('en-MY', { timeZone:'Asia/Kuala_Lumpur' }),
+    name, email, phone: code + phone, date_of_birth: dob,
+    life_path: num, archetype: paths.en[num]?.name || paths.en[9].name, language: lang
+  });
+
+  btn.classList.remove('loading');
+  btn.querySelector('.btn-label').textContent = t.btnCalc;
+
+  renderResult(num, lastName);
+
+  const section = document.getElementById('result');
+  section.style.display = 'block';
+  setTimeout(() => section.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+}
+
+// ── INIT ─────────────────────────────────────────────
+// ── DATE OF BIRTH: Android vs Desktop/iOS ──────────────────
+(function() {
+  const isAndroid = /android/i.test(navigator.userAgent);
+
+  if (isAndroid) {
+    // Hide native input, show dropdowns
+    document.getElementById('inp-dob').style.display = 'none';
+    document.getElementById('dob-selects').style.display = 'block';
+
+    const now   = new Date();
+    const maxY  = now.getFullYear() - 1;
+    const minY  = maxY - 99;
+
+    const dayEl   = document.getElementById('dob-day');
+    const monthEl = document.getElementById('dob-month');
+    const yearEl  = document.getElementById('dob-year');
+
+    // Placeholder options (populated later by renderUI which sets lang)
+    function buildDropdowns(l) {
+      const months = l === 'zh'
+        ? ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+        : ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const dayPh   = l === 'zh' ? '日' : 'Day';
+      const monPh   = l === 'zh' ? '月' : 'Month';
+      const yearPh  = l === 'zh' ? '年' : 'Year';
+
+      // Save current selections
+      const selDay = dayEl.value, selMon = monthEl.value, selYear = yearEl.value;
+
+      dayEl.innerHTML   = `<option value="" data-ph="true">${dayPh}</option>`;
+      monthEl.innerHTML = `<option value="" data-ph="true">${monPh}</option>`;
+      yearEl.innerHTML  = `<option value="" data-ph="true">${yearPh}</option>`;
+
+      for (let d = 1; d <= 31; d++)
+        dayEl.innerHTML += `<option value="${d}" ${d==selDay?'selected':''}>${d}</option>`;
+
+      months.forEach((m, i) => {
+        const v = i + 1;
+        monthEl.innerHTML += `<option value="${v}" ${v==selMon?'selected':''}>${m}</option>`;
+      });
+
+      for (let y = maxY; y >= minY; y--)
+        yearEl.innerHTML += `<option value="${y}" ${y==selYear?'selected':''}>${y}</option>`;
+    }
+
+    // Initial build
+    buildDropdowns('en');
+
+    // Expose so setLang can rebuild with correct language
+    window._buildDobDropdowns = buildDropdowns;
+  } else {
+    // Desktop / iOS: standard max constraint
+    document.getElementById('inp-dob').max = new Date().toISOString().split('T')[0];
+  }
+})();
+
+// ── Helper: get DOB value regardless of which picker is active ──
+function getDobValue() {
+  const isAndroid = /android/i.test(navigator.userAgent);
+  if (isAndroid) {
+    const d = document.getElementById('dob-day').value;
+    const m = document.getElementById('dob-month').value;
+    const y = document.getElementById('dob-year').value;
+    if (!d || !m || !y) return '';
+    const dd = String(d).padStart(2,'0');
+    const mm = String(m).padStart(2,'0');
+    return `${y}-${mm}-${dd}`;
+  }
+  return document.getElementById('inp-dob').value;
+}
+
+// Restore saved language
+const saved = localStorage.getItem('preferred_lang');
+if (saved === 'zh') setLang('zh'); else setLang('en');
+
+initCookie();
+
+// Live error cleanup
+['inp-name','inp-email','inp-phone','inp-dob'].forEach((id,i) => {
+  const g = ['f-name','f-email','f-phone','f-dob'];
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => {
+    document.getElementById(g[i]).classList.remove('invalid');
+  });
+});
+// Android dropdown change handlers clear dob error
+['dob-day','dob-month','dob-year'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('change', () => {
+    document.getElementById('f-dob').classList.remove('invalid');
+  });
+});
+</script>
+</body>
+</html>
