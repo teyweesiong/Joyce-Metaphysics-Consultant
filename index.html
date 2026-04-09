@@ -1,0 +1,4871 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyce Metaphysics Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            cream:       '#FAF8F5',
+            'cream-alt': '#F0EBE2',
+            'cream-deep':'#E8E0D4',
+            'brown-deep':'#2A2018',
+            'brown-mid': '#6B5B4E',
+            'brown-light':'#9C8C80',
+            gold:        '#8B7355',
+            'gold-light':'#C4A882',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans:  ['Inter', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- Motion One (vanilla Framer Motion) -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js" defer></script>
+  <style>
+    /* ─── Variables ─── */
+    :root {
+      --cream:       #FAF8F5;
+      --cream-alt:   #F0EBE2;
+      --cream-deep:  #E8E0D4;
+      --brown-deep:  #2A2018;
+      --brown-mid:   #6B5B4E;
+      --brown-light: #9C8C80;
+      --gold:        #8B7355;
+      --gold-light:  #C4A882;
+      --white:       #FFFFFF;
+      --font-h:      'Playfair Display', Georgia, serif;
+      --font-b:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-w:       1100px;
+      --section-pad: 90px 24px;
+    }
+
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--brown-deep);
+      font-family: var(--font-b);
+      font-size: 16px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── Language Toggle ─── */
+    .zh-content { display: none; }
+    body.zh .en-content { display: none; }
+    body.zh .zh-content { display: block; }
+    body.zh .zh-inline { display: inline; }
+    body.zh .en-inline { display: none; }
+
+    /* ─── Page Visibility ─── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ─── Nav ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--cream-deep);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-family: var(--font-h);
+      font-size: clamp(0.82rem, 1.8vw, 1.1rem);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--brown-deep);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      transition: color 0.2s;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--brown-deep); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    /* ─── Language Toggle Switch ─── */
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang-switch {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: 88px;
+      height: 30px;
+      background: var(--cream-deep);
+      border: 1px solid var(--gold-light);
+      border-radius: 15px;
+      -webkit-transition: border-color 0.2s;
+      transition: border-color 0.2s;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .lang-switch-label-en,
+    .lang-switch-label-zh {
+      position: absolute;
+      font-family: var(--font-b), 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1;
+      -webkit-transition: color 0.25s;
+      transition: color 0.25s;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .lang-switch-label-en {
+      left: 10px;
+      color: var(--white);
+    }
+    .lang-switch-label-zh {
+      right: 9px;
+      color: var(--brown-light);
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+    }
+    .lang-switch-thumb {
+      position: absolute;
+      left: 3px;
+      width: 38px;
+      height: 24px;
+      background: var(--gold);
+      border-radius: 12px;
+      -webkit-transition: left 0.25s cubic-bezier(0.4,0,0.2,1);
+      transition: left 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    /* Chinese active state */
+    body.zh .lang-switch-thumb {
+      left: 45px;
+    }
+    body.zh .lang-switch-label-en {
+      color: var(--brown-light);
+    }
+    body.zh .lang-switch-label-zh {
+      color: var(--white);
+    }
+    .lang-btn:hover .lang-switch,
+    .lang-btn:focus .lang-switch {
+      border-color: var(--gold);
+      outline: none;
+    }
+    .nav-book-btn {
+      font-family: var(--font-b);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--brown-deep);
+      color: var(--cream);
+      padding: 10px 14px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-book-btn:hover { background: var(--gold); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 4px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--brown-deep);
+      transition: all 0.25s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--cream-deep);
+      padding: 20px 24px 28px;
+      z-index: 1100;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .mobile-menu .mobile-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    /* ─── Page Top Offset ─── */
+    .page { padding-top: 72px; }
+
+    /* ─── Typography ─── */
+    h1, h2, h3, h4 { font-family: var(--font-h); font-weight: 500; line-height: 1.3; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+    h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+    h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
+    h4 { font-size: 1.1rem; }
+    p { color: var(--brown-mid); }
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: var(--section-pad); }
+    .section-alt { background: var(--cream-alt); }
+    .section-dark {
+      background: var(--brown-deep);
+      color: var(--cream);
+    }
+    .section-dark p { color: var(--cream-deep); }
+    .section-dark h1,
+    .section-dark h2,
+    .section-dark h3 { color: var(--cream); }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-b);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-primary {
+      background: var(--brown-deep);
+      color: var(--cream);
+    }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--brown-deep);
+      border: 1px solid var(--brown-deep);
+    }
+    .btn-secondary:hover {
+      background: var(--brown-deep);
+      color: var(--cream);
+    }
+    .btn-light {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .btn-light:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--cream);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--cream);
+    }
+    .btn-gold:hover { background: var(--brown-deep); }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    /* ─── Divider ─── */
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--gold-light);
+      margin: 24px 0;
+    }
+    .divider-center { margin: 24px auto; }
+
+    /* ─── Hero Section ─── */
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-text { max-width: 100%; }
+    .hero-image {
+      position: relative;
+      height: 580px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero h1 {
+      font-style: italic;
+      color: var(--brown-deep);
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-family: var(--font-h);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--brown-mid);
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .hero-body {
+      font-size: 1rem;
+      color: var(--brown-mid);
+      max-width: 560px;
+      line-height: 1.85;
+      margin-bottom: 8px;
+    }
+
+    /* ─── Two-column ─── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .two-col-narrow {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* ─── Bullet List ─── */
+    .elegant-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .elegant-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      color: var(--brown-mid);
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+    .elegant-list li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 10px;
+    }
+    .section-dark .elegant-list li { color: var(--cream-deep); }
+    .section-dark .elegant-list li::before { background: var(--gold-light); }
+
+    /* ─── Cards ─── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      margin-top: 48px;
+    }
+    .card {
+      background: var(--cream-alt);
+      padding: 36px 28px;
+      border-top: 2px solid var(--gold-light);
+    }
+    .card-number {
+      font-family: var(--font-h);
+      font-size: 2rem;
+      color: var(--gold-light);
+      font-weight: 400;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .card h4 {
+      color: var(--brown-deep);
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    .card p { font-size: 0.9rem; }
+
+    /* ─── Service Blocks ─── */
+    .service-block {
+      border-top: 1px solid var(--cream-deep);
+      padding: 56px 0;
+    }
+    .service-block:first-child { border-top: none; padding-top: 0; }
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .service-meta { flex: 1; }
+    .service-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-light);
+      padding: 4px 12px;
+      margin-bottom: 16px;
+    }
+    .service-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      margin-top: 32px;
+    }
+    .service-col h5 {
+      font-family: var(--font-h);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    /* ─── Quote Block ─── */
+    .quote-block {
+      text-align: center;
+      padding: 100px 24px;
+      background: var(--brown-deep);
+    }
+    .quote-block blockquote {
+      font-family: var(--font-h);
+      font-style: italic;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      color: var(--cream);
+      max-width: 780px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .quote-block blockquote::before {
+      content: '\201C';
+      display: block;
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 0.8;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Recognition ─── */
+    .recognition-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .recognition-item {
+      flex: 1;
+      min-width: 220px;
+      border-left: 2px solid var(--gold);
+      padding: 16px 24px;
+      margin: 8px 0;
+    }
+    .recognition-item .year {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .recognition-item p {
+      font-family: var(--font-h);
+      color: var(--brown-deep);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .section-dark .recognition-item p { color: var(--cream); }
+
+    /* ─── Checklist ─── */
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      color: var(--brown-mid);
+      font-size: 0.97rem;
+      line-height: 1.65;
+    }
+    .check-list li::before {
+      content: '—';
+      color: var(--gold);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Page Hero (inner pages) ─── */
+    .page-hero {
+      background: var(--cream-alt);
+      padding: 80px 24px 70px;
+      border-bottom: 1px solid var(--cream-deep);
+    }
+    .page-hero .container { max-width: var(--max-w); }
+    .page-hero h1 {
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .page-hero p {
+      font-size: 1.05rem;
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    /* ─── FAQ Accordion ─── */
+    .faq-group { margin-bottom: 48px; }
+    .faq-group-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--cream-deep);
+    }
+    details {
+      border-bottom: 1px solid var(--cream-deep);
+    }
+    summary {
+      padding: 22px 0;
+      cursor: pointer;
+      font-family: var(--font-h);
+      font-size: 1.05rem;
+      color: var(--brown-deep);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 0 28px;
+      color: var(--brown-mid);
+      line-height: 1.85;
+    }
+    .faq-answer p + p { margin-top: 12px; }
+
+    /* ─── Contact Form ─── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info h3 { margin-bottom: 20px; }
+    .contact-info p { margin-bottom: 16px; font-size: 0.97rem; }
+    .contact-options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--brown-mid);
+    }
+    .contact-option .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brown-deep);
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--font-b);
+      font-size: 0.95rem;
+      color: var(--brown-deep);
+      background: var(--white);
+      border: 1px solid var(--cream-deep);
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select { cursor: pointer; }
+    .form-note {
+      font-size: 0.8rem;
+      color: var(--brown-light);
+      margin-top: 8px;
+      font-style: italic;
+    }
+    #form-success {
+      display: none;
+      background: var(--cream-alt);
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: var(--brown-deep);
+    }
+
+    /* ─── How-to-choose table ─── */
+    .choose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 40px;
+    }
+    .choose-card {
+      background: var(--cream-alt);
+      padding: 32px 28px;
+      border-top: 2px solid var(--gold-light);
+    }
+    .choose-card .choose-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .choose-card h4 {
+      font-family: var(--font-h);
+      font-size: 1rem;
+      color: var(--brown-deep);
+      margin-bottom: 16px;
+    }
+
+    /* ─── Ways to Work (homepage) ─── */
+    .ways-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+    .way-card {
+      background: var(--cream-alt);
+      padding: 40px 36px;
+      border-top: 2px solid var(--gold-light);
+      transition: background 0.2s;
+    }
+    .way-card:hover { background: var(--cream-deep); }
+    .way-num {
+      font-family: var(--font-h);
+      font-size: 1.8rem;
+      color: var(--gold-light);
+      font-weight: 400;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .way-card h4 {
+      font-family: var(--font-h);
+      font-size: 1.05rem;
+      color: var(--brown-deep);
+      margin-bottom: 10px;
+    }
+    .way-card p { font-size: 0.93rem; }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--brown-deep);
+      color: var(--cream);
+      padding: 56px 24px 36px;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 28px;
+    }
+    .footer-logo {
+      font-family: var(--font-h);
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .footer-logo span { color: var(--gold-light); }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── Highlight Text ─── */
+    .highlight {
+      color: var(--gold);
+      font-style: italic;
+    }
+    .signature-line {
+      font-family: var(--font-h);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--brown-deep);
+      margin-top: 28px;
+      padding-left: 20px;
+      border-left: 2px solid var(--gold);
+    }
+    .section-dark .signature-line {
+      color: var(--cream);
+      border-left-color: var(--gold-light);
+    }
+    .closing-note {
+      font-family: var(--font-h);
+      font-style: italic;
+      font-size: 0.97rem;
+      color: var(--brown-mid);
+      margin-top: 20px;
+    }
+    .tag-coming {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--gold-light);
+      color: var(--brown-deep);
+      padding: 3px 10px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .section-intro {
+      max-width: 640px;
+    }
+    .text-center { text-align: center; }
+    .text-center .section-intro { margin: 0 auto; }
+
+    /* ─── Bonus Flicker Badge ─── */
+    @keyframes bonusFlicker {
+      0%, 100% { opacity: 1; }
+      45% { opacity: 1; }
+      50% { opacity: 0.3; }
+      55% { opacity: 1; }
+      60% { opacity: 0.5; }
+      65% { opacity: 1; }
+    }
+    .bonus-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 8px;
+      vertical-align: middle;
+      animation: bonusFlicker 2.4s ease-in-out infinite;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ─── Verified Badge ─── */
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.06em;
+      margin-top: 6px;
+    }
+    .verified-badge svg {
+      flex-shrink: 0;
+    }
+
+    /* ─── Testimonials ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 36px;
+      margin-top: 12px;
+    }
+    .testimonial-card {
+      background: var(--cream-alt);
+      border: 1px solid var(--cream-deep);
+      padding: 40px 36px 36px;
+      position: relative;
+    }
+    .testimonial-quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .testimonial-body {
+      font-size: 0.92rem;
+      color: var(--brown-mid);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .testimonial-author {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--cream-deep);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .testimonial-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--brown-deep);
+      font-weight: 600;
+    }
+    .testimonial-detail {
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ─── Custom Phone Input ─── */
+    .phone-input-wrapper {
+      position: relative;
+      display: flex;
+      border: 1px solid var(--cream-deep);
+      background: var(--white);
+      transition: border-color 0.2s;
+    }
+    .phone-input-wrapper:focus-within {
+      border-color: var(--gold);
+    }
+    .phone-flag-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 10px 0 12px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--cream-deep);
+      flex-shrink: 0;
+      user-select: none;
+      white-space: nowrap;
+      font-family: var(--font-b);
+      color: var(--brown-deep);
+      transition: background 0.15s;
+      height: 48px;
+    }
+    .phone-flag-btn:hover { background: var(--cream-alt); }
+    .phone-flag-emoji { font-size: 1.15rem; line-height: 1; }
+    .phone-code-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--brown-deep);
+      min-width: 32px;
+    }
+    .phone-chevron {
+      width: 10px;
+      height: 6px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+    .phone-flag-btn.open .phone-chevron { transform: rotate(180deg); }
+    .phone-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      z-index: 500;
+      width: 280px;
+      background: var(--white);
+      border: 1px solid var(--cream-deep);
+      box-shadow: 0 8px 28px rgba(42,32,24,0.13);
+      display: none;
+    }
+    .phone-dropdown.open { display: block; }
+    .phone-search-wrap {
+      padding: 10px 10px 8px;
+      border-bottom: 1px solid var(--cream-deep);
+    }
+    .phone-search {
+      width: 100%;
+      font-family: var(--font-b);
+      font-size: 0.88rem;
+      color: var(--brown-deep);
+      background: var(--cream-alt);
+      border: none;
+      padding: 8px 12px;
+      outline: none;
+    }
+    .phone-search::placeholder { color: var(--brown-light); }
+    .phone-country-list {
+      list-style: none;
+      max-height: 210px;
+      overflow-y: auto;
+      padding: 4px 0;
+      margin: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cream-deep) transparent;
+    }
+    .phone-country-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: var(--brown-mid);
+      transition: background 0.1s;
+    }
+    .phone-country-item:hover,
+    .phone-country-item.selected {
+      background: var(--cream-alt);
+      color: var(--brown-deep);
+    }
+    .ci-flag { font-size: 1.1rem; line-height: 1; flex-shrink: 0; }
+    .ci-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ci-code { color: var(--gold); font-weight: 500; flex-shrink: 0; }
+    .phone-number-input {
+      flex: 1;
+      font-family: var(--font-b);
+      font-size: 0.95rem;
+      color: var(--brown-deep);
+      background: transparent;
+      border: none;
+      padding: 0 16px;
+      outline: none;
+      min-width: 0;
+      height: 48px;
+    }
+    .phone-number-input::placeholder { color: var(--brown-light); }
+
+    /* ─── Social Icons ─── */
+    .social-icons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.55);
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .social-icon:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+    .social-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ─── Price Badge ─── */
+    .price-badge {
+      display: inline-block;
+      font-family: var(--font-h);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+    .service-price-tag {
+      font-family: var(--font-b);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-light);
+      padding: 3px 10px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    /* ─── Checkout Page ─── */
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 40px;
+    }
+    .checkout-service-card {
+      background: var(--cream-alt);
+      border-top: 2px solid var(--gold-light);
+      padding: 32px 28px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+    }
+    .checkout-service-card:hover {
+      background: var(--cream-deep);
+    }
+    .checkout-service-card.selected {
+      border-top-color: var(--gold);
+      background: var(--cream-deep);
+    }
+    .checkout-service-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .checkout-radio-indicator {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--gold-light);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: border-color 0.2s;
+    }
+    .checkout-radio-indicator::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .checkout-service-card.selected .checkout-radio-indicator {
+      border-color: var(--gold);
+    }
+    .checkout-service-card.selected .checkout-radio-indicator::after {
+      opacity: 1;
+    }
+    .checkout-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .checkout-card-info { flex: 1; }
+    .checkout-card-title {
+      font-family: var(--font-h);
+      font-size: 1.05rem;
+      color: var(--brown-deep);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .checkout-card-price {
+      font-family: var(--font-h);
+      font-size: 1.4rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .checkout-card-format {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 10px;
+    }
+    .checkout-card-desc {
+      font-size: 0.9rem;
+      color: var(--brown-mid);
+      line-height: 1.65;
+    }
+    .checkout-order-box {
+      background: var(--cream-alt);
+      border: 1px solid var(--cream-deep);
+      border-left: 3px solid var(--gold);
+      padding: 28px 32px;
+      margin-top: 40px;
+    }
+    .checkout-order-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .checkout-order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--cream-deep);
+    }
+    .checkout-order-item-name {
+      font-family: var(--font-h);
+      color: var(--brown-deep);
+      font-size: 1rem;
+    }
+    .checkout-order-item-price {
+      font-family: var(--font-h);
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .checkout-order-empty {
+      font-size: 0.95rem;
+      color: var(--brown-light);
+      font-style: italic;
+    }
+    .checkout-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .checkout-note {
+      font-size: 0.8rem;
+      color: var(--brown-light);
+      font-style: italic;
+      margin-top: 12px;
+    }
+
+    /* ─── Payment Modal ─── */
+    .pmodal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(42,32,24,0.72);
+      z-index: 9000;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 24px 16px 40px;
+      overflow-y: auto;
+    }
+    .pmodal-box {
+      background: var(--cream);
+      width: 100%; max-width: 560px;
+      border-top: 3px solid var(--gold);
+      padding: 40px 36px 44px;
+      position: relative;
+      margin: auto;
+    }
+    .pmodal-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.5rem; color: var(--brown-light); line-height: 1;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .pmodal-close:hover { color: var(--brown-deep); }
+    .pmodal-service-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 6px;
+    }
+    .pmodal-service-name {
+      font-family: var(--font-h); font-size: 1.15rem;
+      color: var(--brown-deep); margin-bottom: 6px; line-height: 1.3;
+    }
+    .pmodal-service-price {
+      font-family: var(--font-h); font-size: 1.3rem;
+      color: var(--gold); font-weight: 600; margin-bottom: 28px;
+    }
+    .pmodal-steps { display: flex; flex-direction: column; gap: 28px; }
+    .pmodal-step {
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+    .pmodal-step-num {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border: 2px solid var(--gold-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-h); font-size: 0.95rem;
+      color: var(--gold); font-weight: 600;
+    }
+    .pmodal-step-body { flex: 1; }
+    .pmodal-step-title {
+      font-family: var(--font-h); font-size: 1rem;
+      color: var(--brown-deep); margin-bottom: 10px;
+    }
+    .pmodal-step-desc {
+      font-size: 0.88rem; color: var(--brown-mid); margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .tng-qr-wrap { text-align: center; margin: 4px 0 0; }
+    .tng-qr-wrap img {
+      max-width: 220px; width: 100%;
+      border: 1px solid var(--cream-deep);
+      padding: 10px; background: #fff;
+    }
+    .tng-qr-label {
+      font-size: 0.75rem; color: var(--brown-light);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .pmodal-form { display: flex; flex-direction: column; gap: 14px; }
+    .pmodal-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pmodal-field { display: flex; flex-direction: column; gap: 5px; }
+    .pmodal-field label {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--brown-light); font-weight: 500;
+    }
+    .pmodal-field input,
+    .pmodal-field select {
+      border: 1px solid var(--cream-deep);
+      background: var(--cream-alt);
+      padding: 10px 12px;
+      font-family: var(--font-b); font-size: 0.9rem;
+      color: var(--brown-deep);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .pmodal-field input:focus,
+    .pmodal-field select:focus { border-color: var(--gold); }
+    .pmodal-phone-row { display: grid; grid-template-columns: 148px 1fr; gap: 8px; }
+    .pmodal-label-hint { font-weight: 400; color: var(--brown-light); text-transform: none; letter-spacing: 0; font-size: 0.68rem; }
+    .pmodal-tob-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    #pmodal-tob { flex: 0 0 auto; width: 100px; }
+    .pmodal-tob-na-label {
+      display: flex; align-items: center; gap: 8px;
+      cursor: pointer; font-size: 0.84rem; color: var(--brown-mid);
+      font-weight: 400; letter-spacing: 0; text-transform: none;
+      white-space: nowrap;
+    }
+    .pmodal-tob-na-label input[type="checkbox"] {
+      width: 16px; height: 16px; cursor: pointer;
+      accent-color: var(--gold); flex-shrink: 0;
+      border: none; padding: 0;
+    }
+    #pmodal-tob:disabled { opacity: 0.35; cursor: not-allowed; }
+    .pmodal-field-error { border-color: #c0392b !important; }
+    .pmodal-error-msg {
+      display: none; font-size: 0.75rem; color: #c0392b;
+      margin-top: 4px; line-height: 1.4;
+    }
+    .pmodal-submit {
+      margin-top: 6px; align-self: flex-start;
+    }
+    .pmodal-step-divider {
+      border: none; border-top: 1px solid var(--cream-deep); margin: 4px 0 0;
+    }
+    .pmodal-calendar-note {
+      font-size: 0.8rem; color: var(--brown-light); font-style: italic;
+      margin-top: 10px; line-height: 1.5;
+    }
+    .pmodal-success {
+      text-align: center; padding: 24px 0 8px;
+      display: none;
+    }
+    .pmodal-success-icon {
+      font-size: 2.4rem; color: var(--gold); margin-bottom: 12px;
+    }
+    .pmodal-success h3 {
+      font-family: var(--font-h); color: var(--brown-deep);
+      font-size: 1.2rem; margin-bottom: 8px;
+    }
+    .pmodal-success p {
+      font-size: 0.9rem; color: var(--brown-mid); line-height: 1.6;
+    }
+    @media (max-width: 600px) {
+      .pmodal-box { padding: 32px 20px 36px; }
+      .pmodal-form-row { grid-template-columns: 1fr; }
+      .pmodal-phone-row { grid-template-columns: 1fr; }
+    }
+
+    /* ─── WhatsApp Floating Button ─── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.6);
+    }
+    .wa-float svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+    }
+    .wa-tooltip {
+      position: absolute;
+      right: 66px;
+      background: var(--brown-deep);
+      color: var(--cream);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 6px 12px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(6px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .wa-float:hover .wa-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ─── Privacy Policy Link ─── */
+    .footer-policy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      transition: color 0.2s;
+      text-decoration: underline;
+      text-decoration-color: rgba(255,255,255,0.2);
+      text-underline-offset: 3px;
+    }
+    .footer-policy:hover { color: var(--gold-light); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1000px) {
+      .nav-links { display: none; }
+      .nav-book-btn { display: none; }
+      /* Hide desktop lang toggle — mobile menu has its own */
+      #lang-toggle { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-image { height: 320px; }
+      .two-col,
+      .two-col-narrow,
+      .service-cols,
+      .choose-grid,
+      .checkout-grid,
+      .contact-layout { grid-template-columns: 1fr; gap: 2px; }
+      .choose-grid,
+      .checkout-grid { gap: 2px; }
+      .two-col,
+      .two-col-narrow,
+      .service-cols,
+      .contact-layout { gap: 40px; }
+      .ways-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      :root { --section-pad: 64px 20px; }
+    }
+    @media (max-width: 600px) {
+      .btn-group { flex-direction: column; }
+      .btn { text-align: center; }
+      .service-header { flex-direction: column; }
+      .recognition-list { flex-direction: column; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .wa-float { bottom: 20px; right: 16px; width: 50px; height: 50px; }
+      .wa-float svg { width: 26px; height: 26px; }
+    }
+  </style>
+</head>
+<body class="zh">
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Joyce <span>Metaphysics Consultant</span></div>
+
+    <div class="nav-links">
+      <a href="#" data-page="home" class="active">
+        <span class="en-content">Home</span>
+        <span class="zh-content">首页</span>
+      </a>
+      <a href="#" data-page="about">
+        <span class="en-content">About Joyce</span>
+        <span class="zh-content">关于 Joyce</span>
+      </a>
+      <a href="#" data-page="work">
+        <span class="en-content">Work With Joyce</span>
+        <span class="zh-content">服务项目</span>
+      </a>
+      <a href="#" data-page="faq">
+        <span class="en-content">FAQ</span>
+        <span class="zh-content">常见问题</span>
+      </a>
+      <a href="#" data-page="testimonials">
+        <span class="en-content">Testimonials</span>
+        <span class="zh-content">客户见证</span>
+      </a>
+      <a href="#" data-page="contact">
+        <span class="en-content">Contact</span>
+        <span class="zh-content">联系 / 预约</span>
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <button class="lang-btn" id="lang-toggle" aria-label="Toggle language">
+        <span class="lang-switch">
+          <span class="lang-switch-label-en">EN</span>
+          <span class="lang-switch-label-zh">中文</span>
+          <span class="lang-switch-thumb"></span>
+        </span>
+      </button>
+      <button class="nav-book-btn" data-page="checkout">
+        <span class="en-content">Book a Session</span>
+        <span class="zh-content">预约疗程</span>
+      </button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" data-page="home">
+    <span class="en-content">Home</span>
+    <span class="zh-content">首页</span>
+  </a>
+  <a href="#" data-page="about">
+    <span class="en-content">About Joyce</span>
+    <span class="zh-content">关于 Joyce</span>
+  </a>
+  <a href="#" data-page="work">
+    <span class="en-content">Work With Joyce</span>
+    <span class="zh-content">服务项目</span>
+  </a>
+  <a href="#" data-page="faq">
+    <span class="en-content">FAQ</span>
+    <span class="zh-content">常见问题</span>
+  </a>
+  <a href="#" data-page="testimonials">
+    <span class="en-content">Testimonials</span>
+    <span class="zh-content">客户见证</span>
+  </a>
+  <a href="#" data-page="contact">
+    <span class="en-content">Contact</span>
+    <span class="zh-content">联系 / 预约</span>
+  </a>
+  <div class="mobile-actions">
+    <button class="lang-btn" id="lang-toggle-mobile" aria-label="Toggle language">
+      <span class="lang-switch">
+        <span class="lang-switch-label-en">EN</span>
+        <span class="lang-switch-label-zh">中文</span>
+        <span class="lang-switch-thumb"></span>
+      </span>
+    </button>
+    <button class="btn btn-primary" data-page="checkout" style="padding: 10px 20px; font-size: 0.75rem;">
+      <span class="en-content">Book a Session</span>
+      <span class="zh-content">预约疗程</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- SECTION 1 — HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-inner">
+
+        <div class="hero-text">
+          <div class="en-content">
+            <h1>There comes a point<br>in a woman's life<br>where she no longer wants<br>surface answers.</h1>
+            <p class="hero-sub">She wants to understand why life keeps repeating the same pain, the same delays, the same lessons — and what is truly meant for her.</p>
+            <p class="hero-body">Not every woman is looking for this kind of guidance. But for those who are tired of carrying too much alone, deeper clarity can become a turning point.</p>
+            <p class="hero-body">Through numerology, metaphysical insight, and lived wisdom, Joyce Yap helps women understand themselves, their timing, and the hidden patterns shaping their lives — so they can move forward with greater clarity, strength, and self-trust.</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary" data-page="checkout">Book a Session</a>
+              <a href="#" class="btn btn-secondary" data-page="work">Explore Services</a>
+            </div>
+          </div>
+
+          <div class="zh-content">
+            <h1>人生总有些时候，<br>你不再满足<br>于表面的答案。</h1>
+            <p class="hero-sub">你想了解为何生命不断重复同样的卡点、同样的痛苦、同样的课题——以及何时才会突破困境。</p>
+            <p class="hero-body">并非每位女性都在寻求这种指引。但对于那些已厌倦独自承受太多的人，看清方向就是一个转折点。</p>
+            <p class="hero-body">通过数字学、玄学洞察与人生智慧，Joyce Yap 帮助女性了解自己、把握时机，以及看清塑造她们生命的隐藏规律——让她们得以以更大的清晰、力量与自我信任向前迈进。</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary" data-page="checkout">预约咨询</a>
+              <a href="#" class="btn btn-secondary" data-page="work">了解服务</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <img src="JY%20Web%20Pic%202.jpg" alt="Joyce Yap — Metaphysics Consultant">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — WHY WOMEN COME TO JOYCE -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="two-col">
+
+        <div class="en-content">
+          <span class="eyebrow">Why Women Come to Joyce</span>
+          <h2>Most women do not arrive here because life feels light.</h2>
+          <div class="divider"></div>
+          <p>They come when something feels off — even if they cannot fully explain it yet.</p>
+        </div>
+        <div class="zh-content">
+          <span class="eyebrow">女性为何来找JOYCE</span>
+          <h2>大多数女性来到这里，并不是因为生活轻松愉快。</h2>
+          <div class="divider"></div>
+          <p>她们大多是感觉迷惑，无助，迷茫甚至是无法完全说清楚自己的困境。</p>
+        </div>
+
+        <div>
+          <div class="en-content">
+            <ul class="elegant-list">
+              <li>repeating emotional patterns</li>
+              <li>carrying silent heaviness</li>
+              <li>feeling blocked or delayed</li>
+              <li>standing at a crossroads</li>
+              <li>staying strong while feeling lost inside</li>
+            </ul>
+            <p class="closing-note">What keeps repeating in your life is often asking to be understood.<br>And when the pattern becomes clear, you stop blaming yourself for what was never meant to stay unseen.</p>
+          </div>
+          <div class="zh-content">
+            <ul class="elegant-list">
+              <li>重复的情感模式</li>
+              <li>揪心的内心重担</li>
+              <li>感到受阻或延误</li>
+              <li>站在人生十字路口</li>
+              <li>外表坚强，内心迷失</li>
+            </ul>
+            <p class="closing-note">生命中不断重复的事，其实是在寻求被理解的讯号。<br>当规律变得清晰，你的人生自然看到方向。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — WHY JOYCE -->
+  <section>
+    <div class="container">
+      <div class="two-col-narrow">
+
+        <div class="en-content">
+          <span class="eyebrow">Why Joyce</span>
+          <h2>Not all guidance is the same.</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="zh-content">
+          <span class="eyebrow">为何选择 JOYCE</span>
+          <h2>并非所有的指引都一样的。</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div>
+          <div class="en-content">
+            <p>Some can interpret systems.<br>Some can offer advice.<br>Some can say the right words.</p>
+            <br>
+            <p>But very few can help a woman feel truly seen while also helping her understand what is actually happening beneath the surface of her life.</p>
+            <br>
+            <p>That is where Joyce Yap is different.</p>
+            <br>
+            <p>Her work is shaped by lived experience, emotional depth, and a natural ability to recognise patterns many people miss.</p>
+            <br>
+            <p>She does not create dependency.<br>She helps women return to their own clarity.</p>
+            <p class="signature-line">When a woman sees clearly, she moves differently.</p>
+          </div>
+          <div class="zh-content">
+            <p>有人能够解读系统。<br>有人能够给出建议。<br>有人能够说出正确的话语。</p>
+            <br>
+            <p>但极少有人能在帮助女性真正被看见的同时，也帮助她了解生命表面之下真正发生的事情。</p>
+            <br>
+            <p>这正是 Joyce Yap 与众不同之处。</p>
+            <br>
+            <p>她的指引来自她真实的人生成长经历、情感的深度，事业的历练以及对生命的规律的感知所塑造。</p>
+            <br>
+            <p>她不制造依赖。<br>她帮助女性回归自己的清醒和力量。</p>
+            <p class="signature-line">当女性看得清楚自己了，那么她的行动将帮助她突破卡点。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — HOW JOYCE HELPS YOU BREAK THROUGH -->
+  <section class="section-alt">
+    <div class="container">
+
+      <div class="en-content section-intro">
+        <span class="eyebrow">How Joyce Helps You Break Through</span>
+        <h2>Breakthrough does not begin when you force harder. It begins when you finally see clearly.</h2>
+        <div class="divider"></div>
+        <p>Joyce's work helps women move from emotional heaviness and uncertainty into clarity, awareness, and self-trust.</p>
+      </div>
+      <div class="zh-content section-intro">
+        <span class="eyebrow">Joyce 如何帮助你突破</span>
+        <h2>突破不是从你更加努力开始的。它从你终于看清楚开始。</h2>
+        <div class="divider"></div>
+        <p>Joyce 的工作帮助女性从沉重的情感与不确定中，走向清醒、觉知与建立自信。</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <span class="card-number">01</span>
+          <h4 class="en-content">See the root, not just the symptom</h4>
+          <h4 class="zh-content">看见根源，而非仅仅是症状</h4>
+        </div>
+        <div class="card">
+          <span class="card-number">02</span>
+          <h4 class="en-content">Understand yourself more deeply</h4>
+          <h4 class="zh-content">更深入地了解自己</h4>
+        </div>
+        <div class="card">
+          <span class="card-number">03</span>
+          <h4 class="en-content">Reconnect with your own power</h4>
+          <h4 class="zh-content">重新连接自己的力量</h4>
+        </div>
+        <div class="card">
+          <span class="card-number">04</span>
+          <h4 class="en-content">Make clearer decisions</h4>
+          <h4 class="zh-content">做出更清晰的决定</h4>
+        </div>
+        <div class="card">
+          <span class="card-number">05</span>
+          <h4 class="en-content">Move forward with more peace</h4>
+          <h4 class="zh-content">充满力量和勇气向前走</h4>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px;">
+        <p class="closing-note en-content">Sometimes breakthrough begins the moment you stop fighting what you were meant to understand.</p>
+        <p class="closing-note zh-content">有时，突破就在你停止抵抗那些本应被理解的事物的那一刻开始。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5 — WAYS TO WORK WITH JOYCE -->
+  <section>
+    <div class="container">
+
+      <div class="en-content section-intro">
+        <span class="eyebrow">Ways to Work With Joyce</span>
+        <h2>Ways to Work With Joyce</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="zh-content section-intro">
+        <span class="eyebrow">合作方式</span>
+        <h2>与 Joyce 合作的方式</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="ways-grid">
+        <div class="way-card">
+          <span class="way-num">01</span>
+          <h4 class="en-content">Numerology Reading &amp; Life Path Analysis</h4>
+          <h4 class="zh-content">数字学解读人生蓝图分析</h4>
+          <p class="en-content">Understand your natural design, patterns, and life themes.</p>
+          <p class="zh-content">了解你的天命、规律与人生课题。</p>
+        </div>
+        <div class="way-card">
+          <span class="way-num">02</span>
+          <h4 class="en-content">1-to-1 Clarity &amp; Breakthrough Session</h4>
+          <h4 class="zh-content">一对一清醒与突破分析方案</h4>
+          <p class="en-content">For emotional heaviness, repeated blocks, and major life decisions.</p>
+          <p class="zh-content">适合情感沉重、面对重复的卡点及重大人生决定。</p>
+        </div>
+        <div class="way-card">
+          <span class="way-num">03</span>
+          <h4 class="en-content">Breakthrough Programs <span class="tag-coming">Coming Soon</span></h4>
+          <h4 class="zh-content">突破计划 <span class="tag-coming">即将推出</span></h4>
+          <p class="en-content">For deeper personal growth and transformation.</p>
+          <p class="zh-content">适合更深层的个人成长与蜕变。</p>
+        </div>
+        <div class="way-card">
+          <span class="way-num">04</span>
+          <h4 class="en-content">Selected Strategic Advisory</h4>
+          <h4 class="zh-content">精选战略顾问</h4>
+          <p class="en-content">For founders and leaders seeking clarity in people, timing, and decisions.</p>
+          <p class="zh-content">为寻求人材、时机与决策清醒的创始人与领导者提供。</p>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a href="#" class="btn btn-primary" data-page="work">
+          <span class="en-content">View Services</span>
+          <span class="zh-content">查看服务</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 6 — CORPORATE & STRATEGIC ADVISORY -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="two-col">
+
+        <div class="en-content">
+          <span class="eyebrow" style="color: var(--gold-light);">Corporate &amp; Strategic Advisory</span>
+          <h2>A smaller part of Joyce's work extends beyond personal guidance.</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="zh-content">
+          <span class="eyebrow" style="color: var(--gold-light);">企业与战略顾问</span>
+          <h2>Joyce 的一部分工作超越个人指引。</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div>
+          <div class="en-content">
+            <p>In selected cases, Joyce works with founders and business owners through a pattern-based and metaphysical lens in areas such as:</p>
+            <ul class="elegant-list" style="margin-top: 20px;">
+              <li>people and role alignment</li>
+              <li>leadership and team dynamics</li>
+              <li>business timing and decision-making</li>
+              <li>founder and partner compatibility</li>
+            </ul>
+            <p class="signature-line">When you understand the pattern, you make better decisions.</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-light" data-page="contact">Make an Inquiry</a>
+            </div>
+          </div>
+          <div class="zh-content">
+            <p>在特定情况下，Joyce 通过基于规律与玄学的视角，与创始人和企业主合作，领域包括：</p>
+            <ul class="elegant-list" style="margin-top: 20px;">
+              <li>人力与角色匹配</li>
+              <li>领导力与团队动态</li>
+              <li>商业时机与决策制定</li>
+              <li>创始人与合伙人兼容性</li>
+            </ul>
+            <p class="signature-line">当你理解规律，你便能做出更好的决定。</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-light" data-page="contact">提出咨询</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 — RECOGNITION -->
+  <section>
+    <div class="container">
+
+      <div class="en-content">
+        <span class="eyebrow">Recognition</span>
+        <h2>Recognised for leadership, vision, and transformational work</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">荣誉认可</span>
+        <h2>荣获领导力、远见与工作方面的认可</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="recognition-list" style="margin-top: 32px;">
+        <div class="recognition-item">
+          <span class="year">2024</span>
+          <p class="en-content">Malaysia's Top 50 CEOs</p>
+          <p class="zh-content">2024年马来西亚50大CEO</p>
+        </div>
+        <div class="recognition-item">
+          <span class="year">2024</span>
+          <p class="en-content">Most Successful People — Malaysia &amp; Singapore</p>
+          <p class="zh-content">2024年马来西亚与新加坡最成功人士</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 8 — WHO THIS IS FOR -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="two-col">
+
+        <div class="en-content">
+          <span class="eyebrow">Who This Is For</span>
+          <h2>This work may be for you if:</h2>
+          <div class="divider"></div>
+          <ul class="check-list">
+            <li>you are tired of repeating emotional patterns</li>
+            <li>you feel blocked or disconnected</li>
+            <li>you are carrying pain you do not fully understand</li>
+            <li>you are at a transition point</li>
+            <li>you are ready for truth, not just comfort</li>
+          </ul>
+        </div>
+        <div class="zh-content">
+          <span class="eyebrow">适合人群</span>
+          <h2>这项服务可能适合你，如果：</h2>
+          <div class="divider"></div>
+          <ul class="check-list">
+            <li>你厌倦了重复的情感模式</li>
+            <li>你感到受阻或与自己脱节</li>
+            <li>你正在承受自己未完全理解的痛苦</li>
+            <li>你正处于过渡期</li>
+            <li>你准备好面对真相，而不仅仅是安慰</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="en-content">
+            <p>This work is not for everyone.</p>
+            <br>
+            <p>It is for those ready to look deeper and move forward consciously.</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary" data-page="checkout">Book a Session</a>
+            </div>
+          </div>
+          <div class="zh-content">
+            <p>这项服务并非适合每个人。</p>
+            <br>
+            <p>它是为那些准备好更深入探索并有意识地向前走的人而设。</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary" data-page="checkout">预约咨询</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9 — QUOTE BLOCK -->
+  <div class="quote-block">
+    <blockquote class="en-content">Sometimes, the greatest breakthrough begins when you finally understand what you have been carrying.</blockquote>
+    <blockquote class="zh-content">有时，最大的突破，始于你终于理解自己一直在承载的重量。</blockquote>
+  </div>
+
+  <!-- SECTION 10 — FINAL CTA -->
+  <section class="text-center">
+    <div class="container">
+      <div class="section-intro">
+        <div class="en-content">
+          <h2>You may not need all the answers today.</h2>
+          <p style="margin-top: 16px; font-size: 1.05rem;">But one clear insight can change the way you move forward.</p>
+          <div class="btn-group" style="justify-content: center;">
+            <a href="#" class="btn btn-primary" data-page="checkout">Book a Session</a>
+          </div>
+        </div>
+        <div class="zh-content">
+          <h2>你今天可能不需要所有的答案。</h2>
+          <p style="margin-top: 16px; font-size: 1.05rem;">但一个清晰的洞察可以改变你前进的方式。</p>
+          <div class="btn-group" style="justify-content: center;">
+            <a href="#" class="btn btn-primary" data-page="checkout">预约咨询</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: ABOUT JOYCE
+════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">About Joyce Yap</span>
+        <h1>About Joyce Yap</h1>
+        <div class="divider"></div>
+        <p>Guiding women through clarity, self-understanding, and meaningful breakthrough through numerology, metaphysical insight, and lived wisdom.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">关于 Joyce Yap</span>
+        <h1>关于 Joyce Yap</h1>
+        <div class="divider"></div>
+        <p>通过数字学、玄学洞察与人生智慧，引导女性走向清醒、自我理解与有意义的突破。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section>
+    <div class="container">
+      <div class="en-content section-intro">
+        <h2>Some women do not need more advice. They need deeper understanding.</h2>
+        <div class="divider"></div>
+        <p>Joyce Yap helps women understand their pain, patterns, and life path — not from theory alone, but from lived experience and deep observation of human patterns.</p>
+      </div>
+      <div class="zh-content section-intro">
+        <h2>有些女性不需要更多建议。她们需要更深的理解。</h2>
+        <div class="divider"></div>
+        <p>Joyce Yap 帮助女性了解她们的痛苦、规律与人生路径——不仅仅来自理论，更来自真实的生命经历与对人类规律的深刻观察。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HER STORY -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="two-col">
+
+        <div class="en-content">
+          <span class="eyebrow">Her Story</span>
+          <h2>Joyce's work was shaped through real life.</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="zh-content">
+          <span class="eyebrow">她的故事</span>
+          <h2>Joyce 的服务是由真实的生命历程所塑造。</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div>
+          <div class="en-content">
+            <p>Through experiences that required strength, emotional rebuilding, and transformation, she developed a deeper understanding of how patterns, timing, and inner dynamics shape a person's life.</p>
+            <br>
+            <p>She came to see that many struggles are not random — they are patterns waiting to be understood.</p>
+          </div>
+          <div class="zh-content">
+            <p>她透过自己贫困的童年背景，情感的创伤，成功的事业和企业家的人生历练，看透人生的规律、时机与内在状态如何塑造一个人的生命有了更深的理解。</p>
+            <br>
+            <p>她开始看到，许多挣扎并非偶然——它们是等待被理解的规律。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HER APPROACH -->
+  <section>
+    <div class="container">
+      <div class="two-col">
+
+        <div class="en-content">
+          <span class="eyebrow">Her Approach</span>
+          <h2>Her approach</h2>
+          <div class="divider"></div>
+          <ul class="elegant-list">
+            <li>numerology and life path insight</li>
+            <li>metaphysical interpretation</li>
+            <li>emotional depth</li>
+            <li>lived wisdom</li>
+          </ul>
+          <p style="margin-top: 24px;">Her work is not about dependency.<br>It is about helping women see clearly enough to return to their own power.</p>
+        </div>
+        <div class="zh-content">
+          <span class="eyebrow">她的方式</span>
+          <h2>她的方式</h2>
+          <div class="divider"></div>
+          <ul class="elegant-list">
+            <li>数字学与人生路径洞察</li>
+            <li>玄学诠释</li>
+            <li>情感深度</li>
+            <li>人生智慧</li>
+          </ul>
+          <p style="margin-top: 24px;">她的服务不是建立依赖。<br>它是志在帮助女性看得足够清楚，归回自己的力量。</p>
+        </div>
+
+        <!-- WHO SHE HELPS -->
+        <div>
+          <div class="en-content">
+            <span class="eyebrow">Who She Helps</span>
+            <h3>Who she helps</h3>
+            <div class="divider"></div>
+            <ul class="elegant-list">
+              <li>women who are strong but tired</li>
+              <li>women navigating emotional pain or transition</li>
+              <li>women feeling stuck in repeated patterns</li>
+              <li>women disconnected from their path</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="eyebrow">她帮助的对象</span>
+            <h3>她帮助的对象</h3>
+            <div class="divider"></div>
+            <ul class="elegant-list">
+              <li>坚强但疲惫的女性</li>
+              <li>正在经历情感痛苦或过渡期的女性</li>
+              <li>感到困在重复规律中的女性</li>
+              <li>与自己的路径脱节的女性</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HER PHILOSOPHY -->
+  <section class="section-dark">
+    <div class="container" style="max-width: 760px; text-align: center;">
+
+      <div class="en-content">
+        <span class="eyebrow" style="color: var(--gold-light);">Her Philosophy</span>
+        <h2>Breakthrough begins with truth.</h2>
+        <div class="divider divider-center"></div>
+        <p style="font-size: 1.05rem; line-height: 2;">Not avoidance.<br>Not forced positivity.<br><br>But understanding:<br>what you are carrying<br>what you are repeating<br>and where life is guiding you</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow" style="color: var(--gold-light);">她的哲学</span>
+        <h2>突破始于真相。</h2>
+        <div class="divider divider-center"></div>
+        <p style="font-size: 1.05rem; line-height: 2;">不是回避。<br>不是强迫乐观。<br><br>而是理解：<br>你正在承载什么<br>你在重复什么<br>以及生命正在引导你走向何方</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section>
+    <div class="container">
+
+      <div class="en-content">
+        <span class="eyebrow">Recognition</span>
+        <h2>Recognition</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">荣誉认可</span>
+        <h2>荣誉认可</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="recognition-list" style="margin-top: 32px;">
+        <div class="recognition-item">
+          <span class="year">2024</span>
+          <p class="en-content">Malaysia's Top 50 CEOs</p>
+          <p class="zh-content">2024年马来西亚50大CEO</p>
+        </div>
+        <div class="recognition-item">
+          <span class="year">2024</span>
+          <p class="en-content">Most Successful People — Malaysia &amp; Singapore</p>
+          <p class="zh-content">2024年马来西亚与新加坡最成功人士</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section-alt text-center">
+    <div class="container">
+      <div class="section-intro">
+        <div class="en-content">
+          <p class="closing-note" style="font-size: 1.1rem;">If you are here, something in you may already be ready to understand your life more deeply.</p>
+          <div class="btn-group" style="justify-content: center;">
+            <a href="#" class="btn btn-primary" data-page="checkout">Book a Session</a>
+          </div>
+        </div>
+        <div class="zh-content">
+          <p class="closing-note" style="font-size: 1.1rem;">如果你来到这里，你内心的某些部分可能已经准备好更深入地理解你的生命了。</p>
+          <div class="btn-group" style="justify-content: center;">
+            <a href="#" class="btn btn-primary" data-page="checkout">预约咨询</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-about -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: WORK WITH JOYCE
+════════════════════════════════════════════════ -->
+<div id="page-work" class="page">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">Work With Joyce</span>
+        <h1>Clarity changes how you see.<br>And once you see clearly, you move differently.</h1>
+        <div class="divider"></div>
+        <p>Each session is designed to help you understand what may be shaping your current experience — so you can move forward with greater awareness, confidence, and direction. All personal sessions are conducted online.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">服务项目</span>
+        <h1>清醒改变你的视角。<br>一旦你看清楚，你的行动便会不同。</h1>
+        <div class="divider"></div>
+        <p>每个疗程都旨在帮助你更清晰地了解你当前经历的事物背后的真相——让你得以以更大的觉知、信心与方向向前走。所有个人咨询均通过线上进行。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section>
+    <div class="container">
+      <div class="en-content section-intro">
+        <span class="eyebrow">Ways to Work With Joyce</span>
+        <h2>Ways to Work With Joyce</h2>
+        <div class="divider"></div>
+        <p>Not every situation requires the same level of depth. Below are the available ways to work with Joyce, depending on what support you need most right now.</p>
+      </div>
+      <div class="zh-content section-intro">
+        <span class="eyebrow">与 Joyce 配合的方式</span>
+        <h2>与 Joyce 配合的方式</h2>
+        <div class="divider"></div>
+        <p>并非每种情况都需要相同深度的支持。以下是根据你目前最需要的支持而提供的方案。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 1 — RM88 -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="service-block">
+        <div class="service-header">
+          <div class="service-meta">
+            <div class="en-content">
+              <span class="service-tag">Entry Option</span>
+              <h2>Core Blockage Diagnostic Analysis <span class="price-badge">RM88</span></h2>
+              <div class="divider"></div>
+              <p>A focused starting point to help you understand the possible underlying messages within your life path blueprint that may be contributing to repeated similar issues in your life.</p>
+              <br>
+              <p>This is a lighter entry option for those who want a first layer of clarity before deciding whether deeper support is needed. Delivered via email — not a live session.</p>
+            </div>
+            <div class="zh-content">
+              <span class="service-tag">入门选项</span>
+              <h2>核心卡点诊断分析 <span class="price-badge">RM88</span></h2>
+              <div class="divider"></div>
+              <p>一个专注的起点，帮助你了解你的人生路径蓝图中可能导致生活中反复出现类似问题的潜在信息。</p>
+              <br>
+              <p>这是一个精准的入门选项，适合那些在决定是否需要更深层支持之前想要获得第一层清醒的人。通过电子邮件发送报告——不带咨询。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-cols">
+          <div class="service-col">
+            <div class="en-content">
+              <h5>This Is Suitable If You</h5>
+              <ul class="elegant-list">
+                <li>keep experiencing similar issues or emotional patterns</li>
+                <li>feel like certain struggles keep repeating in different forms</li>
+                <li>want a clearer starting point before going deeper</li>
+                <li>prefer a lighter entry before committing to a session</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>适合你，如果你</h5>
+              <ul class="elegant-list">
+                <li>不断经历类似的问题或情感规律</li>
+                <li>感到某些挣扎以不同形式不断重复</li>
+                <li>在深入之前想要一个更清晰的起点</li>
+                <li>在投入咨询之前更喜欢较轻的入门方式</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>What You Will Receive</h5>
+              <ul class="elegant-list">
+                <li>possible underlying messages within your life path blueprint</li>
+                <li>insight into what may be contributing to repeated similar issues</li>
+                <li>a clearer starting point for deeper self-understanding</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>你将收到</h5>
+              <ul class="elegant-list">
+                <li>你的人生路径蓝图中可能的潜在信息</li>
+                <li>对可能导致反复类似问题的洞察</li>
+                <li>更深入自我理解的更清晰起点</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>How It Works</h5>
+              <ul class="elegant-list">
+                <li>complete payment</li>
+                <li>fill in your details</li>
+                <li>receive your analysis via email</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>如何操作</h5>
+              <ul class="elegant-list">
+                <li>完成付款</li>
+                <li>填写你的详细信息</li>
+                <li>通过电子邮件收到你的分析</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <a href="#" class="btn btn-primary" data-page="checkout" data-service="rm88">
+            <span class="en-content">Start with RM88 Analysis</span>
+            <span class="zh-content">从 RM88 分析开始</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 2 — RM688 NUMEROLOGY -->
+  <section>
+    <div class="container">
+      <div class="service-block">
+        <div class="service-header">
+          <div class="service-meta">
+            <div class="en-content">
+              <span class="service-tag">45-Minute Online Session</span>
+              <h2>Full Numerology Life Path Chart Analysis <span class="price-badge">RM688</span></h2>
+              <div class="divider"></div>
+              <p>A deeper exploration of your life path, personal blueprint, and recurring patterns through Egyptian numerology.</p>
+            </div>
+            <div class="zh-content">
+              <span class="service-tag">45分钟线上疗程</span>
+              <h2>完整数字学人生路径蓝图分析 <span class="price-badge">RM688</span></h2>
+              <div class="divider"></div>
+              <p>通过埃及数字学对你的人生路径、个人蓝图和重复规律进行更深层的探索。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-cols">
+          <div class="service-col">
+            <div class="en-content">
+              <h5>This Is Suitable If You</h5>
+              <ul class="elegant-list">
+                <li>want to understand yourself at a deeper level</li>
+                <li>feel like certain patterns keep repeating in your life</li>
+                <li>want clarity on your strengths, challenges, and life direction</li>
+                <li>are ready for a more in-depth session</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>适合你，如果你</h5>
+              <ul class="elegant-list">
+                <li>想在更深层次上了解自己</li>
+                <li>感到某些规律不断在生活中重复</li>
+                <li>想了解自己的优势、挑战和人生方向</li>
+                <li>准备好进行更深入的咨询</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>What This Session Covers</h5>
+              <ul class="elegant-list">
+                <li>your core life path and personal blueprint</li>
+                <li>repeating life themes and patterns</li>
+                <li>strengths and potential challenges</li>
+                <li>deeper self-understanding</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>咨询涵盖内容</h5>
+              <ul class="elegant-list">
+                <li>你的核心人生路径与个人蓝图</li>
+                <li>重复的生命主题与规律</li>
+                <li>优势与潜在挑战</li>
+                <li>更深的自我理解</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>How It Works</h5>
+              <ul class="elegant-list">
+                <li>complete payment</li>
+                <li>fill in your details</li>
+                <li>book your 45-minute online session</li>
+                <li>available in English or Chinese</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>如何操作</h5>
+              <ul class="elegant-list">
+                <li>完成付款</li>
+                <li>填写你的详细信息</li>
+                <li>预约你的45分钟线上疗程</li>
+                <li>可选择英文或中文</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <a href="#" class="btn btn-primary" data-page="checkout" data-service="rm688-numerology">
+            <span class="en-content">Book Full Reading</span>
+            <span class="zh-content">预约完整解读</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 3 — RM488 TIMING -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="service-block">
+        <div class="service-header">
+          <div class="service-meta">
+            <div class="en-content">
+              <span class="service-tag">30-Minute Online Session</span>
+              <h2>Annual &amp; Monthly Energy Analysis <span class="price-badge">RM488</span></h2>
+              <div class="divider"></div>
+              <p>Understand your current life phase, timing, and upcoming patterns so you can make clearer decisions and move with more awareness.</p>
+            </div>
+            <div class="zh-content">
+              <span class="service-tag">30分钟线上分析</span>
+              <h2>流年与流月能量分析 <span class="price-badge">RM488</span></h2>
+              <div class="divider"></div>
+              <p>了解你当前的人生阶段、时机和即将出现的规律，以便你能做出更清晰的决定并以更大的觉知前行。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-cols">
+          <div class="service-col">
+            <div class="en-content">
+              <h5>This Is Suitable If You</h5>
+              <ul class="elegant-list">
+                <li>want to know what to expect in the coming months</li>
+                <li>are making an important decision</li>
+                <li>feel uncertain about timing</li>
+                <li>want guidance on direction and opportunities</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>适合你，如果你</h5>
+              <ul class="elegant-list">
+                <li>想知道未来几个月会发生什么</li>
+                <li>正在做出重要决定</li>
+                <li>对时机感到不确定</li>
+                <li>希望获得方向和机会方面的指引</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>What This Session Covers</h5>
+              <ul class="elegant-list">
+                <li>yearly and monthly trends</li>
+                <li>timing and opportunities</li>
+                <li>areas to focus on or be mindful of</li>
+                <li>guidance for current decisions</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>咨询涵盖内容</h5>
+              <ul class="elegant-list">
+                <li>流年与流月趋势</li>
+                <li>时机与机遇</li>
+                <li>需要关注或留意的领域</li>
+                <li>当前决策的指引</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>How It Works</h5>
+              <ul class="elegant-list">
+                <li>complete payment</li>
+                <li>fill in your details</li>
+                <li>book your 30-minute online session</li>
+                <li>includes 1 focused question <span class="bonus-badge">Bonus</span></li>
+                <li>available in English or Chinese</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>如何操作</h5>
+              <ul class="elegant-list">
+                <li>完成付款</li>
+                <li>填写你的详细信息</li>
+                <li>预约你的30分钟线上咨询</li>
+                <li>包含1个专注问题 <span class="bonus-badge">Bonus</span></li>
+                <li>可选择英文或中文</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <a href="#" class="btn btn-primary" data-page="checkout" data-service="rm488">
+            <span class="en-content">Book Timing Session</span>
+            <span class="zh-content">预约时机咨询</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUNDLE — RM1076 -->
+  <section>
+    <div class="container">
+      <div class="service-block">
+        <div class="service-header">
+          <div class="service-meta">
+            <div class="en-content">
+              <span class="service-tag">75-Minute Online Session — Best Value</span>
+              <h2>Complete Clarity Bundle <span class="price-badge">RM1076</span></h2>
+              <div class="divider"></div>
+              <p>A combined session for those who want both deeper self-understanding and clearer timing guidance in one complete experience.</p>
+            </div>
+            <div class="zh-content">
+              <span class="service-tag">75分钟线上咨询 — 最佳价值</span>
+              <h2>完整清醒套餐 <span class="price-badge">RM1076</span></h2>
+              <div class="divider"></div>
+              <p>一个综合咨询，适合那些希望在一次完整体验中同时获得更深层自我理解和更清晰时机指引的人。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-cols">
+          <div class="service-col">
+            <div class="en-content">
+              <h5>Includes</h5>
+              <ul class="elegant-list">
+                <li>Full Numerology Life Path Chart Analysis</li>
+                <li>Annual &amp; Monthly Energy Analysis</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>包含</h5>
+              <ul class="elegant-list">
+                <li>完整数字学人生路径蓝图分析</li>
+                <li>流年与流月能量分析</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>Why Choose This</h5>
+              <ul class="elegant-list">
+                <li>understand yourself and your patterns</li>
+                <li>understand your timing and direction</li>
+                <li>gain a more complete picture of your life</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>为何选择此套餐</h5>
+              <ul class="elegant-list">
+                <li>了解自己和你的规律</li>
+                <li>了解你的时机和方向</li>
+                <li>获得更完整的人生蓝图</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>How It Works</h5>
+              <ul class="elegant-list">
+                <li>complete payment</li>
+                <li>fill in your details</li>
+                <li>book your 75-minute online session</li>
+                <li>available in English or Chinese</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>如何操作</h5>
+              <ul class="elegant-list">
+                <li>完成付款</li>
+                <li>填写你的详细信息</li>
+                <li>预约你的75分钟线上咨询</li>
+                <li>可选择英文或中文</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <a href="#" class="btn btn-primary" data-page="checkout" data-service="rm1076">
+            <span class="en-content">Book Complete Bundle</span>
+            <span class="zh-content">预约完整套餐</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE 4 — CHILD ANALYSIS -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="service-block">
+        <div class="service-header">
+          <div class="service-meta">
+            <div class="en-content">
+              <span class="service-tag">45-Minute Online Session — For Parents</span>
+              <h2>Child Talent, Character &amp; Behaviour Analysis <span class="price-badge">RM688</span></h2>
+              <div class="divider"></div>
+              <p>A deeper insight session for parents who want to understand their child more clearly — including natural strengths, character tendencies, behaviour patterns, communication style, and areas that may require more conscious support.</p>
+            </div>
+            <div class="zh-content">
+              <span class="service-tag">45分钟线上咨询 — 适合家长</span>
+              <h2>儿童天赋、性格与行为分析 <span class="price-badge">RM688</span></h2>
+              <div class="divider"></div>
+              <p>一个更深入的洞察分析，适合希望更清楚地了解孩子的家长——包括天生优势、性格倾向、行为规律、沟通风格以及可能需要更有意识支持的领域。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-cols">
+          <div class="service-col">
+            <div class="en-content">
+              <h5>This Is Suitable If You</h5>
+              <ul class="elegant-list">
+                <li>want to understand your child's natural strengths and talents more clearly</li>
+                <li>feel unsure how to communicate with or guide your child effectively</li>
+                <li>want to nurture your child in a way that fits who they naturally are</li>
+                <li>want early insight that may support future educational or developmental direction</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>适合你，如果你</h5>
+              <ul class="elegant-list">
+                <li>想更清楚地了解孩子的天生优势和天赋</li>
+                <li>不确定如何有效地与孩子沟通或引导孩子</li>
+                <li>希望以适合孩子自然天性的方式培养孩子</li>
+                <li>希望获得可能支持未来教育或发展方向的早期洞察</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>What This Session Helps Parents Understand</h5>
+              <ul class="elegant-list">
+                <li>the child's natural strengths and talent tendencies</li>
+                <li>character and behaviour patterns</li>
+                <li>emotional and communication tendencies</li>
+                <li>how to support and guide the child more wisely</li>
+                <li>areas where the child may thrive more naturally</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>此咨询帮助家长了解</h5>
+              <ul class="elegant-list">
+                <li>孩子的天生优势和才能倾向</li>
+                <li>性格和行为规律</li>
+                <li>情感和沟通倾向</li>
+                <li>如何更明智地支持和引导孩子</li>
+                <li>孩子可能更自然地茁壮成长的领域</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-col">
+            <div class="en-content">
+              <h5>How It Works</h5>
+              <ul class="elegant-list">
+                <li>complete payment</li>
+                <li>fill in your child's details</li>
+                <li>book your 45-minute online session</li>
+                <li>available in English or Chinese</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <h5>如何操作</h5>
+              <ul class="elegant-list">
+                <li>完成付款</li>
+                <li>填写孩子的详细信息</li>
+                <li>预约你的45分钟线上咨询</li>
+                <li>可选择英文或中文</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <a href="#" class="btn btn-primary" data-page="checkout" data-service="rm688-child">
+            <span class="en-content">Book Child Analysis</span>
+            <span class="zh-content">预约儿童分析</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREAKTHROUGH PROGRAMS -->
+  <section>
+    <div class="container">
+      <div class="two-col">
+
+        <div class="en-content">
+          <span class="service-tag">Programs</span>
+          <h2>Breakthrough Programs <span class="tag-coming">Coming Soon</span></h2>
+          <div class="divider"></div>
+          <p>For those ready to move beyond one session into deeper self-understanding, personal growth, and meaningful transformation.</p>
+        </div>
+        <div class="zh-content">
+          <span class="service-tag">计划</span>
+          <h2>突破计划 <span class="tag-coming">即将推出</span></h2>
+          <div class="divider"></div>
+          <p>适合准备好超越自己既定命运、走向更深自我理解、个人成长与有意改变人生的人。</p>
+        </div>
+
+        <div>
+          <div class="en-content">
+            <p>These programs are being created for those who are ready to move beyond one session into deeper growth and transformation.</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-secondary" data-page="contact">Join Waitlist</a>
+            </div>
+          </div>
+          <div class="zh-content">
+            <p>这些计划正在为准备好超越自我走向更深成长与转化的人创建。</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-secondary" data-page="contact">加入候补名单</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CORPORATE ADVISORY -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="two-col">
+
+        <div class="en-content">
+          <span class="eyebrow" style="color: var(--gold-light);">Selected Strategic Advisory</span>
+          <h2>A selective offering for founders, leaders, and business owners.</h2>
+          <div class="divider"></div>
+          <p>Joyce works with founders and business owners in selected cases through a pattern-based and metaphysical lens. Focus areas may include people and role alignment, leadership and team dynamics, business timing and decision-making, and founder or partner compatibility.</p>
+          <br>
+          <p>Consultation sessions are conducted online. HR training and selected corporate sessions may be conducted offline.</p>
+        </div>
+        <div class="zh-content">
+          <span class="eyebrow" style="color: var(--gold-light);">精选战略顾问</span>
+          <h2>为创始人、领导者与企业主提供的精选服务。</h2>
+          <div class="divider"></div>
+          <p>Joyce 在特定情况下通过基于规律和玄学的视角与创始人和企业主合作。重点领域可能包括人力与角色匹配、领导力与团队状态、商业时机与决策制定、创始人或合伙人兼容性。</p>
+          <br>
+          <p>咨询通过线上进行。人力支援培训和特定企业课程可能在线下进行。</p>
+        </div>
+
+        <div>
+          <div class="en-content">
+            <p class="signature-line">When you understand the pattern, you make better decisions.</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-light" data-page="contact">Make an Inquiry</a>
+            </div>
+          </div>
+          <div class="zh-content">
+            <p class="signature-line">当你理解规律，你便能做出更好的决定。</p>
+            <div class="btn-group">
+              <a href="#" class="btn btn-light" data-page="contact">提出咨询</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO CHOOSE -->
+  <section>
+    <div class="container">
+
+      <div class="en-content section-intro">
+        <span class="eyebrow">Not Sure Where to Start?</span>
+        <h2>A simple way to decide</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="zh-content section-intro">
+        <span class="eyebrow">不确定从哪里开始？</span>
+        <h2>一个简单的决策方式</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="choose-grid">
+        <div class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Start here if</span>
+            <h4>Core Blockage Diagnostic — RM88</h4>
+            <ul class="check-list">
+              <li>you keep repeating similar issues and want a starting point</li>
+              <li>you want a lighter entry before committing to a session</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">从这里开始，如果</span>
+            <h4>核心卡点诊断 — RM88</h4>
+            <ul class="check-list">
+              <li>你不断重复类似的问题，想要一个起点</li>
+              <li>你想在投入咨询之前选择一个较轻的入门方式</li>
+            </ul>
+          </div>
+        </div>
+        <div class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Choose if you want</span>
+            <h4>Full Numerology Reading — RM688</h4>
+            <ul class="check-list">
+              <li>deeper self-understanding and life path insight</li>
+              <li>to explore your patterns, strengths, and life blueprint</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">选择此项，如果你想</span>
+            <h4>完整数字学解读 — RM688</h4>
+            <ul class="check-list">
+              <li>更深层的自我理解和人生路径洞察</li>
+              <li>探索你的规律、优势和人生蓝图</li>
+            </ul>
+          </div>
+        </div>
+        <div class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Choose if your concern is</span>
+            <h4>Timing &amp; Energy Analysis — RM488</h4>
+            <ul class="check-list">
+              <li>timing, direction, or upcoming decisions</li>
+              <li>understanding the season or phase you are currently in</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">选择此项，如果你关注</span>
+            <h4>时机与能量分析 — RM488</h4>
+            <ul class="check-list">
+              <li>时机、方向或即将到来的决定</li>
+              <li>了解你当前所处的人生阶段</li>
+            </ul>
+          </div>
+        </div>
+        <div class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Best value if you want</span>
+            <h4>Complete Bundle — RM1076</h4>
+            <ul class="check-list">
+              <li>a more complete picture — both self and timing</li>
+              <li>to combine readings into one 75-minute session</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">最佳价值，如果你想</span>
+            <h4>完整套餐 — RM1076</h4>
+            <ul class="check-list">
+              <li>一个更完整的蓝图——自我与时机兼顾</li>
+              <li>将解读合并为一次75分钟的咨询</li>
+            </ul>
+          </div>
+        </div>
+        <div class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Choose if your concern is</span>
+            <h4>Child Analysis — RM688</h4>
+            <ul class="check-list">
+              <li>understanding your child's natural design, strengths, and tendencies</li>
+              <li>how to guide and communicate with your child more effectively</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">选择此项，如果你关注</span>
+            <h4>儿童分析 — RM688</h4>
+            <ul class="check-list">
+              <li>了解孩子的天性、优势和倾向</li>
+              <li>如何更有效地引导和与孩子沟通</li>
+            </ul>
+          </div>
+        </div>
+        <div class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Ask for guidance if</span>
+            <h4>Still Unsure?</h4>
+            <ul class="check-list">
+              <li>you are not sure which option fits your situation</li>
+              <li>you want a recommendation before deciding</li>
+            </ul>
+            <div style="margin-top: 16px;">
+              <a href="#" class="btn btn-secondary" data-page="contact" style="font-size: 0.7rem; padding: 10px 18px;">Ask for Recommendation</a>
+            </div>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">如果仍然不确定，请咨询</span>
+            <h4>还不确定？</h4>
+            <ul class="check-list">
+              <li>你不确定哪个选项适合你的情况</li>
+              <li>你想在决定之前获得建议</li>
+            </ul>
+            <div style="margin-top: 16px;">
+              <a href="#" class="btn btn-secondary" data-page="contact" style="font-size: 0.7rem; padding: 10px 18px;">寻求建议</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOOKING PROCESS -->
+  <section class="section-alt">
+    <div class="container" style="max-width: 740px;">
+      <div class="en-content">
+        <span class="eyebrow">Booking Process</span>
+        <h3>Simple steps to get started</h3>
+        <div class="divider"></div>
+        <ul class="check-list">
+          <li>Choose your preferred service</li>
+          <li>Make payment</li>
+          <li>Select your preferred time slot and language (Chinese or English)</li>
+          <li>Receive confirmation</li>
+        </ul>
+        <p style="margin-top: 20px; font-size: 0.88rem; font-style: italic; color: var(--brown-light);">All personal sessions are conducted online.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">预约流程</span>
+        <h3>简单步骤开始</h3>
+        <div class="divider"></div>
+        <ul class="check-list">
+          <li>选择你需要的服务</li>
+          <li>完成付款</li>
+          <li>选择你喜欢的时间段和语言（中文或英文）</li>
+          <li>收到确认</li>
+        </ul>
+        <p style="margin-top: 20px; font-size: 0.88rem; font-style: italic; color: var(--brown-light);">所有个人疗程均通过线上进行。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="quote-block">
+    <div class="en-content">
+      <blockquote>Sometimes one clear insight is enough to change the way you move forward.</blockquote>
+      <div style="margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-gold" data-page="checkout">Book a Session</a>
+      </div>
+    </div>
+    <div class="zh-content">
+      <blockquote>有时，一个清晰的洞察就足以改变你前进的方式。</blockquote>
+      <div style="margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-gold" data-page="checkout">预约疗程</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-work -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: FAQ
+════════════════════════════════════════════════ -->
+<div id="page-faq" class="page">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">FAQ</span>
+        <h1>Frequently Asked Questions</h1>
+        <div class="divider"></div>
+        <p>A space to help you better understand how this work works, what to expect, and whether it is right for you.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">常见问题</span>
+        <h1>常见问题解答</h1>
+        <div class="divider"></div>
+        <p>帮助你更好地了解这项服务如何运作、会有什么期待，以及它是否适合你。</p>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container" style="max-width: 820px;">
+
+      <!-- GROUP 1 — ABOUT THE WORK -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span class="en-content">About the Work</span>
+          <span class="zh-content">关于这项服务</span>
+        </div>
+
+        <details>
+          <summary>
+            <span class="en-content">Is this fortune telling?</span>
+            <span class="zh-content">这是算命吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>No.</p>
+              <p>Joyce's work is not about predicting fixed outcomes or telling you what will definitely happen.</p>
+              <p>It is about helping you understand your life path, your patterns, your timing, and the deeper influences shaping your experiences — so you can make more conscious and aligned decisions.</p>
+            </div>
+            <div class="zh-content">
+              <p>不是。</p>
+              <p>Joyce 的工作不是预测固定的结果或告诉你什么一定会发生。</p>
+              <p>它是关于帮助你了解你的人生路径、规律、时机，以及塑造你经历的更深层影响——让你能够做出更有意识、更契合的决定。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">What is the difference between numerology and coaching?</span>
+            <span class="zh-content">数字学与教练辅导有什么区别？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Numerology provides a structured way to understand your natural design, patterns, and life themes.</p>
+              <p>Joyce's sessions go beyond interpretation. They combine numerology, metaphysical insight, and lived experience to help you understand what is happening in your life in a more grounded and meaningful way.</p>
+              <p>It is not purely coaching, and not purely metaphysical reading — it is a blend of both, focused on clarity and understanding.</p>
+            </div>
+            <div class="zh-content">
+              <p>数字学提供了一种了解你天生的设定、规律与人生主题的结构化方式。</p>
+              <p>Joyce 的服务超越了单纯的解读。它们结合数字学、玄学洞察与人生经验，帮助你以更扎实、更有意义的方式了解生命中正在发生的事情。</p>
+              <p>这既不是纯粹的教练，也不是纯粹的玄学解读——而是两者的融合，专注于清醒与理解。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Do I need to believe in metaphysics for this to work?</span>
+            <span class="zh-content">我需要相信玄学才会有帮助吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>No.</p>
+              <p>You do not need to "believe" in anything.</p>
+              <p>What matters more is your openness to reflect, understand, and look at your life from a deeper perspective. Many clients come simply because they feel something is off and want clarity — not because they already follow metaphysical practices.</p>
+            </div>
+            <div class="zh-content">
+              <p>不需要。</p>
+              <p>你不需要"相信"任何事情。</p>
+              <p>更重要的是你愿意反思、理解，并从更深层的角度看待自己的生命。许多客户来这里只是因为他们感到某些事或人生不如意，想要清醒——而不是因为他们已经遵循玄学实践。</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- GROUP 2 — WHAT TO EXPECT -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span class="en-content">What You Can Expect</span>
+          <span class="zh-content">你可以期待什么</span>
+        </div>
+
+        <details>
+          <summary>
+            <span class="en-content">What happens during a session?</span>
+            <span class="zh-content">咨询中会发生什么？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Each session is a guided conversation.</p>
+              <p>Joyce will look into your numerology and patterns, and explore what may be happening beneath the surface of your current situation.</p>
+              <p>You are welcome to share what you are going through, ask questions, or focus on specific areas such as relationships, life direction, emotional challenges, or career and business decisions.</p>
+              <p>The session is designed to help you gain clarity, understanding, and a more grounded perspective on your situation.</p>
+            </div>
+            <div class="zh-content">
+              <p>每次咨询都是一次引导性的对话。</p>
+              <p>Joyce 会研究你的数字学与规律，探索你当前处境的表面之下可能发生的事情。</p>
+              <p>你可以分享你正在经历的事情、提问，或专注于特定领域，例如：关系、人生方向、情感挑战、事业或商业决策。</p>
+              <p>咨询旨在帮助你对自己的处境获得清醒、理解与更扎实的视角。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Can I ask specific questions?</span>
+            <span class="zh-content">我可以提出具体问题吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Yes.</p>
+              <p>You are welcome to bring specific questions or topics into the session.</p>
+              <p>At the same time, some of the most valuable insights often come from what is uncovered beyond the surface of the question.</p>
+            </div>
+            <div class="zh-content">
+              <p>可以。</p>
+              <p>你可以将具体问题或话题带入咨询。</p>
+              <p>同时，一些最有价值的洞察往往来自于在问题表面之外被发现的内容。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Will I get clear answers?</span>
+            <span class="zh-content">我会得到明确的答案吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>You will receive insight, clarity, and perspective.</p>
+              <p>Joyce's work is not about giving fixed instructions or controlling your decisions, but about helping you understand your situation more clearly so you can choose with greater awareness and confidence.</p>
+            </div>
+            <div class="zh-content">
+              <p>你会收到洞察、清醒与视角。</p>
+              <p>Joyce 的工作不是给出固定的指示或控制你的决定，而是帮助你更清晰地了解自己的处境，让你能够以更大的觉知与自信做出选择。</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- GROUP 3 — RESULTS -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span class="en-content">Results &amp; Expectations</span>
+          <span class="zh-content">结果与期望</span>
+        </div>
+
+        <details>
+          <summary>
+            <span class="en-content">Will one session solve everything?</span>
+            <span class="zh-content">一次咨询能解决所有问题吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Not always.</p>
+              <p>Sometimes one session brings significant clarity and emotional relief. Other times, it becomes the starting point of a deeper process of understanding and change.</p>
+              <p>Each person's journey is different.</p>
+            </div>
+            <div class="zh-content">
+              <p>不一定。</p>
+              <p>有时一次咨询能带来显著的清醒与情感上的释然。其他时候，它成为更深层理解与改变过程的起点。</p>
+              <p>每个人的旅程都是不同的。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">What kind of results can I expect?</span>
+            <span class="zh-content">我可以期待什么样的结果？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Many clients experience:</p>
+              <ul class="elegant-list" style="margin-top: 12px; margin-bottom: 12px;">
+                <li>greater clarity about their situation</li>
+                <li>emotional validation and understanding</li>
+                <li>a clearer sense of direction</li>
+                <li>reduced confusion or internal conflict</li>
+                <li>increased self-awareness and self-trust</li>
+              </ul>
+              <p>The work is not about instant transformation, but about helping you see clearly enough to move differently.</p>
+            </div>
+            <div class="zh-content">
+              <p>许多客户体验到：</p>
+              <ul class="elegant-list" style="margin-top: 12px; margin-bottom: 12px;">
+                <li>对自己处境更大的清醒</li>
+                <li>情感认可与理解</li>
+                <li>更清晰的方向感</li>
+                <li>减少困惑或内心冲突</li>
+                <li>增强的自我觉知与自我信任</li>
+              </ul>
+              <p>这项服务不是关于即时转化，而是帮助你看得足够清楚，以便以不同的方式行动。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Is this a form of therapy?</span>
+            <span class="zh-content">这是一种治疗吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>No.</p>
+              <p>Joyce's sessions are not therapy and are not a substitute for professional mental health support.</p>
+              <p>They are a form of metaphysical and personal guidance focused on clarity, understanding, and life direction.</p>
+            </div>
+            <div class="zh-content">
+              <p>不是。</p>
+              <p>Joyce 的咨询不是治疗，也不是专业心理健康的替代品。</p>
+              <p>它们是一种专注于清醒、理解与人生方向的玄学与个人指引。</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- GROUP 4 — SERVICES & BOOKING -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span class="en-content">Services &amp; Booking</span>
+          <span class="zh-content">服务与预约</span>
+        </div>
+
+        <details>
+          <summary>
+            <span class="en-content">Which session should I choose?</span>
+            <span class="zh-content">我应该选择哪个服务？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>If you are looking to understand your overall life path, personal patterns, and natural design, the Numerology Reading &amp; Life Path Analysis is a good place to begin.</p>
+              <p>If you are moving through a specific challenge, emotional heaviness, repeated blocks, or a current life crossroads, the 1-to-1 Clarity &amp; Breakthrough Session may be more suitable.</p>
+              <p>If you are unsure, you are welcome to reach out before booking.</p>
+            </div>
+            <div class="zh-content">
+              <p>如果你想了解你的整体人生路径、个人规律与天生既定设定，数字学解读与人生路径分析是一个好的起点。</p>
+              <p>如果你正在经历特定的挑战、情感沉重、重复受阻或当前的人生十字路口，一对一清醒与突破咨询可能更合适。</p>
+              <p>如果你不确定，欢迎在预约前联系 Joyce。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Do you offer follow-up sessions?</span>
+            <span class="zh-content">你提供后续疗程吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Yes.</p>
+              <p>Follow-up sessions may be available depending on your needs and the type of support you are seeking.</p>
+            </div>
+            <div class="zh-content">
+              <p>是的。</p>
+              <p>后续疗程可能根据你的需求和你所寻求的支持类型而提供。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Do you offer courses or deeper programs?</span>
+            <span class="zh-content">你提供课程或更深入的计划吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Yes. Women's breakthrough programs and deeper learning experiences will be introduced over time.</p>
+            </div>
+            <div class="zh-content">
+              <p>是的。女性突破计划和更深层的学习体验将随时间推移逐步推出。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Can I book if I am not sure what I need?</span>
+            <span class="zh-content">如果我不确定自己需要什么，可以预约吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Yes. If you are unsure which session is most suitable, you are welcome to contact Joyce before booking.</p>
+            </div>
+            <div class="zh-content">
+              <p>可以。如果你不确定哪个服务最适合你，欢迎在预约前联系 Joyce。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">How do I book a session?</span>
+            <span class="zh-content">如何预约咨询？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>You can book directly through the website or reach out via the contact option provided.</p>
+            </div>
+            <div class="zh-content">
+              <p>你可以直接通过网站预约，或通过提供的联系选项联系我们。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Are sessions done online or in person?</span>
+            <span class="zh-content">咨询是线上进行还是面对面进行？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Sessions are primarily conducted online, allowing flexibility and access regardless of location.</p>
+            </div>
+            <div class="zh-content">
+              <p>咨询主要通过线上进行，无论你在哪里都可以灵活参与。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">How should I prepare for a session?</span>
+            <span class="zh-content">我应该如何为咨询做准备？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>You do not need to prepare anything complicated. It may be helpful to:</p>
+              <ul class="elegant-list" style="margin-top: 12px;">
+                <li>reflect on what you are currently going through</li>
+                <li>think about the questions you would like to explore</li>
+                <li>come with an open and honest mindset</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <p>你不需要准备任何复杂的事情。可能有帮助的是：</p>
+              <ul class="elegant-list" style="margin-top: 12px;">
+                <li>反思你目前正在经历的事情</li>
+                <li>思考你想探索的问题</li>
+                <li>以开放诚实的心态参与</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">What information do you need from me?</span>
+            <span class="zh-content">你需要我提供什么信息？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>For numerology-based sessions, basic details such as your date of birth will be required. Additional details may be requested depending on the type of session.</p>
+            </div>
+            <div class="zh-content">
+              <p>对于基于数字学的条件，需要你的出生日期等基本信息。根据咨询选项，可能会要求提供其他详细信息。</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- GROUP 5 — CORPORATE -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span class="en-content">Corporate &amp; Strategic Advisory</span>
+          <span class="zh-content">企业与战略顾问</span>
+        </div>
+
+        <details>
+          <summary>
+            <span class="en-content">Do you offer business or corporate consulting?</span>
+            <span class="zh-content">你提供商业或企业咨询吗？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Yes, on a selective basis.</p>
+              <p>Joyce provides strategic insight for founders and business owners in areas such as people and role alignment, leadership and team dynamics, and business timing and decision-making.</p>
+              <p>This is a smaller part of her work and is offered selectively.</p>
+            </div>
+            <div class="zh-content">
+              <p>是的，以选择性方式提供。</p>
+              <p>Joyce 为创始人和企业主提供战略洞察，领域包括：人力与角色匹配、领导力与团队状态、商业时机与决策制定。</p>
+              <p>这是她工作中较小的一部分，以选择性方式提供。</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">How is this different from normal business consulting?</span>
+            <span class="zh-content">这与普通商业咨询有什么不同？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>Joyce's approach incorporates metaphysical insight and pattern recognition into strategic thinking.</p>
+              <p>This allows a different perspective on timing, people dynamics, and alignment of roles and decisions.</p>
+              <p>It complements traditional business thinking, rather than replacing it.</p>
+            </div>
+            <div class="zh-content">
+              <p>Joyce 的方法将玄学洞察与规律识别融入战略思维。</p>
+              <p>这允许对时机、人员动态以及角色与决策的契合提供不同的视角。</p>
+              <p>它是对传统商业思维的补充，而非替代。</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- GROUP 6 — IS THIS RIGHT FOR YOU -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span class="en-content">Is This Right for You</span>
+          <span class="zh-content">这是否适合你</span>
+        </div>
+
+        <details>
+          <summary>
+            <span class="en-content">Who is this work suitable for?</span>
+            <span class="zh-content">这项服务适合谁？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>This work is most suitable for individuals who:</p>
+              <ul class="elegant-list" style="margin-top: 12px;">
+                <li>are open to self-reflection</li>
+                <li>are seeking clarity and deeper understanding</li>
+                <li>are ready to look at their situation honestly</li>
+                <li>want more than surface-level answers</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <p>这项工作最适合：</p>
+              <ul class="elegant-list" style="margin-top: 12px;">
+                <li>愿意自我反思的个人</li>
+                <li>寻求清醒与更深理解的人</li>
+                <li>准备好诚实面对自己处境的人</li>
+                <li>想要的不仅仅是表面答案的人</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="en-content">Who is this NOT suitable for?</span>
+            <span class="zh-content">这项服务不适合谁？</span>
+          </summary>
+          <div class="faq-answer">
+            <div class="en-content">
+              <p>This may not be suitable if you:</p>
+              <ul class="elegant-list" style="margin-top: 12px;">
+                <li>are looking for guaranteed predictions or fixed answers</li>
+                <li>prefer quick, surface-level solutions</li>
+                <li>are not open to reflection or deeper understanding</li>
+              </ul>
+            </div>
+            <div class="zh-content">
+              <p>如果你符合以下情况，这可能不适合你：</p>
+              <ul class="elegant-list" style="margin-top: 12px;">
+                <li>寻求有保证的预测或固定答案</li>
+                <li>偏好快速的表面解决方案</li>
+                <li>不愿意反思或更深入地理解</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- FINAL CTA -->
+      <div style="padding: 48px 0 20px; border-top: 1px solid var(--cream-deep);">
+        <div class="en-content">
+          <p class="closing-note">If you feel drawn to this work but still have questions, you are welcome to reach out before booking.</p>
+          <div class="btn-group">
+            <a href="#" class="btn btn-secondary" data-page="checkout">Book a Session</a>
+          </div>
+        </div>
+        <div class="zh-content">
+          <p class="closing-note">如果你对这项服务感兴趣但仍有疑问，欢迎在预约前联系我们。</p>
+          <div class="btn-group">
+            <a href="#" class="btn btn-secondary" data-page="checkout">预约咨询</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /page-faq -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: TESTIMONIALS
+════════════════════════════════════════════════ -->
+<div id="page-testimonials" class="page">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">Transformation Stories</span>
+        <h1>Hear from those who found clarity<br>and direction.</h1>
+        <div class="divider"></div>
+        <p>Real experiences from real people who chose to understand themselves and their lives more deeply.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">蜕变故事</span>
+        <h1>听听那些找到清醒与方向的人的心声。</h1>
+        <div class="divider"></div>
+        <p>真实的人，真实的经历——他们选择了更深刻地了解自己与自己的人生。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS GRID -->
+  <section>
+    <div class="container">
+      <div class="testimonials-grid">
+
+        <!-- TESTIMONIAL 1 — Shaun Lim -->
+        <div class="testimonial-card">
+          <div class="en-content">
+            <div class="testimonial-quote-mark">&ldquo;</div>
+            <p class="testimonial-body">Joyce's fortune-telling was truly a very unique experience. At the beginning, I still had some doubts about fortune-telling, since many people regard it as superstition. But under Joyce's guidance, my mindset completely changed. She was very patient in explaining things to me and helped me understand the metaphysical aspects behind it.</p>
+            <p class="testimonial-body">Every word Joyce said accurately pointed out my strengths and weaknesses. It made me reflect on whether I really had those issues, and it also gave me a completely new understanding of myself. Some of the future directions she mentioned even gave me a clearer sense of direction in both my life and career, and she also told me what kinds of work might be suitable for me in the future.</p>
+            <p class="testimonial-body">Joyce did not force me to believe in or depend on her methods. Instead, through her analysis, she helped me better understand myself and make wiser decisions. This kind of guidance, filled with warmth and wisdom, is something I strongly recommend — you should go and find Joyce; she will definitely be able to help you.</p>
+            <div class="testimonial-author">
+              <span class="testimonial-name">Shaun Lim</span>
+              <span class="testimonial-detail">Executive &nbsp;·&nbsp; Johor Bahru</span>
+              <span class="verified-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="#8B7355" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Verified Client
+              </span>
+            </div>
+          </div>
+          <div class="zh-content">
+            <div class="testimonial-quote-mark">&ldquo;</div>
+            <p class="testimonial-body">Joyce算命真的是很特别的体验！一开始还对算命持有一些疑虑，毕竟很多人当作迷信看待。但是在Joyce的引导下，我的心态完全改变了。她非常有耐心跟我解释，让我了解其中的玄学。</p>
+            <p class="testimonial-body">Joyce的每一句话都准确指出了我的优点与不足，让我回想起了我是否有这个问题，也让我对自己有了全新的认识。她提到的一些未来走向，甚至让我对自己的生活和工作有了更加明确的方向，也告诉我未来适合什么工作。</p>
+            <p class="testimonial-body">Joyce并不会强迫我去相信或者依赖她的东西，更多的是通过她的分析帮助我更好地了解自己，去做出更加智慧的决定。这种充满温暖和智慧的指引，我强烈推荐你去找Joyce，她一定可以帮到你。</p>
+            <div class="testimonial-author">
+              <span class="testimonial-name">Shaun Lim</span>
+              <span class="testimonial-detail">Executive &nbsp;·&nbsp; 新山</span>
+              <span class="verified-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="#8B7355" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                已验证用户
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="quote-block">
+    <div class="en-content">
+      <blockquote>One clear insight can change the way you move forward.</blockquote>
+      <div style="margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-gold" data-page="checkout">Book a Session</a>
+        <a href="#" class="btn btn-light" data-page="contact">Make an Inquiry</a>
+      </div>
+    </div>
+    <div class="zh-content">
+      <blockquote>一个清晰的洞察，足以改变你前行的方式。</blockquote>
+      <div style="margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-gold" data-page="checkout">预约疗程</a>
+        <a href="#" class="btn btn-light" data-page="contact">提出咨询</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-testimonials -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: CONTACT / BOOK A SESSION
+════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">Contact / Make an Inquiry</span>
+        <h1>Contact Joyce</h1>
+        <div class="divider"></div>
+        <p>Have a question before deciding? Need more information about a service? Reach out and someone will respond to you.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">联系 / 提出咨询</span>
+        <h1>联系 Joyce</h1>
+        <div class="divider"></div>
+        <p>在决定之前有疑问？需要有关服务的更多信息？请联系我们，我们将尽快回复你。</p>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left: Info -->
+        <div>
+          <div class="en-content">
+            <span class="eyebrow">How to Reach Joyce</span>
+            <h3>You are welcome here.</h3>
+            <div class="divider"></div>
+            <p>This form is for general enquiries only.</p>
+            <div class="contact-options">
+              <div class="contact-option">
+                <span class="dot"></span>
+                <span>Make a General Inquiry</span>
+              </div>
+              <div class="contact-option">
+                <span class="dot"></span>
+                <span>Ask a Question Before Deciding</span>
+              </div>
+              <div class="contact-option">
+                <span class="dot"></span>
+                <span>Request a Service Recommendation</span>
+              </div>
+            </div>
+            <br>
+            <p style="font-size: 0.88rem; font-style: italic; color: var(--brown-light);">Enquiries will be responded to within 7 business days.</p>
+          </div>
+          <div class="zh-content">
+            <span class="eyebrow">如何联系 Joyce</span>
+            <h3>欢迎你的到来。</h3>
+            <div class="divider"></div>
+            <p>此表单仅用于一般咨询。</p>
+            <div class="contact-options">
+              <div class="contact-option">
+                <span class="dot"></span>
+                <span>提出一般咨询</span>
+              </div>
+              <div class="contact-option">
+                <span class="dot"></span>
+                <span>在决定之前提问</span>
+              </div>
+              <div class="contact-option">
+                <span class="dot"></span>
+                <span>请求服务建议</span>
+              </div>
+            </div>
+            <br>
+            <p style="font-size: 0.88rem; font-style: italic; color: var(--brown-light);">咨询将在 7 个工作日内得到回复。</p>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div>
+          <form id="contact-form" novalidate>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="name">
+                  <span class="en-content">Full Name *</span>
+                  <span class="zh-content">全名 *</span>
+                </label>
+                <input type="text" id="name" required placeholder="">
+              </div>
+
+              <div class="form-group">
+                <label for="email">
+                  <span class="en-content">Email Address *</span>
+                  <span class="zh-content">电子邮件 *</span>
+                </label>
+                <input type="email" id="email" required placeholder="">
+              </div>
+
+              <div class="form-group">
+                <label>
+                  <span class="en-content">WhatsApp Number</span>
+                  <span class="zh-content">WhatsApp 号码</span>
+                </label>
+                <div class="phone-input-wrapper" id="phone-input-wrapper">
+                  <!-- Flag / code trigger -->
+                  <button type="button" class="phone-flag-btn" id="phone-flag-btn"
+                    aria-haspopup="listbox" aria-expanded="false" aria-label="Select country code">
+                    <span class="phone-flag-emoji" id="phone-flag-display">🇲🇾</span>
+                    <span class="phone-code-text" id="phone-code-display">+60</span>
+                    <svg class="phone-chevron" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1l4 4 4-4"/>
+                    </svg>
+                  </button>
+                  <!-- Searchable dropdown -->
+                  <div class="phone-dropdown" id="phone-dropdown" role="listbox">
+                    <div class="phone-search-wrap">
+                      <input type="text" class="phone-search" id="phone-search"
+                        placeholder="Search country…" autocomplete="off" aria-label="Search country">
+                    </div>
+                    <ul class="phone-country-list" id="phone-country-list"></ul>
+                  </div>
+                  <!-- Hidden field carries the code for form submission -->
+                  <input type="hidden" id="whatsapp-code" name="whatsapp-code" value="+60">
+                  <!-- Visible phone number input -->
+                  <input type="tel" id="whatsapp-number" name="whatsapp-number"
+                    class="phone-number-input" placeholder="12 345 6789" autocomplete="tel-national">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="dob">
+                  <span class="en-content">Date of Birth</span>
+                  <span class="zh-content">出生日期</span>
+                </label>
+                <input type="date" id="dob">
+              </div>
+
+              <div class="form-group full">
+                <label for="service">
+                  <span class="en-content">Service Interested In</span>
+                  <span class="zh-content">感兴趣的服务</span>
+                </label>
+                <select id="service">
+                  <option value="" class="en-content">Please select…</option>
+                  <option value="programs" class="en-content">Breakthrough Programs (Waitlist)</option>
+                  <option value="corporate" class="en-content">Corporate &amp; Strategic Advisory</option>
+                  <option value="collaboration" class="en-content">Others — Collaboration Enquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="message">
+                  <span class="en-content">Message / Questions</span>
+                  <span class="zh-content">留言 / 问题</span>
+                </label>
+                <textarea id="message" placeholder=""></textarea>
+              </div>
+
+            </div>
+
+            <p class="form-note en-content">Your inquiry will be responded to within 2–3 business days.</p>
+            <p class="form-note zh-content">你的咨询将在 7 个工作日内得到回复。</p>
+
+            <div class="btn-group">
+              <button type="submit" class="btn btn-primary">
+                <span class="en-content">Submit Inquiry</span>
+                <span class="zh-content">提交咨询</span>
+              </button>
+            </div>
+          </form>
+
+          <div id="form-success">
+            <p class="en-content"><strong>Thank you.</strong> Your message has been received. Joyce or her team will be in touch with you soon.</p>
+            <p class="zh-content"><strong>谢谢你。</strong> 你的留言已收到。Joyce 或她的团队将尽快与你联系。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-contact -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: CHECKOUT / BOOK A SESSION
+════════════════════════════════════════════════ -->
+<div id="page-checkout" class="page">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">Book a Session</span>
+        <h1>Select Your Session</h1>
+        <div class="divider"></div>
+        <p>Choose the session that feels right for where you are now. Select it below, then proceed to payment.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">预约咨询</span>
+        <h1>选择你的咨询</h1>
+        <div class="divider"></div>
+        <p>选择适合你当前状况的咨询。在下方选择后，继续付款。</p>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+
+      <!-- Session Cards -->
+      <div class="en-content section-intro" style="margin-bottom: 8px;">
+        <span class="eyebrow">Available Sessions</span>
+        <p>Click on a session card to select it.</p>
+      </div>
+      <div class="zh-content section-intro" style="margin-bottom: 8px;">
+        <span class="eyebrow">可用咨询</span>
+        <p>点击咨询卡片进行选择。</p>
+      </div>
+
+      <div class="checkout-grid" id="checkout-grid">
+
+        <div class="checkout-service-card" data-service-id="rm88" data-price="RM88" data-name-en="Core Blockage Diagnostic Analysis" data-name-zh="核心卡点诊断分析">
+          <input type="radio" name="session" value="rm88">
+          <div class="checkout-card-header">
+            <div class="checkout-radio-indicator"></div>
+            <div class="checkout-card-info">
+              <div class="checkout-card-price">RM88</div>
+              <div class="checkout-card-title en-content">Core Blockage Diagnostic Analysis</div>
+              <div class="checkout-card-title zh-content">核心卡点诊断分析</div>
+              <div class="checkout-card-format en-content">Delivered via email</div>
+              <div class="checkout-card-format zh-content">通过电子邮件发送</div>
+            </div>
+          </div>
+          <p class="checkout-card-desc en-content">A focused starting point to understand possible underlying messages within your life path blueprint contributing to repeated similar issues.</p>
+          <p class="checkout-card-desc zh-content">专注帮助了解你的人生路径蓝图中可能导致反复出现类似卡点的潜在信息。</p>
+        </div>
+
+        <div class="checkout-service-card" data-service-id="rm688-numerology" data-price="RM688" data-name-en="Full Numerology Life Path Chart Analysis" data-name-zh="完整数字学人生路径蓝图分析">
+          <input type="radio" name="session" value="rm688-numerology">
+          <div class="checkout-card-header">
+            <div class="checkout-radio-indicator"></div>
+            <div class="checkout-card-info">
+              <div class="checkout-card-price">RM688</div>
+              <div class="checkout-card-title en-content">Full Numerology Life Path Chart Analysis</div>
+              <div class="checkout-card-title zh-content">完整数字学人生路径蓝图分析</div>
+              <div class="checkout-card-format en-content">45-minute online session</div>
+              <div class="checkout-card-format zh-content">45分钟线上咨询</div>
+            </div>
+          </div>
+          <p class="checkout-card-desc en-content">A deeper exploration of your life path, personal blueprint, and recurring patterns through Egyptian numerology.</p>
+          <p class="checkout-card-desc zh-content">通过埃及数字学对你的人生路径、个人蓝图和重复规律进行更深层的探索。</p>
+        </div>
+
+        <div class="checkout-service-card" data-service-id="rm488" data-price="RM488" data-name-en="Annual & Monthly Energy Analysis" data-name-zh="流年与流月能量分析">
+          <input type="radio" name="session" value="rm488">
+          <div class="checkout-card-header">
+            <div class="checkout-radio-indicator"></div>
+            <div class="checkout-card-info">
+              <div class="checkout-card-price">RM488</div>
+              <div class="checkout-card-title en-content">Annual &amp; Monthly Energy Analysis</div>
+              <div class="checkout-card-title zh-content">流年流月能量分析</div>
+              <div class="checkout-card-format en-content">30-minute online session · Includes 1 focused question</div>
+              <div class="checkout-card-format zh-content">30分钟线上咨询 · 包含1个专注问题</div>
+            </div>
+          </div>
+          <p class="checkout-card-desc en-content">Understand your current life phase, timing, and upcoming patterns so you can make clearer decisions and move with more awareness.</p>
+          <p class="checkout-card-desc zh-content">了解你当前的人生阶段、时机和即将出现的规律，以便做出更清晰的决定并以更大的觉知前行。</p>
+        </div>
+
+        <div class="checkout-service-card" data-service-id="rm1076" data-price="RM1076" data-name-en="Complete Clarity Bundle" data-name-zh="完整清醒套餐">
+          <input type="radio" name="session" value="rm1076">
+          <div class="checkout-card-header">
+            <div class="checkout-radio-indicator"></div>
+            <div class="checkout-card-info">
+              <div class="checkout-card-price">RM1076 <span style="font-size: 0.7rem; font-family: var(--font-b); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light);">Best Value</span></div>
+              <div class="checkout-card-title en-content">Complete Clarity Bundle</div>
+              <div class="checkout-card-title zh-content">完整清醒套餐</div>
+              <div class="checkout-card-format en-content">75-minute online session · Full Reading + Timing</div>
+              <div class="checkout-card-format zh-content">75分钟线上咨询 · 完整解读 + 时机分析</div>
+            </div>
+          </div>
+          <p class="checkout-card-desc en-content">Combines Full Numerology Life Path Analysis and Annual &amp; Monthly Energy Analysis in one complete 75-minute session.</p>
+          <p class="checkout-card-desc zh-content">将完整数字学人生路径分析和流年与流月能量分析合并为一次完整的75分钟疗程。</p>
+        </div>
+
+        <div class="checkout-service-card" data-service-id="rm688-child" data-price="RM688" data-name-en="Child Talent, Character & Behaviour Analysis" data-name-zh="儿童天赋、性格与行为分析">
+          <input type="radio" name="session" value="rm688-child">
+          <div class="checkout-card-header">
+            <div class="checkout-radio-indicator"></div>
+            <div class="checkout-card-info">
+              <div class="checkout-card-price">RM688</div>
+              <div class="checkout-card-title en-content">Child Talent, Character &amp; Behaviour Analysis</div>
+              <div class="checkout-card-title zh-content">儿童天赋、性格与行为分析</div>
+              <div class="checkout-card-format en-content">45-minute online session · For Parents</div>
+              <div class="checkout-card-format zh-content">45分钟线上咨询 · 适合家长</div>
+            </div>
+          </div>
+          <p class="checkout-card-desc en-content">Understand your child's natural strengths, character tendencies, behaviour patterns, and communication style.</p>
+          <p class="checkout-card-desc zh-content">了解孩子的天生优势、性格倾向、行为规律和沟通风格。</p>
+        </div>
+
+      </div>
+
+      <!-- Order Summary -->
+      <div class="checkout-order-box" id="checkout-order-box">
+        <div class="checkout-order-title en-content">Your Order</div>
+        <div class="checkout-order-title zh-content">你的订单</div>
+        <div id="checkout-order-content">
+          <p class="checkout-order-empty en-content">No session selected yet. Please select a session above.</p>
+          <p class="checkout-order-empty zh-content">尚未选择咨询。请在上方选择一个咨询。</p>
+        </div>
+        <div class="checkout-actions">
+          <a href="#" id="checkout-pay-btn" class="btn btn-primary" style="opacity: 0.4; pointer-events: none;">
+            <span class="en-content">Make Payment</span>
+            <span class="zh-content">立即付款</span>
+          </a>
+        </div>
+        <p class="checkout-note en-content">Secure payment via Touch 'n Go eWallet. Select a session above to proceed.</p>
+        <p class="checkout-note zh-content">通过 Touch 'n Go 电子钱包安全付款。请在上方选择咨询后继续。</p>
+      </div>
+
+      <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--cream-deep);">
+        <div class="en-content">
+          <p class="closing-note">Not sure which session is right for you? Reach out and we can help guide your decision.</p>
+          <div class="btn-group">
+            <a href="#" class="btn btn-secondary" data-page="work">View Full Service Details</a>
+          </div>
+        </div>
+        <div class="zh-content">
+          <p class="closing-note">不确定哪个咨询适合你？请联系我们，我们可以帮助引导你做出决定。</p>
+          <div class="btn-group">
+            <a href="#" class="btn btn-secondary" data-page="work">查看完整服务详情</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /page-checkout -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAYMENT MODAL
+════════════════════════════════════════════════ -->
+<div id="payment-modal" class="pmodal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="pmodal-heading">
+
+  <div class="pmodal-box">
+    <button class="pmodal-close" id="pmodal-close-btn" aria-label="Close">&times;</button>
+
+    <!-- Service header -->
+    <div class="pmodal-service-label en-content">Selected Session</div>
+    <div class="pmodal-service-label zh-content">已选咨询</div>
+    <div class="pmodal-service-name" id="pmodal-heading"></div>
+    <div class="pmodal-service-price" id="pmodal-price"></div>
+
+    <!-- Steps -->
+    <div class="pmodal-steps">
+
+      <!-- STEP 1 : QR Payment -->
+      <div class="pmodal-step">
+        <div class="pmodal-step-num">1</div>
+        <div class="pmodal-step-body">
+          <div class="pmodal-step-title en-content">Scan &amp; Pay</div>
+          <div class="pmodal-step-title zh-content">扫码付款</div>
+          <p class="pmodal-step-desc en-content">Scan the QR code below using Touch 'n Go eWallet to complete payment.</p>
+          <p class="pmodal-step-desc zh-content">请使用 Touch 'n Go 电子钱包扫描以下二维码完成付款。</p>
+          <div class="tng-qr-wrap">
+            <img src="TNG%20QR.jpeg" alt="Touch 'n Go eWallet QR Code">
+            <div class="tng-qr-label en-content">Touch 'n Go eWallet</div>
+            <div class="tng-qr-label zh-content">Touch 'n Go 电子钱包</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="pmodal-step-divider">
+
+      <!-- STEP 2 : Customer Details Form -->
+      <div class="pmodal-step">
+        <div class="pmodal-step-num">2</div>
+        <div class="pmodal-step-body">
+          <div class="pmodal-step-title en-content">Fill In Your Details</div>
+          <div class="pmodal-step-title zh-content">填写你的资料</div>
+          <p class="pmodal-step-desc en-content" id="pmodal-step2-desc-en">After payment, complete the form below so we can prepare your session.</p>
+          <p class="pmodal-step-desc zh-content" id="pmodal-step2-desc-zh">付款后，请填写以下表格，以便我们为您准备咨询。</p>
+
+          <div id="pmodal-form-success" class="pmodal-success">
+            <div class="pmodal-success-icon">&#10003;</div>
+            <h3 class="en-content">Details Received</h3>
+            <h3 class="zh-content">资料已收到</h3>
+            <p class="en-content">Thank you! We have received your details and will be in touch shortly.</p>
+            <p class="zh-content">谢谢！我们已收到您的资料，将尽快与您联系。</p>
+          </div>
+
+          <form id="pmodal-form" class="pmodal-form" novalidate>
+            <div class="pmodal-field">
+              <label for="pmodal-name">
+                <span class="en-content">Full Name</span>
+                <span class="zh-content">全名</span>
+              </label>
+              <input type="text" id="pmodal-name" required placeholder="e.g. Joyce Yap">
+              <p class="pmodal-error-msg" id="err-name"><span class="en-content">Please enter your full name.</span><span class="zh-content">请填写全名。</span></p>
+            </div>
+            <div class="pmodal-field">
+              <label for="pmodal-email">
+                <span class="en-content">Email Address</span>
+                <span class="zh-content">电子邮件</span>
+              </label>
+              <input type="email" id="pmodal-email" required placeholder="you@email.com">
+              <p class="pmodal-error-msg" id="err-email"><span class="en-content">Please enter a valid email address.</span><span class="zh-content">请填写有效的电子邮件地址。</span></p>
+            </div>
+            <div class="pmodal-field">
+              <label>
+                <span class="en-content">Phone Number</span>
+                <span class="zh-content">电话号码</span>
+              </label>
+              <div class="pmodal-phone-row">
+                <select id="pmodal-country-code" aria-label="Country code">
+                  <option value="+60">🇲🇾 +60 Malaysia</option>
+                  <option value="+65">🇸🇬 +65 Singapore</option>
+                  <option value="+62">🇮🇩 +62 Indonesia</option>
+                  <option value="+66">🇹🇭 +66 Thailand</option>
+                  <option value="+63">🇵🇭 +63 Philippines</option>
+                  <option value="+84">🇻🇳 +84 Vietnam</option>
+                  <option value="+86">🇨🇳 +86 China</option>
+                  <option value="+852">🇭🇰 +852 Hong Kong</option>
+                  <option value="+853">🇲🇴 +853 Macau</option>
+                  <option value="+886">🇹🇼 +886 Taiwan</option>
+                  <option value="+61">🇦🇺 +61 Australia</option>
+                  <option value="+64">🇳🇿 +64 New Zealand</option>
+                  <option value="+44">🇬🇧 +44 United Kingdom</option>
+                  <option value="+1">🇺🇸 +1 United States</option>
+                  <option value="+1">🇨🇦 +1 Canada</option>
+                  <option value="+81">🇯🇵 +81 Japan</option>
+                  <option value="+82">🇰🇷 +82 South Korea</option>
+                  <option value="+91">🇮🇳 +91 India</option>
+                  <option value="+971">🇦🇪 +971 UAE</option>
+                  <option value="+49">🇩🇪 +49 Germany</option>
+                  <option value="+33">🇫🇷 +33 France</option>
+                </select>
+                <input type="tel" id="pmodal-phone" required placeholder="12-345 6789" pattern="[0-9\s\-]{6,15}">
+              </div>
+              <p class="pmodal-error-msg" id="err-phone"><span class="en-content">Please enter your phone number.</span><span class="zh-content">请填写电话号码。</span></p>
+            </div>
+            <div class="pmodal-field">
+              <label for="pmodal-dob">
+                <span class="en-content">Date of Birth (DD/MM/YYYY)</span>
+                <span class="zh-content">出生日期（日/月/年）</span>
+              </label>
+              <input type="text" id="pmodal-dob" required placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric">
+              <p class="pmodal-error-msg" id="err-dob"><span class="en-content">Please enter your date of birth.</span><span class="zh-content">请填写出生日期。</span></p>
+            </div>
+            <div class="pmodal-field">
+              <label>
+                <span class="en-content">Time of Birth <span class="pmodal-label-hint">(24-hour format, e.g. 14:30 — or check "I don't know")</span></span>
+                <span class="zh-content">出生时间 <span class="pmodal-label-hint">（24小时制，例如 14:30 — 或勾选"不知道"）</span></span>
+              </label>
+              <div class="pmodal-tob-row">
+                <input type="text" id="pmodal-tob" placeholder="HH:MM" maxlength="5" inputmode="numeric">
+                <label class="pmodal-tob-na-label" for="pmodal-tob-na">
+                  <input type="checkbox" id="pmodal-tob-na">
+                  <span class="en-content">I don't know</span>
+                  <span class="zh-content">不知道</span>
+                </label>
+              </div>
+              <p class="pmodal-error-msg" id="err-tob"><span class="en-content">Please enter your time of birth or check "I don't know".</span><span class="zh-content">请填写出生时间，或勾选"不知道"。</span></p>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary pmodal-submit">
+                <span class="en-content">Submit Details</span>
+                <span class="zh-content">提交资料</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STEP 3 : Calendar Booking (hidden for rm88) -->
+      <div id="pmodal-step-calendar">
+        <hr class="pmodal-step-divider">
+        <div class="pmodal-step">
+          <div class="pmodal-step-num">3</div>
+          <div class="pmodal-step-body">
+            <div class="pmodal-step-title en-content">Book Your Time Slot</div>
+            <div class="pmodal-step-title zh-content">预约时间</div>
+            <p class="pmodal-step-desc en-content">Click below to choose your preferred date and time for your session.</p>
+            <p class="pmodal-step-desc zh-content">点击下方选择您的咨询日期与时间。</p>
+            <a href="https://calendly.com/joycemetaphysicsconsultant/30min" id="pmodal-calendly-btn" target="_blank" rel="noopener" class="btn btn-gold">
+              <span class="en-content">Book on Calendar</span>
+              <span class="zh-content">选择日历时间</span>
+            </a>
+            <p class="pmodal-calendar-note en-content">You will be redirected to our booking calendar to select your preferred slot. Please complete Steps 1 &amp; 2 first.</p>
+            <p class="pmodal-calendar-note zh-content">您将跳转至预约日历选择时间段。请先完成第1步和第2步。</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /pmodal-steps -->
+  </div><!-- /pmodal-box -->
+</div><!-- /payment-modal -->
+
+
+<!-- ─── WhatsApp Floating Button ─── -->
+<a href="https://wa.me/60167286134" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with Private Client Concierge for Joyce Metaphysics">
+  <span class="wa-tooltip">Chat with Private Client Concierge for Joyce Metaphysics</span>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.004 0C7.165 0 .008 7.155.008 15.993c0 2.821.738 5.467 2.027 7.761L0 32l8.437-2.212A15.96 15.96 0 0 0 16.004 32C24.843 32 32 24.843 32 16.004 32 7.165 24.843 0 16.004 0zm0 29.23a13.19 13.19 0 0 1-6.735-1.849l-.483-.286-5.007 1.313 1.337-4.872-.315-.499A13.188 13.188 0 0 1 2.77 16.004C2.77 8.688 8.688 2.77 16.004 2.77c7.316 0 13.226 5.918 13.226 13.234 0 7.316-5.91 13.226-13.226 13.226zm7.275-9.903c-.399-.2-2.36-1.163-2.727-1.295-.366-.133-.632-.2-.898.2-.266.399-1.03 1.295-1.263 1.561-.233.266-.466.3-.865.1-.399-.2-1.683-.62-3.204-1.977-1.184-1.056-1.983-2.36-2.216-2.759-.233-.399-.025-.614.175-.813.18-.18.399-.466.598-.699.2-.233.266-.399.399-.665.133-.266.067-.499-.033-.699-.1-.2-.898-2.162-1.23-2.96-.325-.78-.653-.672-.898-.684l-.765-.013c-.266 0-.699.1-1.065.499-.366.399-1.396 1.362-1.396 3.322 0 1.96 1.43 3.854 1.63 4.12.2.266 2.81 4.287 6.81 6.015.952.41 1.695.654 2.274.838.955.303 1.824.26 2.51.157.766-.114 2.36-.964 2.694-1.896.333-.932.333-1.73.233-1.896-.1-.167-.366-.267-.765-.466z"/>
+  </svg>
+</a>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Joyce <span>Metaphysics Consultant</span></div>
+        <div class="footer-tagline en-content">Metaphysics Consultant &amp; Life Path Guide</div>
+        <div class="footer-tagline zh-content">玄学顾问与人生路径指引</div>
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+          <a class="social-icon" href="https://www.facebook.com/profile.php?id=61572509262878" target="_blank" rel="noopener" aria-label="Facebook">
+            <!-- Facebook -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.instagram.com/joyce_metaphysics_consultant?igsh=Nzd0cGpzcDhkaTI3" target="_blank" rel="noopener" aria-label="Instagram">
+            <!-- Instagram -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.youtube.com/channel/UC0ftC311sIwgS51DnvJugXg" target="_blank" rel="noopener" aria-label="YouTube">
+            <!-- YouTube -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#" data-page="home">
+          <span class="en-content">Home</span>
+          <span class="zh-content">首页</span>
+        </a>
+        <a href="#" data-page="about">
+          <span class="en-content">About</span>
+          <span class="zh-content">关于</span>
+        </a>
+        <a href="#" data-page="work">
+          <span class="en-content">Services</span>
+          <span class="zh-content">服务</span>
+        </a>
+        <a href="#" data-page="faq">FAQ</a>
+        <a href="#" data-page="testimonials">
+          <span class="en-content">Testimonials</span>
+          <span class="zh-content">客户见证</span>
+        </a>
+        <a href="#" data-page="contact">
+          <span class="en-content">Contact</span>
+          <span class="zh-content">联系</span>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        <span class="en-content">&copy; 2025 Joyce Metaphysics Consultant. All rights reserved.</span>
+        <span class="zh-content">&copy; 2025 Joyce Metaphysics Consultant. 版权所有。</span>
+      </div>
+      <a href="#" class="footer-policy">
+        <span class="en-content">Privacy &amp; Cookies Policy</span>
+        <span class="zh-content">隐私与 Cookie 政策</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // ─── Language Toggle ───────────────────────────
+  let currentLang = 'zh';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.classList.toggle('zh', lang === 'zh');
+    // Toggle is purely CSS-driven via body.zh — no textContent change needed
+  }
+
+  // Attach lang toggle to ALL .lang-btn elements (desktop + mobile)
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation(); // prevent bubbling to document click handler
+      setLang(currentLang === 'en' ? 'zh' : 'en');
+    });
+  });
+
+  // ─── Page Navigation ────────────────────────────
+  function navigateTo(pageId) {
+    document.querySelectorAll('.page').forEach(function (p) {
+      p.classList.remove('active');
+    });
+    var target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+
+    document.querySelectorAll('a[data-page]').forEach(function (a) {
+      a.classList.toggle('active', a.dataset.page === pageId);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Refresh GSAP ScrollTrigger for new page content
+    if (typeof ScrollTrigger !== 'undefined') {
+      setTimeout(function () { ScrollTrigger.refresh(); }, 80);
+    }
+
+    // Close mobile menu
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // Single delegated click handler for all [data-page] elements
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-page]');
+    if (el && el.dataset.page && !el.classList.contains('lang-btn')) {
+      e.preventDefault();
+      navigateTo(el.dataset.page);
+    }
+  });
+
+  // ─── Mobile Hamburger ───────────────────────────
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu when tapping outside
+  document.addEventListener('click', function (e) {
+    if (mobileMenu.classList.contains('open') &&
+        !mobileMenu.contains(e.target) &&
+        !hamburger.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  // ─── Custom Phone Country Dropdown ─────────────
+  (function () {
+    var COUNTRIES = [
+      { flag: '🇲🇾', code: '+60',  name: 'Malaysia' },
+      { flag: '🇸🇬', code: '+65',  name: 'Singapore' },
+      { flag: '🇨🇳', code: '+86',  name: 'China' },
+      { flag: '🇺🇸', code: '+1',   name: 'United States' },
+      { flag: '🇬🇧', code: '+44',  name: 'United Kingdom' },
+      { flag: '🇦🇫', code: '+93',  name: 'Afghanistan' },
+      { flag: '🇦🇺', code: '+61',  name: 'Australia' },
+      { flag: '🇦🇹', code: '+43',  name: 'Austria' },
+      { flag: '🇧🇭', code: '+973', name: 'Bahrain' },
+      { flag: '🇧🇩', code: '+880', name: 'Bangladesh' },
+      { flag: '🇧🇪', code: '+32',  name: 'Belgium' },
+      { flag: '🇧🇷', code: '+55',  name: 'Brazil' },
+      { flag: '🇨🇦', code: '+1',   name: 'Canada' },
+      { flag: '🇩🇰', code: '+45',  name: 'Denmark' },
+      { flag: '🇪🇬', code: '+20',  name: 'Egypt' },
+      { flag: '🇫🇷', code: '+33',  name: 'France' },
+      { flag: '🇩🇪', code: '+49',  name: 'Germany' },
+      { flag: '🇬🇷', code: '+30',  name: 'Greece' },
+      { flag: '🇭🇰', code: '+852', name: 'Hong Kong' },
+      { flag: '🇮🇳', code: '+91',  name: 'India' },
+      { flag: '🇮🇩', code: '+62',  name: 'Indonesia' },
+      { flag: '🇮🇪', code: '+353', name: 'Ireland' },
+      { flag: '🇮🇱', code: '+972', name: 'Israel' },
+      { flag: '🇮🇹', code: '+39',  name: 'Italy' },
+      { flag: '🇯🇵', code: '+81',  name: 'Japan' },
+      { flag: '🇯🇴', code: '+962', name: 'Jordan' },
+      { flag: '🇰🇷', code: '+82',  name: 'Korea (South)' },
+      { flag: '🇰🇼', code: '+965', name: 'Kuwait' },
+      { flag: '🇱🇦', code: '+856', name: 'Laos' },
+      { flag: '🇲🇻', code: '+960', name: 'Maldives' },
+      { flag: '🇲🇽', code: '+52',  name: 'Mexico' },
+      { flag: '🇲🇲', code: '+95',  name: 'Myanmar' },
+      { flag: '🇳🇱', code: '+31',  name: 'Netherlands' },
+      { flag: '🇳🇿', code: '+64',  name: 'New Zealand' },
+      { flag: '🇳🇬', code: '+234', name: 'Nigeria' },
+      { flag: '🇳🇴', code: '+47',  name: 'Norway' },
+      { flag: '🇴🇲', code: '+968', name: 'Oman' },
+      { flag: '🇵🇰', code: '+92',  name: 'Pakistan' },
+      { flag: '🇵🇭', code: '+63',  name: 'Philippines' },
+      { flag: '🇵🇱', code: '+48',  name: 'Poland' },
+      { flag: '🇵🇹', code: '+351', name: 'Portugal' },
+      { flag: '🇶🇦', code: '+974', name: 'Qatar' },
+      { flag: '🇷🇴', code: '+40',  name: 'Romania' },
+      { flag: '🇷🇺', code: '+7',   name: 'Russia' },
+      { flag: '🇸🇦', code: '+966', name: 'Saudi Arabia' },
+      { flag: '🇿🇦', code: '+27',  name: 'South Africa' },
+      { flag: '🇪🇸', code: '+34',  name: 'Spain' },
+      { flag: '🇱🇰', code: '+94',  name: 'Sri Lanka' },
+      { flag: '🇸🇪', code: '+46',  name: 'Sweden' },
+      { flag: '🇨🇭', code: '+41',  name: 'Switzerland' },
+      { flag: '🇹🇼', code: '+886', name: 'Taiwan' },
+      { flag: '🇹🇭', code: '+66',  name: 'Thailand' },
+      { flag: '🇹🇷', code: '+90',  name: 'Turkey' },
+      { flag: '🇦🇪', code: '+971', name: 'UAE' },
+      { flag: '🇻🇳', code: '+84',  name: 'Vietnam' },
+    ];
+
+    var selectedIdx  = 0; // Malaysia
+    var isOpen       = false;
+
+    var wrapper      = document.getElementById('phone-input-wrapper');
+    var flagBtn      = document.getElementById('phone-flag-btn');
+    var dropdown     = document.getElementById('phone-dropdown');
+    var searchInput  = document.getElementById('phone-search');
+    var countryList  = document.getElementById('phone-country-list');
+    var flagDisplay  = document.getElementById('phone-flag-display');
+    var codeDisplay  = document.getElementById('phone-code-display');
+    var hiddenCode   = document.getElementById('whatsapp-code');
+
+    if (!wrapper) return; // contact page not in DOM yet — init on demand
+
+    function renderList(filter) {
+      var f = (filter || '').toLowerCase().trim();
+      var html = '';
+      COUNTRIES.forEach(function (c, i) {
+        if (f && c.name.toLowerCase().indexOf(f) === -1 && c.code.indexOf(f) === -1) return;
+        var sel = i === selectedIdx ? ' selected' : '';
+        html += '<li class="phone-country-item' + sel + '" data-idx="' + i + '" role="option" tabindex="-1">'
+          + '<span class="ci-flag">' + c.flag + '</span>'
+          + '<span class="ci-name">' + c.name + '</span>'
+          + '<span class="ci-code">' + c.code + '</span>'
+          + '</li>';
+      });
+      countryList.innerHTML = html
+        || '<li class="phone-country-item" style="cursor:default;opacity:.55">No results</li>';
+    }
+
+    function selectCountry(idx) {
+      selectedIdx = idx;
+      var c = COUNTRIES[idx];
+      flagDisplay.textContent = c.flag;
+      codeDisplay.textContent = c.code;
+      hiddenCode.value = c.code;
+      closeDropdown();
+    }
+
+    function openDropdown() {
+      isOpen = true;
+      dropdown.classList.add('open');
+      flagBtn.setAttribute('aria-expanded', 'true');
+      flagBtn.classList.add('open');
+      searchInput.value = '';
+      renderList('');
+      // Scroll selected item into view
+      var sel = countryList.querySelector('.selected');
+      if (sel) sel.scrollIntoView({ block: 'nearest' });
+      setTimeout(function () { searchInput.focus(); }, 20);
+    }
+
+    function closeDropdown() {
+      isOpen = false;
+      dropdown.classList.remove('open');
+      flagBtn.setAttribute('aria-expanded', 'false');
+      flagBtn.classList.remove('open');
+    }
+
+    flagBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      isOpen ? closeDropdown() : openDropdown();
+    });
+
+    searchInput.addEventListener('input', function () {
+      renderList(this.value);
+    });
+
+    countryList.addEventListener('click', function (e) {
+      var item = e.target.closest('.phone-country-item');
+      if (item && item.dataset.idx !== undefined) {
+        selectCountry(parseInt(item.dataset.idx, 10));
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (isOpen && !wrapper.contains(e.target)) closeDropdown();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (isOpen && e.key === 'Escape') { closeDropdown(); flagBtn.focus(); }
+    });
+
+    // Init list (in case contact page is visible on load)
+    renderList('');
+
+    // Re-init when user navigates to contact page
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-page]');
+      if (el && el.dataset.page === 'contact') {
+        setTimeout(function () { renderList(''); }, 120);
+      }
+    });
+  })();
+
+  // ─── Page Navigation — Service Pre-selection ────
+  var _origNavTo = navigateTo;
+  // Override navigateTo to handle data-service attribute
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-page="checkout"][data-service]');
+    if (el && el.dataset.service) {
+      setTimeout(function () {
+        checkoutPreselect(el.dataset.service);
+      }, 50);
+    }
+  });
+
+  // ─── Checkout Cart Logic ─────────────────────────
+  function checkoutPreselect(serviceId) {
+    var card = document.querySelector('.checkout-service-card[data-service-id="' + serviceId + '"]');
+    if (card) {
+      document.querySelectorAll('.checkout-service-card').forEach(function (c) {
+        c.classList.remove('selected');
+        c.querySelector('input[type="radio"]').checked = false;
+      });
+      card.classList.add('selected');
+      card.querySelector('input[type="radio"]').checked = true;
+      updateCheckoutOrder(card);
+    }
+  }
+
+  function updateCheckoutOrder(card) {
+    var nameEn = card.dataset.nameEn;
+    var nameZh = card.dataset.nameZh;
+    var price  = card.dataset.price;
+    var isZh   = document.body.classList.contains('zh');
+    var content = document.getElementById('checkout-order-content');
+    content.innerHTML =
+      '<div class="checkout-order-item">'
+      + '<span class="checkout-order-item-name en-content">' + nameEn + '</span>'
+      + '<span class="checkout-order-item-name zh-content">' + nameZh + '</span>'
+      + '<span class="checkout-order-item-price">' + price + '</span>'
+      + '</div>';
+    var payBtn = document.getElementById('checkout-pay-btn');
+    payBtn.style.opacity = '1';
+    payBtn.style.pointerEvents = 'auto';
+    // Payment gateway placeholder — replace href with actual gateway URL when ready
+    payBtn.href = '#payment-gateway-tbc';
+    payBtn.setAttribute('data-selected-service', nameEn + ' — ' + price);
+    // Show correct language
+    if (isZh) {
+      content.querySelectorAll('.en-content').forEach(function(el){ el.style.display='none'; });
+      content.querySelectorAll('.zh-content').forEach(function(el){ el.style.display='block'; });
+    }
+  }
+
+  // Checkout card click handler
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest('.checkout-service-card');
+    if (!card) return;
+    document.querySelectorAll('.checkout-service-card').forEach(function (c) {
+      c.classList.remove('selected');
+      c.querySelector('input[type="radio"]').checked = false;
+    });
+    card.classList.add('selected');
+    card.querySelector('input[type="radio"]').checked = true;
+    updateCheckoutOrder(card);
+  });
+
+  // ─── Payment Modal ───────────────────────────────
+  var paymentModal = document.getElementById('payment-modal');
+
+  function openPaymentModal(serviceId, nameEn, nameZh, price) {
+    // Set service info
+    var isZh = document.body.classList.contains('zh');
+    document.getElementById('pmodal-heading').textContent = isZh ? nameZh : nameEn;
+    document.getElementById('pmodal-price').textContent = price;
+
+    // Step 3 (calendar) — show for all services EXCEPT rm88 (email-delivered)
+    var calStep = document.getElementById('pmodal-step-calendar');
+    calStep.style.display = (serviceId === 'rm88') ? 'none' : '';
+
+    // Set correct Calendly link based on session duration
+    var calendlyLinks = {
+      'rm488':           'https://calendly.com/joycemetaphysicsconsultant/30min',
+      'rm688-numerology':'https://calendly.com/joycemetaphysicsconsultant/45-minute-numerology-consult',
+      'rm688-child':     'https://calendly.com/joycemetaphysicsconsultant/45-minute-numerology-consult',
+      'rm1076':          'https://calendly.com/joycemetaphysicsconsultant/75-minutes-numerology-consult'
+    };
+    var calBtn = document.getElementById('pmodal-calendly-btn');
+    if (calBtn && calendlyLinks[serviceId]) {
+      calBtn.href = calendlyLinks[serviceId];
+    }
+
+    // Step 2 description — child service has different wording
+    var isChild = (serviceId === 'rm688-child');
+    var descEn = document.getElementById('pmodal-step2-desc-en');
+    var descZh = document.getElementById('pmodal-step2-desc-zh');
+    if (descEn) descEn.textContent = isChild
+      ? 'After payment, complete the form below with your child details so we can prepare your session.'
+      : 'After payment, complete the form below so we can prepare your session.';
+    if (descZh) descZh.textContent = isChild
+      ? '付款后，请填写以下表格填写您孩子的资料，以便我们为您准备咨询。'
+      : '付款后，请填写以下表格，以便我们为您准备咨询。';
+
+    // Reset form + success state
+    var form = document.getElementById('pmodal-form');
+    form.reset();
+    // Re-enable TOB input in case N/A was checked in a previous opening
+    var tobInput = document.getElementById('pmodal-tob');
+    if (tobInput) tobInput.disabled = false;
+    // Clear any validation errors from previous opening
+    form.querySelectorAll('.pmodal-field-error').forEach(function(el){ el.classList.remove('pmodal-field-error'); });
+    form.querySelectorAll('.pmodal-error-msg').forEach(function(el){ el.style.display = 'none'; });
+    form.style.display = '';
+    document.getElementById('pmodal-form-success').style.display = 'none';
+
+    paymentModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePaymentModal() {
+    paymentModal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // Open modal when Make Payment is clicked
+  document.addEventListener('click', function (e) {
+    var payBtn = e.target.closest('#checkout-pay-btn');
+    if (payBtn) {
+      e.preventDefault();
+      var selected = document.querySelector('.checkout-service-card.selected');
+      if (!selected) return;
+      openPaymentModal(
+        selected.dataset.serviceId,
+        selected.dataset.nameEn,
+        selected.dataset.nameZh,
+        selected.dataset.price
+      );
+    }
+  });
+
+  // Close button & backdrop click
+  document.getElementById('pmodal-close-btn').addEventListener('click', closePaymentModal);
+  paymentModal.addEventListener('click', function (e) {
+    if (e.target === paymentModal) closePaymentModal();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && paymentModal.style.display !== 'none') closePaymentModal();
+  });
+
+  // DOB auto-format: insert slashes as user types (DD/MM/YYYY)
+  document.getElementById('pmodal-dob').addEventListener('input', function () {
+    var v = this.value.replace(/\D/g, '').substring(0, 8);
+    if (v.length > 4) v = v.substring(0,2) + '/' + v.substring(2,4) + '/' + v.substring(4);
+    else if (v.length > 2) v = v.substring(0,2) + '/' + v.substring(2);
+    this.value = v;
+  });
+
+  // TOB auto-format: insert colon after HH (24-hour, 00–23 : 00–59)
+  document.getElementById('pmodal-tob').addEventListener('input', function () {
+    var digits = this.value.replace(/\D/g, '').substring(0, 4);
+    if (digits.length === 0) { this.value = ''; return; }
+    var hh = digits.substring(0, 2);
+    var mm = digits.substring(2);
+    // Clamp hours to 23
+    if (parseInt(hh, 10) > 23) hh = '23';
+    // Clamp minutes to 59
+    if (mm.length === 2 && parseInt(mm, 10) > 59) mm = '59';
+    this.value = mm.length ? hh + ':' + mm : hh;
+  });
+
+  // Time of Birth — N/A checkbox toggle
+  document.getElementById('pmodal-tob-na').addEventListener('change', function () {
+    var tobInput = document.getElementById('pmodal-tob');
+    tobInput.disabled = this.checked;
+    if (this.checked) tobInput.value = '';
+  });
+
+  // ── Google Sheets Web App URL ──
+  var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxiiK_EBF5cGz2NRaa434LwjgvYzT8jBqRTpXIkk8V6nYco5yqGjt-q7ymvv3AnIA49nQ/exec';
+
+  // Form submission
+  document.getElementById('pmodal-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name        = document.getElementById('pmodal-name').value.trim();
+    var email       = document.getElementById('pmodal-email').value.trim();
+    var countryCode = document.getElementById('pmodal-country-code').value;
+    var phone       = document.getElementById('pmodal-phone').value.trim();
+    var dob         = document.getElementById('pmodal-dob').value.trim();
+    var tobNa       = document.getElementById('pmodal-tob-na').checked;
+    var tob         = tobNa ? 'N/A' : document.getElementById('pmodal-tob').value.trim();
+
+    // Validate all required fields and show inline errors
+    var valid = true;
+    function setFieldError(inputId, errId, hasError) {
+      var inp = document.getElementById(inputId);
+      var err = document.getElementById(errId);
+      if (inp) inp.classList.toggle('pmodal-field-error', hasError);
+      if (err) err.style.display = hasError ? 'block' : 'none';
+      if (hasError) valid = false;
+    }
+    setFieldError('pmodal-name',  'err-name',  !name);
+    setFieldError('pmodal-email', 'err-email', !email);
+    setFieldError('pmodal-phone', 'err-phone', !phone);
+    setFieldError('pmodal-dob',   'err-dob',   !dob);
+    var tobMissing = !tobNa && !tob;
+    setFieldError('pmodal-tob', 'err-tob', tobMissing);
+    if (!valid) return;
+
+    var payload = {
+      timestamp : new Date().toLocaleString('en-MY', { timeZone: 'Asia/Kuala_Lumpur' }),
+      service   : document.getElementById('pmodal-heading').textContent,
+      price     : document.getElementById('pmodal-price').textContent,
+      name      : name,
+      email     : email,
+      phone     : countryCode + ' ' + phone,
+      dob       : dob,
+      tob       : tob
+    };
+
+    fetch(SHEETS_URL + '?' + new URLSearchParams(payload).toString(), {
+      method : 'GET',
+      mode   : 'no-cors'
+    }).catch(function () {}); // silent fail — data still reaches the sheet
+
+    this.style.display = 'none';
+    document.getElementById('pmodal-form-success').style.display = 'block';
+  });
+
+  // ─── Contact Form ───────────────────────────────
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!name || !email) {
+      return;
+    }
+    const whatsappCode = document.getElementById('whatsapp-code').value.trim();
+    const whatsappNumber = document.getElementById('whatsapp-number').value.trim();
+    const whatsapp = whatsappNumber ? (whatsappCode + ' ' + whatsappNumber) : 'Not provided';
+    const dob = document.getElementById('dob').value || 'Not provided';
+    const serviceEl = document.getElementById('service');
+    const service = serviceEl.options[serviceEl.selectedIndex].text || 'Not selected';
+    const message = document.getElementById('message').value.trim() || 'No message';
+
+    const subject = encodeURIComponent('New Inquiry from ' + name);
+    const body = encodeURIComponent(
+      'New inquiry received from the website:\n\n' +
+      'Full Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'WhatsApp: ' + whatsapp + '\n' +
+      'Date of Birth: ' + dob + '\n' +
+      'Service Interested In: ' + service + '\n\n' +
+      'Message:\n' + message
+    );
+
+    window.location.href = 'mailto:joycemetaphysicsconsultant@gmail.com?subject=' + subject + '&body=' + body;
+
+    document.getElementById('form-success').style.display = 'block';
+    this.reset();
+    this.style.display = 'none';
+  });
+</script>
+
+<!-- ═══════════════════════════════════════════════
+     GSAP SCROLL-TRIGGERED ANIMATIONS
+════════════════════════════════════════════════ -->
+<script>
+window.addEventListener('load', function () {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Helper: animate a section's children on scroll ──
+  function animateSection(section) {
+    var eyebrow  = section.querySelector('.eyebrow');
+    var headings = section.querySelectorAll('h1, h2, h3');
+    var divider  = section.querySelector('.divider, .divider-center');
+    var paras    = section.querySelectorAll('p:not(.eyebrow)');
+    var cards    = section.querySelectorAll('.card, .way-card, .choose-card, .recognition-item');
+    var lists    = section.querySelectorAll('.elegant-list, .check-list');
+    var btns     = section.querySelectorAll('.btn-group');
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 82%',
+        once: true,
+      }
+    });
+
+    if (eyebrow) {
+      tl.from(eyebrow, { opacity: 0, y: 16, duration: 0.5, ease: 'power2.out' });
+    }
+    if (headings.length) {
+      tl.from(headings, { opacity: 0, y: 28, duration: 0.65, ease: 'power3.out', stagger: 0.12 }, '-=0.25');
+    }
+    if (divider) {
+      tl.from(divider, { scaleX: 0, transformOrigin: 'left', duration: 0.5, ease: 'power2.out' }, '-=0.4');
+    }
+    if (paras.length) {
+      tl.from(paras, { opacity: 0, y: 18, duration: 0.55, ease: 'power2.out', stagger: 0.08 }, '-=0.35');
+    }
+    if (lists.length) {
+      var items = section.querySelectorAll('.elegant-list li, .check-list li');
+      if (items.length) {
+        tl.from(items, { opacity: 0, x: -16, duration: 0.45, ease: 'power2.out', stagger: 0.07 }, '-=0.25');
+      }
+    }
+    if (cards.length) {
+      tl.from(cards, { opacity: 0, y: 32, duration: 0.55, ease: 'power3.out', stagger: 0.1 }, '-=0.3');
+    }
+    if (btns.length) {
+      tl.from(btns, { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out' }, '-=0.2');
+    }
+  }
+
+  // ── Hero entrance animation ──
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    var heroTl = gsap.timeline({ delay: 0.15 });
+    heroTl
+      .from(hero.querySelector('.eyebrow'), { opacity: 0, y: 20, duration: 0.55, ease: 'power2.out' }, 0)
+      .from(hero.querySelectorAll('h1'), { opacity: 0, y: 36, duration: 0.75, ease: 'power3.out' }, 0.1)
+      .from(hero.querySelectorAll('.hero-sub, .hero-body'), {
+        opacity: 0, y: 22, duration: 0.6, ease: 'power2.out', stagger: 0.12
+      }, 0.35)
+      .from(hero.querySelectorAll('.btn'), {
+        opacity: 0, y: 18, duration: 0.5, ease: 'power2.out', stagger: 0.1
+      }, 0.65);
+  }
+
+  // ── Page-hero (inner pages) entrance ──
+  var pageHero = document.querySelector('.page-hero');
+  if (pageHero) {
+    gsap.from(pageHero.querySelectorAll('.eyebrow, h1, .divider, p'), {
+      opacity: 0, y: 24, duration: 0.6, ease: 'power2.out', stagger: 0.1, delay: 0.1
+    });
+  }
+
+  // ── Quote block ──
+  var quoteBlock = document.querySelector('.quote-block');
+  if (quoteBlock) {
+    gsap.from(quoteBlock.querySelector('blockquote'), {
+      scrollTrigger: { trigger: quoteBlock, start: 'top 80%', once: true },
+      opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
+    });
+  }
+
+  // ── Animate every section ──
+  document.querySelectorAll('section').forEach(function (s) {
+    animateSection(s);
+  });
+
+  // ── Re-run on page navigation ──
+  var origNavigateTo = window.navigateTo;
+  document.addEventListener('pagechange', function () {
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+
+<!-- ═══════════════════════════════════════════════
+     MOTION ONE — MICRO-INTERACTIONS
+════════════════════════════════════════════════ -->
+<script>
+window.addEventListener('load', function () {
+  if (typeof Motion === 'undefined') return;
+  var animate = Motion.animate;
+  var stagger = Motion.stagger;
+
+  // ── Button hover/press scale ──
+  document.querySelectorAll('.btn').forEach(function (btn) {
+    btn.style.willChange = 'transform';
+
+    btn.addEventListener('mouseenter', function () {
+      animate(btn, { scale: 1.04 }, { duration: 0.18, easing: 'ease-out' });
+    });
+    btn.addEventListener('mouseleave', function () {
+      animate(btn, { scale: 1 }, { duration: 0.22, easing: 'ease-out' });
+    });
+    btn.addEventListener('mousedown', function () {
+      animate(btn, { scale: 0.96 }, { duration: 0.1, easing: 'ease-out' });
+    });
+    btn.addEventListener('mouseup', function () {
+      animate(btn, { scale: 1.04 }, { duration: 0.12, easing: 'ease-out' });
+    });
+  });
+
+  // ── Nav book button scale ──
+  document.querySelectorAll('.nav-book-btn').forEach(function (btn) {
+    btn.style.willChange = 'transform';
+    btn.addEventListener('mouseenter', function () {
+      animate(btn, { scale: 1.05 }, { duration: 0.18, easing: 'ease-out' });
+    });
+    btn.addEventListener('mouseleave', function () {
+      animate(btn, { scale: 1 }, { duration: 0.2, easing: 'ease-out' });
+    });
+    btn.addEventListener('mousedown', function () {
+      animate(btn, { scale: 0.95 }, { duration: 0.1, easing: 'ease-out' });
+    });
+    btn.addEventListener('mouseup', function () {
+      animate(btn, { scale: 1 }, { duration: 0.15, easing: 'ease-out' });
+    });
+  });
+
+  // ── Social icon hover lift + scale ──
+  document.querySelectorAll('.social-icon').forEach(function (icon) {
+    icon.style.willChange = 'transform';
+    icon.addEventListener('mouseenter', function () {
+      animate(icon, { scale: 1.15, y: -3 }, { duration: 0.2, easing: 'ease-out' });
+    });
+    icon.addEventListener('mouseleave', function () {
+      animate(icon, { scale: 1, y: 0 }, { duration: 0.22, easing: 'ease-out' });
+    });
+  });
+
+  // ── Contact status dots — continuous pulse ──
+  document.querySelectorAll('.contact-option .dot').forEach(function (dot) {
+    dot.style.willChange = 'transform, opacity';
+    animate(dot,
+      { scale: [1, 1.55, 1], opacity: [1, 0.45, 1] },
+      { duration: 2, repeat: Infinity, easing: 'ease-in-out', delay: stagger(0.4) }
+    );
+  });
+
+  // ── Lang button subtle bounce ──
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.style.willChange = 'transform';
+    btn.addEventListener('mouseenter', function () {
+      animate(btn, { scale: 1.06 }, { duration: 0.18, easing: 'ease-out' });
+    });
+    btn.addEventListener('mouseleave', function () {
+      animate(btn, { scale: 1 }, { duration: 0.2, easing: 'ease-out' });
+    });
+    btn.addEventListener('click', function () {
+      animate(btn, { scale: [0.92, 1.08, 1] }, { duration: 0.28, easing: 'ease-out' });
+    });
+  });
+
+  // ── Way-cards hover lift ──
+  document.querySelectorAll('.way-card, .card, .choose-card').forEach(function (card) {
+    card.style.willChange = 'transform';
+    card.addEventListener('mouseenter', function () {
+      animate(card, { y: -6 }, { duration: 0.22, easing: 'ease-out' });
+    });
+    card.addEventListener('mouseleave', function () {
+      animate(card, { y: 0 }, { duration: 0.25, easing: 'ease-out' });
+    });
+  });
+});
+</script>
+
+</body>
+</html>
