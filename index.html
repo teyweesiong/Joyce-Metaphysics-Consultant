@@ -4212,7 +4212,10 @@
   });
 
   // ─── Page Navigation ────────────────────────────
-  function navigateTo(pageId) {
+  var validPages = ['home','about','work','faq','testimonials','contact','checkout'];
+
+  function navigateTo(pageId, updateHash) {
+    if (validPages.indexOf(pageId) === -1) pageId = 'home';
     document.querySelectorAll('.page').forEach(function (p) {
       p.classList.remove('active');
     });
@@ -4222,6 +4225,10 @@
     document.querySelectorAll('a[data-page]').forEach(function (a) {
       a.classList.toggle('active', a.dataset.page === pageId);
     });
+
+    if (updateHash !== false) {
+      history.replaceState(null, '', pageId === 'home' ? window.location.pathname : '#' + pageId);
+    }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -4233,6 +4240,20 @@
     // Close mobile menu
     document.getElementById('mobile-menu').classList.remove('open');
   }
+
+  // Load correct page from URL hash on first visit
+  window.addEventListener('load', function () {
+    var hash = window.location.hash.replace('#', '').trim();
+    if (hash && validPages.indexOf(hash) !== -1) {
+      navigateTo(hash, false);
+    }
+  });
+
+  // Handle browser back/forward
+  window.addEventListener('popstate', function () {
+    var hash = window.location.hash.replace('#', '').trim();
+    navigateTo(hash || 'home', false);
+  });
 
   // Single delegated click handler for all [data-page] elements
   document.addEventListener('click', function (e) {
