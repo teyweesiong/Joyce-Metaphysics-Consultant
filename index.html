@@ -1407,6 +1407,7 @@
       border: none; padding: 0;
     }
     #pmodal-tob:disabled { opacity: 0.35; cursor: not-allowed; }
+    .hero .btn { opacity: 1; }
     .pmodal-field-error { border-color: #c0392b !important; }
     .pmodal-error-msg {
       display: none; font-size: 0.75rem; color: #c0392b;
@@ -4232,7 +4233,8 @@
       history.replaceState(null, '', pageId === 'home' ? window.location.pathname : '#' + pageId);
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 
     // Refresh GSAP ScrollTrigger for new page content
     if (typeof ScrollTrigger !== 'undefined') {
@@ -4764,7 +4766,7 @@ window.addEventListener('load', function () {
       .from(hero.querySelectorAll('.hero-sub, .hero-body'), {
         opacity: 0, y: 22, duration: 0.6, ease: 'power2.out', stagger: 0.12
       }, 0.35)
-      .from(hero.querySelectorAll('.btn'), {
+      .from(Array.from(hero.querySelectorAll('.btn')).filter(function(b){ return b.offsetParent !== null; }), {
         opacity: 0, y: 18, duration: 0.5, ease: 'power2.out', stagger: 0.1
       }, 0.65);
   }
