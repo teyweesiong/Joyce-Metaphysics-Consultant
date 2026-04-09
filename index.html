@@ -1507,7 +1507,8 @@
       #lang-toggle { display: none; }
       .hamburger { display: flex; }
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-      .hero-image { height: 320px; }
+      .hero-image { height: auto; overflow: visible; }
+      .hero-image img { height: auto; object-fit: unset; }
       .two-col,
       .two-col-narrow,
       .service-cols,
