@@ -4757,21 +4757,26 @@ window.addEventListener('load', function () {
   }
 
   // ── Hero entrance animation ──
+  // Only animate elements in the active language block to avoid setting hidden elements to opacity:0
   var hero = document.querySelector('.hero');
   if (hero) {
-    var heroTl = gsap.timeline({ delay: 0.15 });
-    var heroEyebrow = hero.querySelector('.eyebrow');
-    if (heroEyebrow) {
-      heroTl.from(heroEyebrow, { opacity: 0, y: 20, duration: 0.55, ease: 'power2.out' }, 0);
+    var isZh = document.body.classList.contains('zh');
+    var heroLangBlock = hero.querySelector(isZh ? '.zh-content' : '.en-content');
+    if (heroLangBlock) {
+      var heroTl = gsap.timeline({ delay: 0.15 });
+      var heroEyebrow = heroLangBlock.querySelector('.eyebrow');
+      if (heroEyebrow) {
+        heroTl.from(heroEyebrow, { opacity: 0, y: 20, duration: 0.55, ease: 'power2.out' }, 0);
+      }
+      heroTl
+        .from(heroLangBlock.querySelectorAll('h1'), { opacity: 0, y: 36, duration: 0.75, ease: 'power3.out' }, 0.1)
+        .from(heroLangBlock.querySelectorAll('.hero-sub, .hero-body'), {
+          opacity: 0, y: 22, duration: 0.6, ease: 'power2.out', stagger: 0.12
+        }, 0.35)
+        .from(heroLangBlock.querySelectorAll('.btn'), {
+          opacity: 0, y: 18, duration: 0.5, ease: 'power2.out', stagger: 0.1
+        }, 0.65);
     }
-    heroTl
-      .from(hero.querySelectorAll('h1'), { opacity: 0, y: 36, duration: 0.75, ease: 'power3.out' }, 0.1)
-      .from(hero.querySelectorAll('.hero-sub, .hero-body'), {
-        opacity: 0, y: 22, duration: 0.6, ease: 'power2.out', stagger: 0.12
-      }, 0.35)
-      .from(Array.from(hero.querySelectorAll('.btn')).filter(function(b){ return b.offsetParent !== null; }), {
-        opacity: 0, y: 18, duration: 0.5, ease: 'power2.out', stagger: 0.1
-      }, 0.65);
   }
 
   // ── Page-hero (inner pages) entrance ──
