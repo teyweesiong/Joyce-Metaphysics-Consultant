@@ -4686,7 +4686,8 @@
     var service = serviceEl.options[serviceEl.selectedIndex].text || 'Not selected';
     var message = document.getElementById('message').value.trim() || 'No message';
 
-    var payload = JSON.stringify({
+    // Send as URL-encoded params — no preflight, works with Apps Script e.parameter
+    var params = new URLSearchParams({
       name: name,
       email: email,
       whatsapp: whatsapp,
@@ -4696,17 +4697,13 @@
       submitted_at: new Date().toISOString()
     });
 
-    // Send to Google Sheets (no-cors — response not readable but data is sent)
     fetch(GOOGLE_SHEET_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: payload
-    }).catch(function () {
-      // Silently fail — form success is shown regardless
+      body: params
+    }).catch(function (err) {
+      console.warn('Google Sheets submission error:', err);
     });
 
-    // Show success immediately (no-cors fetch cannot return a readable response)
     document.getElementById('form-success').style.display = 'block';
     form.reset();
     form.style.display = 'none';
