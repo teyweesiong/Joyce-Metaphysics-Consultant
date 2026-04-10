@@ -3750,15 +3750,21 @@
               </div>
 
               <div class="form-group full">
-                <label for="service">
+                <label>
                   <span class="en-content">Service Interested In</span>
                   <span class="zh-content">感兴趣的服务</span>
                 </label>
-                <select id="service">
-                  <option value="" class="en-content">Please select…</option>
-                  <option value="programs" class="en-content">Breakthrough Programs (Waitlist)</option>
-                  <option value="corporate" class="en-content">Corporate &amp; Strategic Advisory</option>
-                  <option value="collaboration" class="en-content">Others — Collaboration Enquiry</option>
+                <select id="service-en" class="en-content">
+                  <option value="">Please select…</option>
+                  <option value="programs">Breakthrough Programs (Waitlist)</option>
+                  <option value="corporate">Corporate &amp; Strategic Advisory</option>
+                  <option value="collaboration">Others — Collaboration Enquiry</option>
+                </select>
+                <select id="service-zh" class="zh-content">
+                  <option value="">请选择…</option>
+                  <option value="programs">突破计划（候补名单）</option>
+                  <option value="corporate">企业与战略顾问</option>
+                  <option value="collaboration">其他 — 合作咨询</option>
                 </select>
               </div>
 
@@ -4682,7 +4688,9 @@
     var whatsappNumber = document.getElementById('whatsapp-number').value.trim();
     var whatsapp = whatsappNumber ? (whatsappCode + ' ' + whatsappNumber) : 'Not provided';
     var dob = document.getElementById('dob').value || 'Not provided';
-    var serviceEl = document.getElementById('service');
+    var serviceEl = document.body.classList.contains('zh')
+      ? document.getElementById('service-zh')
+      : document.getElementById('service-en');
     var service = serviceEl.options[serviceEl.selectedIndex].text || 'Not selected';
     var message = document.getElementById('message').value.trim() || 'No message';
 
@@ -4699,6 +4707,7 @@
 
     fetch(GOOGLE_SHEET_URL, {
       method: 'POST',
+      mode: 'no-cors',
       body: params
     }).catch(function (err) {
       console.warn('Google Sheets submission error:', err);
