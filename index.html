@@ -4667,37 +4667,49 @@
   });
 
   // ─── Contact Form ───────────────────────────────
+  // ── Google Sheets integration ──
+  // Replace the URL below with your deployed Google Apps Script Web App URL
+  var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwejO8YDJhSBOQoCXCpmEAFv_46r2xcg8vnpvytAT-mbB9XKXZq8kt4mSXv5BptziKNNg/exec';
+
   document.getElementById('contact-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    if (!name || !email) {
-      return;
-    }
-    const whatsappCode = document.getElementById('whatsapp-code').value.trim();
-    const whatsappNumber = document.getElementById('whatsapp-number').value.trim();
-    const whatsapp = whatsappNumber ? (whatsappCode + ' ' + whatsappNumber) : 'Not provided';
-    const dob = document.getElementById('dob').value || 'Not provided';
-    const serviceEl = document.getElementById('service');
-    const service = serviceEl.options[serviceEl.selectedIndex].text || 'Not selected';
-    const message = document.getElementById('message').value.trim() || 'No message';
+    var form = this;
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    if (!name || !email) return;
 
-    const subject = encodeURIComponent('New Inquiry from ' + name);
-    const body = encodeURIComponent(
-      'New inquiry received from the website:\n\n' +
-      'Full Name: ' + name + '\n' +
-      'Email: ' + email + '\n' +
-      'WhatsApp: ' + whatsapp + '\n' +
-      'Date of Birth: ' + dob + '\n' +
-      'Service Interested In: ' + service + '\n\n' +
-      'Message:\n' + message
-    );
+    var whatsappCode = document.getElementById('whatsapp-code').value.trim();
+    var whatsappNumber = document.getElementById('whatsapp-number').value.trim();
+    var whatsapp = whatsappNumber ? (whatsappCode + ' ' + whatsappNumber) : 'Not provided';
+    var dob = document.getElementById('dob').value || 'Not provided';
+    var serviceEl = document.getElementById('service');
+    var service = serviceEl.options[serviceEl.selectedIndex].text || 'Not selected';
+    var message = document.getElementById('message').value.trim() || 'No message';
 
-    window.location.href = 'mailto:joycemetaphysicsconsultant@gmail.com?subject=' + subject + '&body=' + body;
+    var payload = JSON.stringify({
+      name: name,
+      email: email,
+      whatsapp: whatsapp,
+      dob: dob,
+      service: service,
+      message: message,
+      submitted_at: new Date().toISOString()
+    });
 
+    // Send to Google Sheets (no-cors — response not readable but data is sent)
+    fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: payload
+    }).catch(function () {
+      // Silently fail — form success is shown regardless
+    });
+
+    // Show success immediately (no-cors fetch cannot return a readable response)
     document.getElementById('form-success').style.display = 'block';
-    this.reset();
-    this.style.display = 'none';
+    form.reset();
+    form.style.display = 'none';
   });
 </script>
 
