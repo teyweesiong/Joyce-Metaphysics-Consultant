@@ -608,6 +608,21 @@
       margin-top: 1px;
     }
 
+    /* ─── Section Image (two-col photo panels) ─── */
+    .section-image {
+      position: relative;
+      height: 520px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .section-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
     /* ─── Page Hero (inner pages) ─── */
     .page-hero {
       background: var(--cream-alt);
@@ -1511,6 +1526,8 @@
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-image { height: auto; overflow: visible; }
       .hero-image img { height: auto; object-fit: unset; }
+      .section-image { height: 320px; }
+      .section-image img { object-position: center top; }
       .two-col,
       .two-col-narrow,
       .service-cols,
@@ -1728,21 +1745,13 @@
   <!-- SECTION 3 — WHY JOYCE -->
   <section>
     <div class="container">
-      <div class="two-col-narrow">
-
-        <div class="en-content">
-          <span class="eyebrow">Why Joyce</span>
-          <h2>Not all guidance is the same.</h2>
-          <div class="divider"></div>
-        </div>
-        <div class="zh-content">
-          <span class="eyebrow">为何选择 JOYCE</span>
-          <h2>并非所有的指引都一样的。</h2>
-          <div class="divider"></div>
-        </div>
+      <div class="two-col">
 
         <div>
           <div class="en-content">
+            <span class="eyebrow">Why Joyce</span>
+            <h2>Not all guidance is the same.</h2>
+            <div class="divider"></div>
             <p>Some can interpret systems.<br>Some can offer advice.<br>Some can say the right words.</p>
             <br>
             <p>But very few can help a woman feel truly seen while also helping her understand what is actually happening beneath the surface of her life.</p>
@@ -1755,6 +1764,9 @@
             <p class="signature-line">When a woman sees clearly, she moves differently.</p>
           </div>
           <div class="zh-content">
+            <span class="eyebrow">为何选择 JOYCE</span>
+            <h2>并非所有的指引都一样的。</h2>
+            <div class="divider"></div>
             <p>有人能够解读系统。<br>有人能够给出建议。<br>有人能够说出正确的话语。</p>
             <br>
             <p>但极少有人能在帮助女性真正被看见的同时，也帮助她了解生命表面之下真正发生的事情。</p>
@@ -1766,7 +1778,10 @@
             <p>她不制造依赖。<br>她帮助女性回归自己的清醒和力量。</p>
             <p class="signature-line">当女性看得清楚自己了，那么她的行动将帮助她突破卡点。</p>
           </div>
-          <img src="JY%20Pic%202.jpeg" alt="Joyce Yap" style="width: 100%; margin-top: 32px; border-radius: 4px; display: block;">
+        </div>
+
+        <div class="section-image">
+          <img src="JY%20Pic%202.jpeg" alt="Joyce Yap">
         </div>
 
       </div>
@@ -2085,8 +2100,8 @@
             <p>Joyce Yap 帮助女性了解她们的痛苦、规律与人生路径——不仅仅来自理论，更来自真实的生命经历与对人类规律的深刻观察。</p>
           </div>
         </div>
-        <div>
-          <img src="JY%20Pic%203.jpeg" alt="Joyce Yap" style="width: 100%; border-radius: 4px; display: block;">
+        <div class="section-image">
+          <img src="JY%20Pic%203.jpeg" alt="Joyce Yap">
         </div>
       </div>
     </div>
