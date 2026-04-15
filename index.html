@@ -1498,6 +1498,14 @@
       transform: translateX(6px);
       transition: opacity 0.2s, transform 0.2s;
     }
+    @media (max-width: 600px) {
+      .wa-tooltip {
+        white-space: normal;
+        max-width: calc(100vw - 100px);
+        right: 66px;
+        text-align: right;
+      }
+    }
     .wa-float:hover .wa-tooltip {
       opacity: 1;
       transform: translateX(0);
