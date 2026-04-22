@@ -1421,7 +1421,9 @@
       accent-color: var(--gold); flex-shrink: 0;
       border: none; padding: 0;
     }
-    #pmodal-tob:disabled { opacity: 0.35; cursor: not-allowed; }
+    #pmodal-tob:disabled,
+    #pmodal-tob-ampm:disabled { opacity: 0.35; cursor: not-allowed; }
+    #pmodal-tob-ampm { flex: 0 0 auto; width: 72px; }
     .hero .btn { opacity: 1; }
     .pmodal-field-error { border-color: #c0392b !important; }
     .pmodal-error-msg {
@@ -4104,11 +4106,15 @@
             </div>
             <div class="pmodal-field">
               <label>
-                <span class="en-content">Time of Birth <span class="pmodal-label-hint">(24-hour format, e.g. 14:30 — or check "I don't know")</span></span>
-                <span class="zh-content">出生时间 <span class="pmodal-label-hint">（24小时制，例如 14:30 — 或勾选"不知道"）</span></span>
+                <span class="en-content">Time of Birth <span class="pmodal-label-hint">(12-hour format, e.g. 2:30 PM — or check "I don't know")</span></span>
+                <span class="zh-content">出生时间 <span class="pmodal-label-hint">（12小时制，例如 2:30 PM — 或勾选"不知道"）</span></span>
               </label>
               <div class="pmodal-tob-row">
                 <input type="text" id="pmodal-tob" placeholder="HH:MM" maxlength="5" inputmode="numeric">
+                <select id="pmodal-tob-ampm">
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
                 <label class="pmodal-tob-na-label" for="pmodal-tob-na">
                   <input type="checkbox" id="pmodal-tob-na">
                   <span class="en-content">I don't know</span>
@@ -4579,9 +4585,11 @@
     // Reset form + success state
     var form = document.getElementById('pmodal-form');
     form.reset();
-    // Re-enable TOB input in case N/A was checked in a previous opening
+    // Re-enable TOB input/ampm in case N/A was checked in a previous opening
     var tobInput = document.getElementById('pmodal-tob');
+    var tobAmpm  = document.getElementById('pmodal-tob-ampm');
     if (tobInput) tobInput.disabled = false;
+    if (tobAmpm)  tobAmpm.disabled  = false;
     // Clear any validation errors from previous opening
     form.querySelectorAll('.pmodal-field-error').forEach(function(el){ el.classList.remove('pmodal-field-error'); });
     form.querySelectorAll('.pmodal-error-msg').forEach(function(el){ el.style.display = 'none'; });
@@ -4632,14 +4640,15 @@
     this.value = v;
   });
 
-  // TOB auto-format: insert colon after HH (24-hour, 00–23 : 00–59)
+  // TOB auto-format: insert colon after HH (12-hour, 01–12 : 00–59)
   document.getElementById('pmodal-tob').addEventListener('input', function () {
     var digits = this.value.replace(/\D/g, '').substring(0, 4);
     if (digits.length === 0) { this.value = ''; return; }
     var hh = digits.substring(0, 2);
     var mm = digits.substring(2);
-    // Clamp hours to 23
-    if (parseInt(hh, 10) > 23) hh = '23';
+    // Clamp hours to 12
+    if (hh.length === 2 && parseInt(hh, 10) > 12) hh = '12';
+    if (hh.length === 2 && parseInt(hh, 10) === 0) hh = '12';
     // Clamp minutes to 59
     if (mm.length === 2 && parseInt(mm, 10) > 59) mm = '59';
     this.value = mm.length ? hh + ':' + mm : hh;
@@ -4648,7 +4657,9 @@
   // Time of Birth — N/A checkbox toggle
   document.getElementById('pmodal-tob-na').addEventListener('change', function () {
     var tobInput = document.getElementById('pmodal-tob');
+    var tobAmpm  = document.getElementById('pmodal-tob-ampm');
     tobInput.disabled = this.checked;
+    tobAmpm.disabled  = this.checked;
     if (this.checked) tobInput.value = '';
   });
 
@@ -4664,7 +4675,8 @@
     var phone       = document.getElementById('pmodal-phone').value.trim();
     var dob         = document.getElementById('pmodal-dob').value.trim();
     var tobNa       = document.getElementById('pmodal-tob-na').checked;
-    var tob         = tobNa ? 'N/A' : document.getElementById('pmodal-tob').value.trim();
+    var tobAmpm     = document.getElementById('pmodal-tob-ampm').value;
+    var tob         = tobNa ? 'N/A' : (document.getElementById('pmodal-tob').value.trim() + ' ' + tobAmpm);
 
     // Validate all required fields and show inline errors
     var valid = true;
