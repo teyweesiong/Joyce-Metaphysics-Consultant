@@ -1576,9 +1576,9 @@
       .hamburger { display: flex; }
       .hero { align-items: flex-start; padding-top: 48px; padding-bottom: 48px; overflow: visible; }
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-      .hero-image { height: clamp(420px, 72vw, 560px); overflow: hidden; }
+      .hero-image { width: min(100%, 560px); height: 580px; margin: 0 auto; overflow: hidden; }
       .hero-image img { height: 100%; max-height: none; }
-      .section-image { height: clamp(420px, 75vw, 580px); }
+      .section-image { width: min(100%, 560px); height: 580px; margin: 0 auto; }
       .two-col,
       .two-col-narrow,
       .service-cols,
