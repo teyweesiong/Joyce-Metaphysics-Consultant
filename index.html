@@ -1578,7 +1578,7 @@
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-image { height: auto; overflow: hidden; max-height: 520px; }
       .hero-image img { height: auto; object-fit: cover; max-height: 520px; }
-      .section-image { height: 360px; }
+      .section-image { height: clamp(360px, 65vw, 520px); }
       .two-col,
       .two-col-narrow,
       .service-cols,
