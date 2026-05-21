@@ -100,7 +100,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 16px;
     }
     .nav-logo {
       font-family: var(--font-h);
@@ -115,14 +115,14 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 14px;
       flex: 1;
       justify-content: center;
     }
     .nav-links a {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 400;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--brown-mid);
       transition: color 0.2s;
@@ -962,6 +962,56 @@
     .text-center { text-align: center; }
     .text-center .section-intro { margin: 0 auto; }
 
+    /* ─── Careers Page ─── */
+    .careers-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .careers-badge {
+      background: var(--brown-deep);
+      color: var(--gold-light);
+      font-family: var(--font-b);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+    }
+    .tag-must {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--cream);
+      padding: 3px 10px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .careers-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .careers-contact-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      color: var(--gold-light);
+    }
+    .careers-contact-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      flex-shrink: 0;
+      width: 52px;
+    }
+
     /* ─── Bonus Flicker Badge ─── */
     @keyframes bonusFlicker {
       0%, 100% { opacity: 1; }
@@ -1568,7 +1618,7 @@
     .footer-policy:hover { color: var(--gold-light); }
 
     /* ─── Responsive ─── */
-    @media (max-width: 1000px) {
+    @media (max-width: 1100px) {
       .nav-links { display: none; }
       .nav-book-btn { display: none; }
       /* Hide desktop lang toggle — mobile menu has its own */
@@ -1637,6 +1687,10 @@
         <span class="en-content">Testimonials</span>
         <span class="zh-content">客户见证</span>
       </a>
+      <a href="#" data-page="careers">
+        <span class="en-content">Careers</span>
+        <span class="zh-content">招募</span>
+      </a>
       <a href="#" data-page="contact">
         <span class="en-content">Contact</span>
         <span class="zh-content">联系 / 预约</span>
@@ -1653,7 +1707,7 @@
       </button>
       <button class="nav-book-btn" data-page="checkout">
         <span class="en-content">Book a Session</span>
-        <span class="zh-content">预约疗程</span>
+        <span class="zh-content">预约质询</span>
       </button>
     </div>
 
@@ -1685,6 +1739,10 @@
     <span class="en-content">Testimonials</span>
     <span class="zh-content">客户见证</span>
   </a>
+  <a href="#" data-page="careers">
+    <span class="en-content">Careers</span>
+    <span class="zh-content">招募</span>
+  </a>
   <a href="#" data-page="contact">
     <span class="en-content">Contact</span>
     <span class="zh-content">联系 / 预约</span>
@@ -1699,7 +1757,7 @@
     </button>
     <button class="btn btn-primary" data-page="checkout" style="padding: 10px 20px; font-size: 0.75rem;">
       <span class="en-content">Book a Session</span>
-      <span class="zh-content">预约疗程</span>
+      <span class="zh-content">预约质询</span>
     </button>
   </div>
 </div>
@@ -3068,7 +3126,7 @@
     <div class="zh-content">
       <blockquote>有时，一个清晰的洞察——就足以改变你前行的方向。</blockquote>
       <div style="margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <a href="#" class="btn btn-gold" data-page="checkout">预约疗程</a>
+        <a href="#" class="btn btn-gold" data-page="checkout">预约质询</a>
       </div>
     </div>
   </div>
@@ -3660,12 +3718,216 @@
     <div class="zh-content">
       <blockquote>一个清晰的洞察，足以改变你前行的方式。</blockquote>
       <div style="margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <a href="#" class="btn btn-gold" data-page="checkout">预约疗程</a>
+        <a href="#" class="btn btn-gold" data-page="checkout">预约质询</a>
       </div>
     </div>
   </div>
 
 </div><!-- /page-testimonials -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: CAREERS
+════════════════════════════════════════════════ -->
+<div id="page-careers" class="page">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">We Are Hiring</span>
+        <h1>Join the Team</h1>
+        <div class="divider"></div>
+        <p>A role for someone who moves with purpose — and loves what AI can do.</p>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">加入我们</span>
+        <h1>寻找同行的人</h1>
+        <div class="divider"></div>
+        <p>我们在找的，是那种走路有方向、同时深深热爱 AI 能做到什么的人。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROLE INTRO -->
+  <section>
+    <div class="container">
+      <div class="en-content section-intro">
+        <span class="eyebrow">The Role</span>
+        <h2>Content &amp; Operations Assistant</h2>
+        <div class="divider"></div>
+        <p>We are looking for someone sharp, intuitive, and deeply comfortable working with AI tools. You don't just use technology — you think with it.</p>
+      </div>
+      <div class="zh-content section-intro">
+        <span class="eyebrow">职位</span>
+        <h2>内容与运营助理</h2>
+        <div class="divider"></div>
+        <p>我们在寻找的，不只是一个会用工具的人。而是能透过工具，真正思考的人——敏锐、直觉清晰，与 AI 协作如同本能。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU'LL DO -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">What You'll Do</span>
+        <h3>Your Responsibilities</h3>
+        <ul class="elegant-list">
+          <li>Design and produce slides for courses and presentations</li>
+          <li>Manage and schedule social media content across platforms</li>
+          <li>Provide live support during online classes and sessions</li>
+          <li>Follow up on enquiries from chatbot and WhatsApp</li>
+          <li>Assist with content creation, captions, and copywriting</li>
+        </ul>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">工作内容</span>
+        <h3>你将负责</h3>
+        <ul class="elegant-list">
+          <li>为课程与分享设计及制作演示文稿</li>
+          <li>管理与发布各平台社交媒体内容</li>
+          <li>为线上课程与工作坊提供现场支援</li>
+          <li>跟进来自聊天机器人与 WhatsApp 的咨询</li>
+          <li>协助内容创作、文案撰写与说明文字</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE'RE LOOKING FOR -->
+  <section>
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">What We're Looking For</span>
+        <h3>Skills &amp; Requirements</h3>
+        <ul class="elegant-list">
+          <li>Highly proficient with AI tools — Claude, ChatGPT, Canva AI, and more <span class="tag-must">Must Have</span></li>
+          <li>Strong in Canva, PowerPoint, or equivalent design tools</li>
+          <li>Excellent written communication in English and Chinese</li>
+          <li>Proactive, resourceful — you solve problems before being asked</li>
+          <li>Trustworthy and discreet — clients share sensitive personal matters</li>
+        </ul>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">我们在寻找</span>
+        <h3>技能与要求</h3>
+        <ul class="elegant-list">
+          <li>高度熟练使用 AI 工具 — Claude、ChatGPT、Canva AI 等 <span class="tag-must">必备条件</span></li>
+          <li>善用 Canva、PowerPoint 或同类设计工具</li>
+          <li>中英文书面表达流畅</li>
+          <li>主动、机敏 — 在被要求之前，你已经在解决问题了</li>
+          <li>值得信赖，懂得保密 — 客户分享的，是他们最私密的人生历程</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENERGY & VALUES -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">Energy &amp; Values</span>
+        <h3>Who You Are</h3>
+        <ul class="elegant-list">
+          <li>Open-minded and aligned with spiritual or wellness topics</li>
+          <li>Calm and positive — energy matters here</li>
+          <li>Growth mindset — you invest in yourself</li>
+          <li>Smart and sharp — we move fast and think deeply</li>
+        </ul>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">能量与价值观</span>
+        <h3>你是这样的人</h3>
+        <ul class="elegant-list">
+          <li>开放接纳，与身心灵及健康领域同频</li>
+          <li>平静而积极 — 在这里，能量会感染整个空间</li>
+          <li>拥有成长型心态 — 你也在投资自己</li>
+          <li>敏锐而迅速 — 我们走得快，思得深</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK ARRANGEMENT -->
+  <section>
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">Work Arrangement</span>
+        <h3>How We Work</h3>
+        <div class="careers-badges">
+          <span class="careers-badge">Work From Home</span>
+          <span class="careers-badge">Flexible Hours</span>
+          <span class="careers-badge">Remote &amp; Online</span>
+        </div>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">工作安排</span>
+        <h3>我们的工作方式</h3>
+        <div class="careers-badges">
+          <span class="careers-badge">居家办公</span>
+          <span class="careers-badge">弹性时间</span>
+          <span class="careers-badge">线上远程</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — HOW TO APPLY -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="en-content">
+        <span class="eyebrow">Ready to Apply?</span>
+        <h2>If this feels like you,<br>we'd love to hear from you.</h2>
+        <div class="divider"></div>
+        <p>Send a short introduction about yourself and how you use AI in your daily work.</p>
+        <div class="careers-contact">
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">Web</span>
+            <span>www.joyceyapmetaphysics.com</span>
+          </div>
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">WA</span>
+            <span>+60162549368</span>
+          </div>
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">Email</span>
+            <span>joycemetaphysicsconsultant@gmail.com</span>
+          </div>
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">IG</span>
+            <span>@joyce_metaphysics_consultant</span>
+          </div>
+        </div>
+      </div>
+      <div class="zh-content">
+        <span class="eyebrow">准备好了吗</span>
+        <h2>如果这就是你，<br>我们想认识你。</h2>
+        <div class="divider"></div>
+        <p>请发送一段简短的自我介绍，告诉我们你如何在日常工作中使用 AI。</p>
+        <div class="careers-contact">
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">网址</span>
+            <span>www.joyceyapmetaphysics.com</span>
+          </div>
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">WA</span>
+            <span>+60162549368</span>
+          </div>
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">电邮</span>
+            <span>joycemetaphysicsconsultant@gmail.com</span>
+          </div>
+          <div class="careers-contact-row">
+            <span class="careers-contact-label">IG</span>
+            <span>@joyce_metaphysics_consultant</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-careers -->
 
 
 <!-- ═══════════════════════════════════════════════
@@ -4272,7 +4534,7 @@
   });
 
   // ─── Page Navigation ────────────────────────────
-  var validPages = ['home','about','work','faq','testimonials','contact','checkout'];
+  var validPages = ['home','about','work','faq','testimonials','careers','contact','checkout'];
 
   function navigateTo(pageId, updateHash) {
     if (validPages.indexOf(pageId) === -1) pageId = 'home';
