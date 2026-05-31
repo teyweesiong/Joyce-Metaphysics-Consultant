@@ -166,7 +166,7 @@
       position: relative;
       display: inline-flex;
       align-items: center;
-      width: 88px;
+      width: 136px;
       height: 30px;
       background: var(--cream-deep);
       border: 1px solid var(--gold-light);
@@ -180,10 +180,10 @@
     .lang-switch-label-zh {
       position: absolute;
       font-family: var(--font-b), 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-transform: none;
       line-height: 1;
       -webkit-transition: color 0.25s;
       transition: color 0.25s;
@@ -197,13 +197,13 @@
     .lang-switch-label-zh {
       right: 9px;
       color: var(--brown-light);
-      font-size: 0.72rem;
-      letter-spacing: 0.02em;
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
     }
     .lang-switch-thumb {
       position: absolute;
       left: 3px;
-      width: 38px;
+      width: 60px;
       height: 24px;
       background: var(--gold);
       border-radius: 12px;
@@ -212,7 +212,7 @@
     }
     /* Chinese active state */
     body.zh .lang-switch-thumb {
-      left: 45px;
+      left: 73px;
     }
     body.zh .lang-switch-label-en {
       color: var(--brown-light);
@@ -815,6 +815,17 @@
       background: var(--cream-alt);
       padding: 32px 28px;
       border-top: 1px solid var(--gold);
+      transition: background 0.2s, transform 0.15s;
+    }
+    a.choose-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a.choose-card:hover {
+      background: var(--cream-deep);
+      transform: translateY(-2px);
     }
     .choose-card .choose-label {
       font-size: 0.7rem;
@@ -1666,6 +1677,118 @@
       .wa-float { bottom: 20px; right: 16px; width: 50px; height: 50px; }
       .wa-float svg { width: 26px; height: 26px; }
     }
+
+    /* ─── About Hero Two-Col ─── */
+    .about-hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 6vw, 64px);
+      align-items: center;
+    }
+    .about-hero-image {
+      overflow: hidden;
+      height: clamp(360px, 50vw, 560px);
+    }
+    .about-hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    @media (max-width: 1100px) {
+      .about-hero-layout { grid-template-columns: 1fr; }
+      .about-hero-image { width: min(100%, 560px); margin: 0 auto; height: 420px; }
+    }
+
+    /* ─── Home Simple Process Steps ─── */
+    .process-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-top: 52px;
+    }
+    .process-step-card {
+      background: rgba(42,32,24,0.9);
+      padding: 48px 32px 36px;
+      border-top: 1px solid var(--gold);
+    }
+    .process-step-num {
+      font-family: var(--font-h);
+      font-size: 3.2rem;
+      color: rgba(196,168,130,0.2);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .process-step-title {
+      font-family: var(--font-h);
+      font-size: 1.25rem;
+      color: var(--cream);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    .process-step-card p {
+      font-size: 0.88rem;
+      color: rgba(240,235,226,0.6);
+      line-height: 1.75;
+    }
+    .process-step-detail {
+      font-size: 0.72rem;
+      color: var(--gold-light);
+      margin-top: 14px;
+      font-style: italic;
+      font-family: var(--font-h);
+    }
+    @media (max-width: 1100px) {
+      .process-steps-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .process-steps-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Testimonials Stats ─── */
+    .testimonials-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--cream-deep);
+    }
+    .testimonials-stat {
+      background: var(--cream);
+      padding: 36px 28px;
+      text-align: center;
+      border-top: 1px solid var(--gold);
+    }
+    .stat-value {
+      font-family: var(--font-h);
+      font-size: clamp(1.1rem, 2vw, 1.7rem);
+      color: var(--gold);
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      margin-top: 8px;
+    }
+    @media (max-width: 600px) {
+      .testimonials-stats { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Choose Card Interactive ─── */
+    .choose-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .choose-card-link:hover .choose-card {
+      background: var(--cream-deep);
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body class="zh">
@@ -1711,8 +1834,8 @@
     <div class="nav-right">
       <button class="lang-btn" id="lang-toggle" aria-label="Toggle language">
         <span class="lang-switch">
-          <span class="lang-switch-label-en">EN</span>
-          <span class="lang-switch-label-zh">中文</span>
+          <span class="lang-switch-label-en">English</span>
+          <span class="lang-switch-label-zh">Chinese</span>
           <span class="lang-switch-thumb"></span>
         </span>
       </button>
@@ -1761,8 +1884,8 @@
   <div class="mobile-actions">
     <button class="lang-btn" id="lang-toggle-mobile" aria-label="Toggle language">
       <span class="lang-switch">
-        <span class="lang-switch-label-en">EN</span>
-        <span class="lang-switch-label-zh">中文</span>
+        <span class="lang-switch-label-en">English</span>
+        <span class="lang-switch-label-zh">Chinese</span>
         <span class="lang-switch-thumb"></span>
       </span>
     </button>
@@ -2006,6 +2129,61 @@
     </div>
   </section>
 
+  <!-- SECTION 5.5 — SIMPLE PROCESS -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="en-content section-intro">
+        <span class="eyebrow" style="color: var(--gold-light);">Simple Process</span>
+        <h2 style="font-style: italic;">Four steps to your first session.</h2>
+        <div class="divider" style="background: var(--gold-light);"></div>
+      </div>
+      <div class="zh-content section-intro">
+        <span class="eyebrow" style="color: var(--gold-light);">预约流程</span>
+        <h2 style="font-style: italic;">四步，开始你的第一次咨询。</h2>
+        <div class="divider" style="background: var(--gold-light);"></div>
+      </div>
+
+      <div class="process-steps-grid">
+        <div class="process-step-card">
+          <div class="process-step-num">01</div>
+          <div class="process-step-title en-content">Choose Your Service</div>
+          <div class="process-step-title zh-content">选择你的服务</div>
+          <p class="en-content">Pick the level of support that feels right. Not sure? Start with the RM88 diagnostic — designed for that moment of uncertainty.</p>
+          <p class="zh-content">选择适合你当前状态的支持方式。不确定？从 RM88 诊断开始，专为迷茫时刻而设。</p>
+          <div class="process-step-detail en-content">RM88 · RM488 · RM688 · Bundle</div>
+          <div class="process-step-detail zh-content">RM88 · RM488 · RM688 · 套餐</div>
+        </div>
+        <div class="process-step-card">
+          <div class="process-step-num">02</div>
+          <div class="process-step-title en-content">Complete Payment</div>
+          <div class="process-step-title zh-content">完成付款</div>
+          <p class="en-content">Simple online checkout via TNG or bank transfer. Instant confirmation sent to your email.</p>
+          <p class="zh-content">透过 TNG 或银行转账完成付款。付款后即时收到确认邮件。</p>
+          <div class="process-step-detail en-content">TNG · Bank Transfer · Instant Confirmation</div>
+          <div class="process-step-detail zh-content">TNG · 银行转账 · 即时确认</div>
+        </div>
+        <div class="process-step-card">
+          <div class="process-step-num">03</div>
+          <div class="process-step-title en-content">Share Your Details</div>
+          <div class="process-step-title zh-content">填写你的资料</div>
+          <p class="en-content">Fill in your date of birth, preferred language, and any questions you would like addressed in your session.</p>
+          <p class="zh-content">填写你的出生日期、偏好语言，以及任何你希望在咨询中探讨的问题。</p>
+          <div class="process-step-detail en-content">Date of Birth · Language · Your Questions</div>
+          <div class="process-step-detail zh-content">出生日期 · 语言偏好 · 你的问题</div>
+        </div>
+        <div class="process-step-card">
+          <div class="process-step-num">04</div>
+          <div class="process-step-title en-content">Book Your Time Slot</div>
+          <div class="process-step-title zh-content">预约你的时间</div>
+          <p class="en-content">Choose your preferred session time. Online via video call, in English or Chinese. Recorded on request.</p>
+          <p class="zh-content">选择适合你的咨询时间。线上视频进行，可选择英文或中文。如需录制，可提前告知。</p>
+          <div class="process-step-detail en-content">Online · English or Chinese · Recorded on Request</div>
+          <div class="process-step-detail zh-content">线上进行 · 英文或中文 · 可录制</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SECTION 6 — CORPORATE & STRATEGIC ADVISORY -->
   <section class="section-dark">
     <div class="container">
@@ -2174,19 +2352,26 @@
 <div id="page-about" class="page">
 
   <!-- PAGE HERO -->
-  <div class="page-hero">
+  <div class="page-hero about-hero">
     <div class="container">
-      <div class="en-content">
-        <span class="eyebrow">About Joyce Yap</span>
-        <h1>About Joyce Yap</h1>
-        <div class="divider"></div>
-        <p>Guiding women through clarity, self-understanding, and meaningful breakthrough through numerology, metaphysical insight, and lived wisdom.</p>
-      </div>
-      <div class="zh-content">
-        <span class="eyebrow">关于 Joyce Yap</span>
-        <h1>关于 Joyce Yap</h1>
-        <div class="divider"></div>
-        <p>透过数字学、玄学洞察与人生智慧，引导女性走向觉醒、自我认知与真实的突破。</p>
+      <div class="about-hero-layout">
+        <div>
+          <div class="en-content">
+            <span class="eyebrow">About Joyce Yap</span>
+            <h1>Helping People Gain Clarity for Better Life Decisions</h1>
+            <div class="divider"></div>
+            <p>Through numerology, metaphysical insight, and lived wisdom, Joyce helps individuals understand themselves and the hidden patterns shaping their lives.</p>
+          </div>
+          <div class="zh-content">
+            <span class="eyebrow">关于 Joyce Yap</span>
+            <h1>帮助人们看清自己，做出更好的人生抉择</h1>
+            <div class="divider"></div>
+            <p>透过数字学、玄学洞察与人生智慧，Joyce 帮助人们深刻认识自己，看见那些无声塑造生命的规律。</p>
+          </div>
+        </div>
+        <div class="about-hero-image">
+          <img src="JY%20Pic%201.jpeg" alt="Joyce Yap" style="object-position: center 15%;">
+        </div>
       </div>
     </div>
   </div>
@@ -2419,8 +2604,147 @@
     </div>
   </section>
 
-  <!-- SERVICE 1 — RM88 -->
+  <!-- HOW TO CHOOSE — interactive guide -->
   <section class="section-alt">
+    <div class="container">
+
+      <div class="en-content section-intro">
+        <span class="eyebrow">Not Sure Where to Start?</span>
+        <h2>How to choose the right service</h2>
+        <div class="divider"></div>
+        <p style="max-width: 560px;">Click any box below to jump directly to that service — where you can read the full details and book when you are ready.</p>
+      </div>
+      <div class="zh-content section-intro">
+        <span class="eyebrow">还不确定从哪里开始？</span>
+        <h2>如何选择合适的服务</h2>
+        <div class="divider"></div>
+        <p style="max-width: 560px;">点击以下任意方框，直接跳转至对应服务——了解详情后，可随时预约。</p>
+      </div>
+
+      <div class="choose-grid">
+        <a href="#service-rm88" class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Start here if</span>
+            <h4>Core Blockage Diagnostic — RM88</h4>
+            <ul class="check-list">
+              <li>you keep repeating similar issues and want a starting point</li>
+              <li>you want a lighter entry before committing to a session</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">从这里开始，如果</span>
+            <h4>核心卡点诊断 — RM88</h4>
+            <ul class="check-list">
+              <li>你反复经历类似的问题，想先有一个清晰的起点</li>
+              <li>你想先用较轻的方式入门，再决定是否进行咨询</li>
+            </ul>
+          </div>
+        </a>
+        <a href="#service-numerology" class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Choose if you want</span>
+            <h4>Full Numerology Reading — RM688</h4>
+            <ul class="check-list">
+              <li>deeper self-understanding and life path insight</li>
+              <li>to explore your patterns, strengths, and life blueprint</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">选择这个，如果你想要</span>
+            <h4>完整数字学解读 — RM688</h4>
+            <ul class="check-list">
+              <li>更深层的自我理解和人生路径洞察</li>
+              <li>探索你的规律、优势和人生蓝图</li>
+            </ul>
+          </div>
+        </a>
+        <a href="#service-timing" class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Choose if your concern is</span>
+            <h4>Timing &amp; Energy Analysis — RM488</h4>
+            <ul class="check-list">
+              <li>timing, direction, or upcoming decisions</li>
+              <li>understanding the season or phase you are currently in</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">选择这个，如果你关注的是</span>
+            <h4>时机与能量分析 — RM488</h4>
+            <ul class="check-list">
+              <li>时机、方向或即将到来的决定</li>
+              <li>了解你当前所处的人生阶段</li>
+            </ul>
+          </div>
+        </a>
+        <a href="#service-bundle" class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Best value if you want</span>
+            <h4>Complete Bundle — RM1076</h4>
+            <ul class="check-list">
+              <li>a more complete picture — both self and timing</li>
+              <li>to combine readings into one 75-minute session</li>
+              <li>to save RM100 versus booking separately</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">最佳价值，如果你想同时获得</span>
+            <h4>完整套餐 — RM1076</h4>
+            <ul class="check-list">
+              <li>一个更完整的蓝图——自我与时机兼顾</li>
+              <li>将解读合并为一次75分钟的咨询</li>
+              <li>比分开预约节省 RM100</li>
+            </ul>
+          </div>
+        </a>
+        <a href="#service-child" class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Choose if your concern is</span>
+            <h4>Child Analysis — RM688</h4>
+            <ul class="check-list">
+              <li>understanding your child's natural design, strengths, and tendencies</li>
+              <li>how to guide and communicate with your child more effectively</li>
+            </ul>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">选择这个，如果你关注的是</span>
+            <h4>儿童分析 — RM688</h4>
+            <ul class="check-list">
+              <li>了解孩子的天性、优势和倾向</li>
+              <li>如何更有效地引导和与孩子沟通</li>
+            </ul>
+          </div>
+        </a>
+        <div class="choose-card">
+          <div class="en-content">
+            <span class="choose-label">Ask for guidance if</span>
+            <h4>Still Unsure?</h4>
+            <ul class="check-list">
+              <li>you are not sure which option fits your situation</li>
+              <li>you want a recommendation before deciding</li>
+            </ul>
+            <div style="margin-top: 16px;">
+              <a href="#" class="btn btn-secondary" data-page="contact" style="font-size: 0.7rem; padding: 10px 18px;">Ask for Recommendation</a>
+            </div>
+          </div>
+          <div class="zh-content">
+            <span class="choose-label">还不确定？</span>
+            <h4>还不确定？</h4>
+            <ul class="check-list">
+              <li>你不确定哪个选项适合你的情况</li>
+              <li>你想在决定之前获得建议</li>
+            </ul>
+            <div style="margin-top: 16px;">
+              <a href="#" class="btn btn-secondary" data-page="contact" style="font-size: 0.7rem; padding: 10px 18px;">寻求建议</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICE 1 — RM88 -->
+  <section class="section-alt" id="service-rm88">
     <div class="container">
       <div class="service-block">
         <div class="service-header">
@@ -2512,7 +2836,7 @@
   </section>
 
   <!-- SERVICE 2 — RM688 NUMEROLOGY -->
-  <section>
+  <section id="service-numerology">
     <div class="container">
       <div class="service-block">
         <div class="service-header">
@@ -2606,7 +2930,7 @@
   </section>
 
   <!-- SERVICE 3 — RM488 TIMING -->
-  <section class="section-alt">
+  <section class="section-alt" id="service-timing">
     <div class="container">
       <div class="service-block">
         <div class="service-header">
@@ -2702,19 +3026,19 @@
   </section>
 
   <!-- BUNDLE — RM1076 -->
-  <section>
+  <section id="service-bundle">
     <div class="container">
       <div class="service-block">
         <div class="service-header">
           <div class="service-meta">
             <div class="en-content">
-              <span class="service-tag">75-Minute Online Session — Best Value</span>
+              <span class="service-tag">75-Minute Online Session — Best Value · Save RM100</span>
               <h2>Complete Clarity Bundle <span class="price-badge">RM1076</span></h2>
               <div class="divider"></div>
               <p>A combined session for those who want both deeper self-understanding and clearer timing guidance in one complete experience.</p>
             </div>
             <div class="zh-content">
-              <span class="service-tag">75分钟线上咨询 — 最佳价值</span>
+              <span class="service-tag">75分钟线上咨询 — 最佳价值 · 节省 RM100</span>
               <h2>完整清晰套餐 <span class="price-badge">RM1076</span></h2>
               <div class="divider"></div>
               <p>一次综合咨询——深度了解自己，同时获得清晰的时机指引，在一次完整体验中一并完成。</p>
@@ -2790,7 +3114,7 @@
   </section>
 
   <!-- SERVICE 4 — CHILD ANALYSIS -->
-  <section class="section-alt">
+  <section class="section-alt" id="service-child">
     <div class="container">
       <div class="service-block">
         <div class="service-header">
@@ -2958,141 +3282,6 @@
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <!-- HOW TO CHOOSE -->
-  <section>
-    <div class="container">
-
-      <div class="en-content section-intro">
-        <span class="eyebrow">Not Sure Where to Start?</span>
-        <h2>A simple way to decide</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="zh-content section-intro">
-        <span class="eyebrow">还不确定从哪里开始？</span>
-        <h2>一个简单的选择方式</h2>
-        <div class="divider"></div>
-      </div>
-
-      <div class="choose-grid">
-        <div class="choose-card">
-          <div class="en-content">
-            <span class="choose-label">Start here if</span>
-            <h4>Core Blockage Diagnostic — RM88</h4>
-            <ul class="check-list">
-              <li>you keep repeating similar issues and want a starting point</li>
-              <li>you want a lighter entry before committing to a session</li>
-            </ul>
-          </div>
-          <div class="zh-content">
-            <span class="choose-label">从这里开始，如果</span>
-            <h4>核心卡点诊断 — RM88</h4>
-            <ul class="check-list">
-              <li>你反复经历类似的问题，想先有一个清晰的起点</li>
-              <li>你想先用较轻的方式入门，再决定是否进行咨询</li>
-            </ul>
-          </div>
-        </div>
-        <div class="choose-card">
-          <div class="en-content">
-            <span class="choose-label">Choose if you want</span>
-            <h4>Full Numerology Reading — RM688</h4>
-            <ul class="check-list">
-              <li>deeper self-understanding and life path insight</li>
-              <li>to explore your patterns, strengths, and life blueprint</li>
-            </ul>
-          </div>
-          <div class="zh-content">
-            <span class="choose-label">选择这个，如果你想要</span>
-            <h4>完整数字学解读 — RM688</h4>
-            <ul class="check-list">
-              <li>更深层的自我理解和人生路径洞察</li>
-              <li>探索你的规律、优势和人生蓝图</li>
-            </ul>
-          </div>
-        </div>
-        <div class="choose-card">
-          <div class="en-content">
-            <span class="choose-label">Choose if your concern is</span>
-            <h4>Timing &amp; Energy Analysis — RM488</h4>
-            <ul class="check-list">
-              <li>timing, direction, or upcoming decisions</li>
-              <li>understanding the season or phase you are currently in</li>
-            </ul>
-          </div>
-          <div class="zh-content">
-            <span class="choose-label">选择这个，如果你关注的是</span>
-            <h4>时机与能量分析 — RM488</h4>
-            <ul class="check-list">
-              <li>时机、方向或即将到来的决定</li>
-              <li>了解你当前所处的人生阶段</li>
-            </ul>
-          </div>
-        </div>
-        <div class="choose-card">
-          <div class="en-content">
-            <span class="choose-label">Best value if you want</span>
-            <h4>Complete Bundle — RM1076</h4>
-            <ul class="check-list">
-              <li>a more complete picture — both self and timing</li>
-              <li>to combine readings into one 75-minute session</li>
-            </ul>
-          </div>
-          <div class="zh-content">
-            <span class="choose-label">最佳价值，如果你想同时获得</span>
-            <h4>完整套餐 — RM1076</h4>
-            <ul class="check-list">
-              <li>一个更完整的蓝图——自我与时机兼顾</li>
-              <li>将解读合并为一次75分钟的咨询</li>
-            </ul>
-          </div>
-        </div>
-        <div class="choose-card">
-          <div class="en-content">
-            <span class="choose-label">Choose if your concern is</span>
-            <h4>Child Analysis — RM688</h4>
-            <ul class="check-list">
-              <li>understanding your child's natural design, strengths, and tendencies</li>
-              <li>how to guide and communicate with your child more effectively</li>
-            </ul>
-          </div>
-          <div class="zh-content">
-            <span class="choose-label">选择这个，如果你关注的是</span>
-            <h4>儿童分析 — RM688</h4>
-            <ul class="check-list">
-              <li>了解孩子的天性、优势和倾向</li>
-              <li>如何更有效地引导和与孩子沟通</li>
-            </ul>
-          </div>
-        </div>
-        <div class="choose-card">
-          <div class="en-content">
-            <span class="choose-label">Ask for guidance if</span>
-            <h4>Still Unsure?</h4>
-            <ul class="check-list">
-              <li>you are not sure which option fits your situation</li>
-              <li>you want a recommendation before deciding</li>
-            </ul>
-            <div style="margin-top: 16px;">
-              <a href="#" class="btn btn-secondary" data-page="contact" style="font-size: 0.7rem; padding: 10px 18px;">Ask for Recommendation</a>
-            </div>
-          </div>
-          <div class="zh-content">
-            <span class="choose-label">还不确定？</span>
-            <h4>还不确定？</h4>
-            <ul class="check-list">
-              <li>你不确定哪个选项适合你的情况</li>
-              <li>你想在决定之前获得建议</li>
-            </ul>
-            <div style="margin-top: 16px;">
-              <a href="#" class="btn btn-secondary" data-page="contact" style="font-size: 0.7rem; padding: 10px 18px;">寻求建议</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -3673,6 +3862,26 @@
     </div>
   </div>
 
+  <!-- STATS -->
+  <div class="testimonials-stats">
+    <div class="testimonials-stat">
+      <div class="stat-value en-content">MY · SG · China<br>Taiwan · Hong Kong</div>
+      <div class="stat-value zh-content">马来西亚 · 新加坡<br>中国大陆 · 台湾 · 香港</div>
+      <div class="stat-label en-content">Countries Served</div>
+      <div class="stat-label zh-content">服务地区</div>
+    </div>
+    <div class="testimonials-stat">
+      <div class="stat-value">English &amp; 中文</div>
+      <div class="stat-label en-content">Languages Available</div>
+      <div class="stat-label zh-content">服务语言</div>
+    </div>
+    <div class="testimonials-stat">
+      <div class="stat-value">100%</div>
+      <div class="stat-label en-content">Online Sessions</div>
+      <div class="stat-label zh-content">线上咨询</div>
+    </div>
+  </div>
+
   <!-- TESTIMONIALS GRID -->
   <section>
     <div class="container">
@@ -3981,7 +4190,7 @@
                 <span>Request a Service Recommendation</span>
               </div>
             </div>
-            <p style="font-size: 0.88rem; font-style: italic; color: var(--brown-light); margin-top: 1.4em;">Enquiries will be responded to within 7 business days.</p>
+            <p style="font-size: 0.88rem; font-style: italic; color: var(--brown-light); margin-top: 1.4em;">Enquiries will be responded to within 7 working days.</p>
           </div>
           <div class="zh-content">
             <span class="eyebrow">如何联系 Joyce</span>
@@ -4002,7 +4211,7 @@
                 <span>请求服务建议</span>
               </div>
             </div>
-            <p style="font-size: 0.88rem; font-style: italic; color: var(--brown-light); margin-top: 1.4em;">咨询将在 7 个工作日内得到回复。</p>
+            <p style="font-size: 0.88rem; font-style: italic; color: var(--brown-light); margin-top: 1.4em;">咨询将在 7 个工作日内回复。</p>
           </div>
         </div>
 
