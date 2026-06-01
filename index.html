@@ -93,7 +93,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .about-ph-img img{width:100%;height:100%;object-fit:cover;object-position:center 5%}
 .about-ph-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 72%,var(--ca) 100%)}
 .about-ph-txt{display:flex;align-items:center;padding:clamp(48px,7vw,88px) clamp(36px,5vw,72px)}
-.about-ph-txt-in{max-width:500px}
+.about-ph-txt-in{max-width:500px}.about-ph-txt-in h1{font-style:normal;font-weight:600}
 
 /* ── Service Tags ── */
 .stag{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);border:1px solid var(--gl);padding:4px 10px;display:inline-block;margin-bottom:18px}
@@ -107,7 +107,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .hero-t{max-width:520px}
 .hw{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bl);margin-bottom:28px}
 .hw::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gl)}
-.hero-h1{font-family:var(--fh);font-size:clamp(3rem,5.2vw,5.2rem);font-weight:400;font-style:italic;color:var(--bd);line-height:1.02;margin-bottom:32px}
+.hero-h1{font-family:var(--fh);font-size:clamp(3rem,5.2vw,5.2rem);font-weight:600;font-style:normal;color:var(--bd);line-height:1.02;margin-bottom:32px}
 .hero-sub{font-family:var(--fh);font-size:clamp(1rem,1.8vw,1.2rem);font-style:italic;color:var(--bm);line-height:1.7;margin-bottom:18px;border-left:2px solid var(--gl);padding-left:18px}
 .hero-body{font-size:.93rem;color:var(--bm);line-height:1.85;max-width:440px;margin-bottom:32px}
 .hero-p{position:relative;overflow:hidden}.hero-p img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
@@ -348,7 +348,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 @media(max-width:1100px){
   .nav-links,.nbtn,#lang-d{display:none}.ham{display:flex}
   .hero{grid-template-columns:1fr}.hero-p{height:clamp(500px,80vw,680px);width:100%}.hero-p img{object-position:center 20%}
-  .two-c,.two-ci,.svc-grid{grid-template-columns:1fr;gap:40px}.two-c::before{display:none}
+  .two-c,.svc-grid{grid-template-columns:1fr;gap:40px}.two-c::before{display:none}.two-ci{gap:clamp(20px,3vw,36px)}
   .cards{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.tgrid,.tg-lt{grid-template-columns:1fr}
   .faq-lay{grid-template-columns:1fr}.faq-sb{display:none}
   .cg{grid-template-columns:1fr}.bk{grid-template-columns:repeat(2,1fr)}
@@ -356,10 +356,10 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   .svc-cols{grid-template-columns:1fr}.checkout-grid{grid-template-columns:1fr}
   .about-ph-inner{grid-template-columns:42% 58%}.about-ph-txt{padding:clamp(32px,5vw,52px) clamp(24px,4vw,48px)}
   .ch-grid{grid-template-columns:repeat(2,1fr)}.tstats{grid-template-columns:1fr}
-  .two-ci .simg{margin-left:calc(-1*clamp(20px,4vw,40px));margin-right:calc(-1*clamp(20px,4vw,40px))}
 }
 @media(max-width:600px){
   .about-ph-inner{grid-template-columns:1fr}.about-ph-img{height:clamp(420px,90vw,560px)}.about-ph-img::after{background:linear-gradient(to bottom,transparent 72%,var(--ca) 100%)}.about-ph-txt{padding:clamp(32px,6vw,48px) clamp(20px,4vw,36px)}
+  .two-ci{grid-template-columns:1fr;gap:32px}.two-ci .simg{margin-left:calc(-1*clamp(20px,4vw,40px));margin-right:calc(-1*clamp(20px,4vw,40px));height:clamp(360px,80vw,500px)!important}
   .cards,.ways,.svc-grid,.ch-grid,.bk,.tg-lt,.tstats,.steps{grid-template-columns:1fr}
   .bg-group,.btn-group,.cta-a{flex-direction:column}
   .fgrid{grid-template-columns:1fr}.ffull{grid-column:1}
@@ -448,11 +448,11 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   </div></div></section>
 
   <section><div class="con"><div class="two-ci">
-    <div class="simg" style="height:560px;"><img src="JY%20Pic%204.jpeg" alt="Joyce Yap" style="object-position:center 20%;"></div>
     <div>
       <div class="en-content"><span class="ey">Why Joyce</span><h2>Not all guidance is the same.</h2><div class="div"></div><p>Some can interpret systems. Some can offer advice. Some can say the right words.</p><p>But very few can help a woman feel truly seen while also helping her understand what is happening beneath the surface of her life.</p><p>She does not create dependency. She helps women return to their own clarity.</p><div class="sig">When a woman sees clearly, she moves differently.</div></div>
       <div class="zh-content"><span class="ey">为何选择 Joyce</span><h2>不是每一种指引，都一样。</h2><div class="div"></div><p>有人能解读系统。有人能给出建议。有人能说出你想听的话。</p><p>但极少有人，能在帮助女性真正被看见的同时，也让她真正看清楚——那些在生命表面之下，默默运作的事。</p><p>她不制造依赖。她帮助女性，回到自己的力量里。</p><div class="sig">当一个女人看清楚自己——她走路的方式，就变了。</div></div>
     </div>
+    <div class="simg" style="height:560px;"><img src="JY%20Pic%204.jpeg" alt="Joyce Yap" style="object-position:center 20%;"></div>
   </div></div></section>
 
   <div class="emp"><div class="emp-in">
