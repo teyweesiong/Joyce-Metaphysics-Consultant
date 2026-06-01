@@ -349,7 +349,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   .nav-links,.nbtn,#lang-d{display:none}.ham{display:flex}
   .hero{grid-template-columns:1fr}.hero-p{height:clamp(500px,80vw,680px);width:100%}.hero-p img{object-position:center 20%}
   .two-c,.svc-grid{grid-template-columns:1fr;gap:40px}.two-c::before{display:none}.two-ci{gap:clamp(20px,3vw,36px)}
-  .cards{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.tgrid,.tg-lt{grid-template-columns:1fr}
+  .cards{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:repeat(2,1fr)!important}.tg-lt{grid-template-columns:1fr}
   .faq-lay{grid-template-columns:1fr}.faq-sb{display:none}
   .cg{grid-template-columns:1fr}.bk{grid-template-columns:repeat(2,1fr)}
   .aud-tabs{grid-template-columns:1fr}.tstat-grid{grid-template-columns:repeat(2,1fr)}
@@ -360,7 +360,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 @media(max-width:600px){
   .about-ph-inner{grid-template-columns:1fr}.about-ph-img{height:clamp(420px,90vw,560px)}.about-ph-img::after{background:linear-gradient(to bottom,transparent 72%,var(--ca) 100%)}.about-ph-txt{padding:clamp(32px,6vw,48px) clamp(20px,4vw,36px)}
   .two-ci{grid-template-columns:1fr;gap:32px}.two-ci .simg{margin-left:calc(-1*clamp(20px,4vw,40px));margin-right:calc(-1*clamp(20px,4vw,40px));height:clamp(360px,80vw,500px)!important}
-  .cards,.ways,.svc-grid,.ch-grid,.bk,.tg-lt,.tstats,.steps{grid-template-columns:1fr}
+  .cards,.ways,.svc-grid,.ch-grid,.bk,.tg-lt,.tstats,.steps{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr!important}
   .bg-group,.btn-group,.cta-a{flex-direction:column}
   .fgrid{grid-template-columns:1fr}.ffull{grid-column:1}
   .pmodal-box{padding:32px 20px 36px}.pmodal-form-row{grid-template-columns:1fr}.pmodal-phone-row{grid-template-columns:1fr}
@@ -420,8 +420,8 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
     <div class="hero-ts">
       <div class="hero-m"></div>
       <div class="hero-t">
-        <span class="hw en-content">You are in the right place</span>
-        <span class="hw zh-content">你来对了地方</span>
+        <span class="ey en-content">You are in the right place</span>
+        <span class="ey zh-content">你来对了地方</span>
         <h1 class="hero-h1 en-content">There comes<br>a point in<br>a woman's<br>life.</h1>
         <h1 class="hero-h1 zh-content">人生，总有那么一刻。<br>你不再愿意——<br>用表面的答案，<br>压住内心真正想知道的。</h1>
         <p class="hero-sub en-content">She wants to understand why life keeps repeating the same pain, the same delays, the same lessons — and what is truly meant for her.</p>
@@ -829,7 +829,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
           </div>
           <div class="fg ffull"><label class="fl en-content">I am interested in</label><label class="fl zh-content">感兴趣的服务</label>
             <select id="cf-service-en" class="fsel en-content"><option>— Please select —</option><option>Corporate and Advisory Services</option><option>Programs</option><option>Others</option></select>
-            <select id="cf-service-zh" class="fsel zh-content"><option>— 请选择 —</option><option>企业与顾问服务</option><option>计划</option><option>其他</option></select>
+            <select id="cf-service-zh" class="fsel zh-content"><option>— 请选择 —</option><option>企业与顾问服务</option><option>课程</option><option>其他</option></select>
           </div>
           <div class="fg ffull"><label class="fl en-content">Your Message</label><label class="fl zh-content">你的留言</label><textarea id="cf-message" class="fta" placeholder=""></textarea><div class="fn2 en-content">The more you share, the better Joyce can prepare for your session or recommend the right service.</div><div class="fn2 zh-content">分享越多，Joyce 越能为你的咨询做好准备或推荐合适的服务。</div></div>
         </div>
