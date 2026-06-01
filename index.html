@@ -120,7 +120,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .emp::before,.emp::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
 .emp::before{width:600px;height:600px;border:1px solid rgba(139,115,85,.07)}
 .emp::after{width:420px;height:420px;border:1px solid rgba(139,115,85,.04)}
-.emp-in{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.emp-in{max-width:760px;margin:0 auto;position:relative;z-index:1;padding:0 clamp(20px,5vw,40px)}
 .emp-line{font-family:var(--fh);font-style:italic;font-size:clamp(1.2rem,2.3vw,1.8rem);color:var(--bd);line-height:1.4;padding:24px 0;border-bottom:1px solid var(--cd)}
 .emp-line:last-of-type{border-bottom:none}.emp-line em{color:var(--g);font-style:normal}
 
@@ -145,7 +145,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .step-d{font-size:.78rem;color:var(--gl);margin-top:16px;font-style:italic;font-family:var(--fh)}
 
 /* ── Testimonials ── */
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);margin-top:52px}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);margin-top:52px}
 .tc-dk{background:rgba(42,32,24,.9);padding:36px 30px;border-top:1px solid var(--g)}
 .tqm{font-family:var(--fh);font-size:3.5rem;color:var(--gl);line-height:1;margin-bottom:14px;opacity:.45}
 .tb{font-size:.88rem;color:rgba(240,235,226,.82);line-height:1.8;font-style:italic;margin-bottom:22px}
@@ -159,6 +159,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .t-verified svg{width:9px;height:9px;flex-shrink:0}
 .t-verified span{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase}
 .tc-dk .t-verified{border-color:rgba(196,168,130,.35);color:var(--gl)}
+body.zh .t-verified .zh-content{display:inline}
 
 /* ── Testimonial stats ── */
 .tstats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--cd)}
@@ -349,7 +350,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   .nav-links,.nbtn,#lang-d{display:none}.ham{display:flex}
   .hero{grid-template-columns:1fr}.hero-p{height:clamp(500px,80vw,680px);width:100%}.hero-p img{object-position:center 20%}
   .two-c,.svc-grid{grid-template-columns:1fr;gap:40px}.two-c::before{display:none}.two-ci{gap:clamp(20px,3vw,36px)}
-  .cards{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:repeat(2,1fr)!important}.tg-lt{grid-template-columns:1fr}
+  .cards{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:repeat(2,1fr)}.tg-lt{grid-template-columns:1fr}
   .faq-lay{grid-template-columns:1fr}.faq-sb{display:none}
   .cg{grid-template-columns:1fr}.bk{grid-template-columns:repeat(2,1fr)}
   .aud-tabs{grid-template-columns:1fr}.tstat-grid{grid-template-columns:repeat(2,1fr)}
@@ -360,7 +361,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 @media(max-width:600px){
   .about-ph-inner{grid-template-columns:1fr}.about-ph-img{height:clamp(420px,90vw,560px)}.about-ph-img::after{background:linear-gradient(to bottom,transparent 72%,var(--ca) 100%)}.about-ph-txt{padding:clamp(32px,6vw,48px) clamp(20px,4vw,36px)}
   .two-ci{grid-template-columns:1fr;gap:32px}.two-ci .simg{margin-left:calc(-1*clamp(20px,4vw,40px));margin-right:calc(-1*clamp(20px,4vw,40px));height:clamp(360px,80vw,500px)!important}
-  .cards,.ways,.svc-grid,.ch-grid,.bk,.tg-lt,.tstats,.steps{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr!important}
+  .cards,.ways,.svc-grid,.ch-grid,.bk,.tg-lt,.tstats,.steps,.tgrid{grid-template-columns:1fr}
   .bg-group,.btn-group,.cta-a{flex-direction:column}
   .fgrid{grid-template-columns:1fr}.ffull{grid-column:1}
   .pmodal-box{padding:32px 20px 36px}.pmodal-form-row{grid-template-columns:1fr}.pmodal-phone-row{grid-template-columns:1fr}
@@ -513,7 +514,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   <section class="sec-dk"><div class="con">
     <div class="en-content"><span class="ey ey-l">Client Testimonials</span><h2 style="font-style:italic;">What women say after working with Joyce.</h2></div>
     <div class="zh-content"><span class="ey ey-l">客户见证</span><h2 style="font-style:italic;">与 Joyce 合作后，她们这样说。</h2></div>
-    <div class="tgrid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="tgrid">
       <div class="tc-dk"><div class="tqm">&ldquo;</div><p class="tb en-content">I came in sceptical — metaphysics wasn't something I took seriously. But Joyce named patterns in me with a precision that made me stop and reflect. The clarity I walked away with, around work and direction, was genuinely unexpected.</p><p class="tb zh-content">一开始我对算命持有疑虑——我从未认真看待这些。但 Joyce 精准地指出了我从未看见的规律，让我深刻地重新认识自己。离开时，我对生活和工作方向有了前所未有的清晰感。</p><div class="tauth"><div class="tn">Shawn Lim</div><div class="td en-content">Johor Bahru</div><div class="td zh-content">新山</div><div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div></div></div>
       <div class="tc-dk"><div class="tqm">&ldquo;</div><p class="tb en-content">I came in feeling like I was going in circles — the same issues, different years. After my session with Joyce, something clicked. I finally understood why. That clarity changed everything.</p><p class="tb zh-content">我来的时候感觉自己一直在兜圈——同样的问题，不同的年份。Joyce 的咨询之后，有什么东西豁然开朗了。我终于明白了为什么。那份清晰，改变了一切。</p><div class="tauth"><div class="tn">Sarah L.</div><div class="td en-content">Entrepreneur · Kuala Lumpur</div><div class="td zh-content">创业者 · 吉隆坡</div><div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div></div></div>
       <div class="tc-dk"><div class="tqm">&ldquo;</div><p class="tb en-content">Joyce doesn't just tell you what's happening — she helps you feel like you finally have permission to understand yourself without judgement. I left feeling lighter than I had in years.</p><p class="tb zh-content">Joyce 不只是告诉你发生了什么——她让你感觉终于可以不带评判地理解自己。离开时，我感觉比多年来都要轻盈。</p><div class="tauth"><div class="tn">Michelle T.</div><div class="td en-content">Marketing Director · Singapore</div><div class="td zh-content">市场总监 · 新加坡</div><div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div></div></div>
