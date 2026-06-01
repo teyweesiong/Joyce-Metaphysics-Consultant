@@ -101,7 +101,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .soon{display:inline-block;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;background:var(--gl);color:var(--bd);padding:3px 8px;margin-left:8px;vertical-align:middle}
 
 /* ── Hero ── */
-.hero{min-height:calc(100vh - var(--nh));display:grid;grid-template-columns:55% 45%;background:var(--c);position:relative;overflow:hidden}
+.hero{min-height:calc(100vh - var(--nh));display:grid;grid-template-columns:44% 56%;background:var(--c);position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay;pointer-events:none;z-index:0}
 .hero-ts{display:flex;align-items:center;padding:clamp(48px,7vw,88px) clamp(28px,5vw,52px) clamp(48px,7vw,88px) clamp(20px,4vw,44px);position:relative;z-index:1}
 .hero-t{max-width:520px}
@@ -110,8 +110,8 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .hero-h1{font-family:var(--fh);font-size:clamp(3rem,5.2vw,5.2rem);font-weight:400;font-style:italic;color:var(--bd);line-height:1.02;margin-bottom:32px}
 .hero-sub{font-family:var(--fh);font-size:clamp(1rem,1.8vw,1.2rem);font-style:italic;color:var(--bm);line-height:1.7;margin-bottom:18px;border-left:2px solid var(--gl);padding-left:18px}
 .hero-body{font-size:.93rem;color:var(--bm);line-height:1.85;max-width:440px;margin-bottom:32px}
-.hero-p{position:relative;overflow:hidden}.hero-p img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.hero-p::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(250,248,245,.18) 0%,transparent 25%)}
+.hero-p{position:relative;overflow:hidden}.hero-p img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+.hero-p::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 72%,var(--c) 100%)}
 .hero-m{position:absolute;bottom:-120px;left:-80px;width:480px;height:480px;border:1px solid rgba(139,115,85,.1);border-radius:50%;pointer-events:none;z-index:0}
 .hero-m::before{content:'';position:absolute;top:48px;left:48px;right:48px;bottom:48px;border:1px solid rgba(139,115,85,.06);border-radius:50%}
 
@@ -354,11 +354,12 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   .cg{grid-template-columns:1fr}.bk{grid-template-columns:repeat(2,1fr)}
   .aud-tabs{grid-template-columns:1fr}.tstat-grid{grid-template-columns:repeat(2,1fr)}
   .svc-cols{grid-template-columns:1fr}.checkout-grid{grid-template-columns:1fr}
-  .about-ph-inner{grid-template-columns:1fr}.about-ph-img{height:clamp(520px,88vw,740px)}.about-ph-img img{object-position:center top}.about-ph-img::after{background:linear-gradient(to bottom,transparent 72%,var(--ca) 100%)}.about-ph-txt{padding:clamp(36px,6vw,56px) clamp(20px,4vw,40px)}
+  .about-ph-inner{grid-template-columns:42% 58%}.about-ph-txt{padding:clamp(32px,5vw,52px) clamp(24px,4vw,48px)}
   .ch-grid{grid-template-columns:repeat(2,1fr)}.tstats{grid-template-columns:1fr}
   .two-ci .simg{margin-left:calc(-1*clamp(20px,4vw,40px));margin-right:calc(-1*clamp(20px,4vw,40px))}
 }
 @media(max-width:600px){
+  .about-ph-inner{grid-template-columns:1fr}.about-ph-img{height:clamp(420px,90vw,560px)}.about-ph-img::after{background:linear-gradient(to bottom,transparent 72%,var(--ca) 100%)}.about-ph-txt{padding:clamp(32px,6vw,48px) clamp(20px,4vw,36px)}
   .cards,.ways,.svc-grid,.ch-grid,.bk,.tg-lt,.tstats,.steps{grid-template-columns:1fr}
   .bg-group,.btn-group,.cta-a{flex-direction:column}
   .fgrid{grid-template-columns:1fr}.ffull{grid-column:1}
@@ -415,6 +416,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 <div id="page-home" class="page active">
 
   <div class="hero">
+    <div class="hero-p"><img src="JY%20Pic%202.jpeg" alt="Joyce Yap"></div>
     <div class="hero-ts">
       <div class="hero-m"></div>
       <div class="hero-t">
@@ -432,7 +434,6 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
         </div>
       </div>
     </div>
-    <div class="hero-p"><img src="JY%20Pic%201.jpeg" alt="Joyce Yap"></div>
   </div>
 
   <section class="sec-alt"><div class="con"><div class="two-c">
@@ -447,7 +448,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   </div></div></section>
 
   <section><div class="con"><div class="two-ci">
-    <div class="simg" style="height:560px;"><img src="JY%20Pic%202.jpeg" alt="Joyce Yap" style="object-position:center 20%;"></div>
+    <div class="simg" style="height:560px;"><img src="JY%20Pic%204.jpeg" alt="Joyce Yap" style="object-position:center 20%;"></div>
     <div>
       <div class="en-content"><span class="ey">Why Joyce</span><h2>Not all guidance is the same.</h2><div class="div"></div><p>Some can interpret systems. Some can offer advice. Some can say the right words.</p><p>But very few can help a woman feel truly seen while also helping her understand what is happening beneath the surface of her life.</p><p>She does not create dependency. She helps women return to their own clarity.</p><div class="sig">When a woman sees clearly, she moves differently.</div></div>
       <div class="zh-content"><span class="ey">为何选择 Joyce</span><h2>不是每一种指引，都一样。</h2><div class="div"></div><p>有人能解读系统。有人能给出建议。有人能说出你想听的话。</p><p>但极少有人，能在帮助女性真正被看见的同时，也让她真正看清楚——那些在生命表面之下，默默运作的事。</p><p>她不制造依赖。她帮助女性，回到自己的力量里。</p><div class="sig">当一个女人看清楚自己——她走路的方式，就变了。</div></div>
@@ -565,11 +566,14 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
     <div class="simg" style="height:560px;"><img src="JY%20Web%20Pic%202.jpg" alt="Joyce Yap" style="object-position:center 20%;"></div>
   </div></div></section>
 
-  <section class="sec-alt"><div class="con"><div class="two-ci">
-    <div class="simg" style="height:560px;"><img src="JY%20Pic%202.jpeg" alt="Joyce Yap" style="object-position:center 20%;"></div>
+  <section class="sec-alt"><div class="con"><div class="two-c">
     <div>
-      <div class="en-content"><span class="ey">Her Story</span><h2>Joyce's work was shaped through real life.</h2><div class="div"></div><p>A difficult childhood. Emotional hardship. Career setbacks. She walked a path that was not light — and that path became the foundation of everything she now offers.</p><p>Through those experiences, she developed a rare ability to recognise patterns in people's lives that most others cannot see. She came to understand that many struggles are not random — they are patterns waiting to be understood.</p><div class="sig">The woman who has truly struggled understands things that cannot be taught.</div></div>
-      <div class="zh-content"><span class="ey">她的故事</span><h2>Joyce 的工作，由真实的人生所塑造。</h2><div class="div"></div><p>贫困的童年、情感的创伤、事业的起落——她走过的，不是一条轻巧的路。</p><p>正因如此，她对人生规律、时机与内在状态如何悄然塑造一个人的命运，有了不一样的理解。</p><p>她开始看见：许多挣扎，并非偶然。它们是等待被看见、被理解的规律。</p><div class="sig">真正走过艰难的女性，懂得那些无法被教会的事。</div></div>
+      <div class="en-content"><span class="ey">Her Story</span><h2 style="font-style:italic;">Joyce's work was shaped through real life.</h2><div class="div"></div><div class="sig" style="margin-top:32px;">The woman who has truly struggled understands things that cannot be taught.</div></div>
+      <div class="zh-content"><span class="ey">她的故事</span><h2 style="font-style:italic;">Joyce 的工作，由真实的人生所塑造。</h2><div class="div"></div><div class="sig" style="margin-top:32px;">真正走过艰难的女性，懂得那些无法被教会的事。</div></div>
+    </div>
+    <div>
+      <div class="en-content"><p>A difficult childhood. Emotional hardship. Career setbacks. She walked a path that was not light — and that path became the foundation of everything she now offers.</p><p>Through those experiences, she developed a rare ability to recognise patterns in people's lives that most others cannot see. She came to understand that many struggles are not random — they are patterns waiting to be understood.</p></div>
+      <div class="zh-content"><p>贫困的童年、情感的创伤、事业的起落——她走过的，不是一条轻巧的路。</p><p>正因如此，她对人生规律、时机与内在状态如何悄然塑造一个人的命运，有了不一样的理解。</p><p>她开始看见：许多挣扎，并非偶然。它们是等待被看见、被理解的规律。</p></div>
     </div>
   </div></div></section>
 
