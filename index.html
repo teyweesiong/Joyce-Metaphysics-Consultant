@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Joyce Metaphysics Consultant</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://script.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="Joyce Yap — Metaphysics Consultant. Numerology readings, life path analysis and timing guidance helping women gain clarity for better life decisions. Sessions online in English or Chinese.">
+<meta name="theme-color" content="#FAF8F5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="JY%20Pic%202.jpeg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--c:#FAF8F5;--ca:#F0EBE2;--cd:#E8E0D4;--cw:#F5EDE1;--bd:#2A2018;--bm:#6B5B4E;--bl:#9C8C80;--g:#8B7355;--gl:#C4A882;--fh:'Cormorant Garamond',Georgia,serif;--fb:'DM Sans',-apple-system,sans-serif;--mw:1200px;--nh:68px}
@@ -53,6 +58,8 @@ section,sec{padding:clamp(72px,9vw,110px) 0}.sec-alt{background:var(--ca)}.sec-w
 .sec-dk p{color:rgba(240,235,226,.72)}.sec-dk h2,.sec-dk h3{color:var(--c)}
 h1,h2,h3,h4{font-family:var(--fh);font-weight:400;line-height:1.15}
 h1{font-size:clamp(2.2rem,5vw,3.8rem);font-style:italic}h2{font-size:clamp(1.7rem,3.2vw,2.8rem)}h3{font-size:clamp(1.2rem,2vw,1.8rem)}
+h1,h2,h3{text-wrap:balance}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px}
 p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin-top:1.4em}
 .ey{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:18px}.ey-l{color:var(--gl)}
 .div{width:40px;height:1px;background:var(--gl);margin:22px 0}.div-c{margin:22px auto}
@@ -72,7 +79,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .two-c{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,72px);align-items:start;position:relative}
 .two-c::before{content:'';position:absolute;left:calc(50% - 36px);top:0;bottom:0;width:1px;background:var(--cd)}
 .two-ci{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,64px);align-items:center}
-.simg{overflow:hidden;position:relative}.simg img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.simg{overflow:hidden;position:relative;width:100%;aspect-ratio:4/5}.simg img{width:100%;height:100%;object-fit:cover;object-position:center top}
 
 /* ── Lists ── */
 .el{display:flex;flex-direction:column;gap:13px;margin:18px 0}
@@ -108,6 +115,7 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 .hw{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bl);margin-bottom:28px}
 .hw::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gl)}
 .hero-h1{font-family:var(--fh);font-size:clamp(3rem,5.2vw,5.2rem);font-weight:600;font-style:normal;color:var(--bd);line-height:1.02;margin-bottom:32px}
+body.zh .hero-h1{font-size:clamp(1.8rem,3.2vw,2.7rem);line-height:1.3;letter-spacing:.02em}
 .hero-sub{font-family:var(--fh);font-size:clamp(1rem,1.8vw,1.2rem);font-style:italic;color:var(--bm);line-height:1.7;margin-bottom:18px;border-left:2px solid var(--gl);padding-left:18px}
 .hero-body{font-size:.93rem;color:var(--bm);line-height:1.85;max-width:440px;margin-bottom:32px}
 .hero-p{position:relative;overflow:hidden}.hero-p img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
@@ -126,13 +134,14 @@ p{color:var(--bm);font-size:clamp(.92rem,1.1vw,1rem);line-height:1.85}p+p{margin
 
 /* ── Cards ── */
 .cards{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--cd);margin-top:48px}
-.card{background:var(--ca);padding:40px 24px 32px;border-top:1px solid var(--g);position:relative;overflow:hidden}
+.card{background:var(--ca);padding:40px 24px 32px;border-top:1px solid var(--g);position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(42,32,24,.07)}
 .card-n{font-family:var(--fh);font-size:6rem;color:rgba(196,168,130,.13);font-weight:300;position:absolute;top:4px;right:10px;line-height:1;pointer-events:none}
 .card-l{font-family:var(--fh);font-size:.97rem;color:var(--bd);position:relative;z-index:1;margin-top:52px;line-height:1.35}
 
 /* ── Ways ── */
 .ways{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--cd);margin-top:48px}
-.way{background:var(--c);padding:44px 40px;border-top:1px solid var(--g);transition:background .2s}.way:hover{background:var(--ca)}
+.way{background:var(--c);padding:44px 40px;border-top:1px solid var(--g);transition:background .2s,transform .25s ease,box-shadow .25s ease}.way:hover{background:var(--ca);transform:translateY(-3px);box-shadow:0 10px 30px rgba(42,32,24,.07)}
 .way-n{font-family:var(--fh);font-size:1.9rem;color:var(--gl);font-weight:300;display:block;margin-bottom:14px}
 .way h4{font-family:var(--fh);font-size:1.1rem;color:var(--bd);margin-bottom:10px;font-weight:500}.way p{font-size:.9rem;color:var(--bm);line-height:1.7}
 
@@ -223,7 +232,7 @@ a.ch-c:hover{background:var(--cd);transform:translateY(-2px)}
 .child-sec::before{content:'';position:absolute;top:50%;right:-150px;width:500px;height:500px;border:1px solid rgba(139,115,85,.08);border-radius:50%;transform:translateY(-50%);pointer-events:none}
 .child-c{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--cd)}
 .child-card{background:var(--c);padding:26px 22px;border-top:1px solid var(--g)}
-.child-card .ci{font-size:1.4rem;margin-bottom:8px}.child-card h5{font-family:var(--fh);font-size:1rem;color:var(--bd);margin-bottom:6px;font-weight:500}.child-card p{font-size:.82rem;color:var(--bm);line-height:1.6}
+.child-card .ci{margin-bottom:10px;color:var(--g)}.child-card .ci svg{width:22px;height:22px;display:block;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.child-card h5{font-family:var(--fh);font-size:1rem;color:var(--bd);margin-bottom:6px;font-weight:500}.child-card p{font-size:.82rem;color:var(--bm);line-height:1.6}
 
 /* ── Corporate ── */
 .corp{background:linear-gradient(135deg,#2A2018 0%,#3a2c20 100%);padding:clamp(72px,9vw,110px) 0;position:relative;overflow:hidden}
@@ -263,6 +272,9 @@ a.ch-c:hover{background:var(--cd);transform:translateY(-2px)}
 .fi,.fsel,.fta{font-family:var(--fb);font-size:.9rem;color:var(--bd);background:#fff;border:1px solid var(--cd);padding:11px 14px;outline:none;width:100%;transition:border-color .2s}
 .fi:focus,.fsel:focus,.fta:focus{border-color:var(--g)}.fta{resize:vertical;min-height:130px}
 .fn2{font-size:.72rem;color:var(--bl);font-style:italic;margin-top:4px}
+.fi.field-err,.fsel.field-err,.fta.field-err{border-color:#c0392b}
+.cf-err{display:none;font-size:.75rem;color:#c0392b;margin-top:6px;line-height:1.4}
+.hp-field{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
 .contact-info-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
 .contact-dot{width:6px;height:6px;border-radius:50%;background:var(--g);flex-shrink:0;margin-top:8px}
 
@@ -348,7 +360,9 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 /* ── Responsive ── */
 @media(max-width:1100px){
   .nav-links,.nbtn,#lang-d{display:none}.ham{display:flex}
-  .hero{grid-template-columns:1fr}.hero-p{height:clamp(500px,80vw,680px);width:100%}.hero-p img{object-position:center 20%}
+  .hero{grid-template-columns:42% 58%;min-height:clamp(480px,62vw,720px)}
+  .hero-h1{font-size:clamp(1.9rem,4.4vw,2.9rem)}
+  .hero-ts{padding:clamp(32px,5vw,56px) clamp(20px,4vw,40px)}
   .two-c,.svc-grid{grid-template-columns:1fr;gap:40px}.two-c::before{display:none}.two-ci{gap:clamp(20px,3vw,36px)}
   .cards{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:repeat(2,1fr)}.tg-lt{grid-template-columns:1fr}
   .faq-lay{grid-template-columns:1fr}.faq-sb{display:none}
@@ -359,8 +373,12 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
   .ch-grid{grid-template-columns:repeat(2,1fr)}.tstats{grid-template-columns:1fr}
 }
 @media(max-width:600px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-p{height:clamp(420px,112vw,560px);width:100%;aspect-ratio:auto}
+  .hero-p::after{background:linear-gradient(to bottom,transparent 70%,var(--c) 100%)}
+  .hero-h1{font-size:clamp(2.1rem,9vw,2.7rem)}
   .about-ph-inner{grid-template-columns:1fr}.about-ph-img{height:clamp(420px,90vw,560px)}.about-ph-img::after{background:linear-gradient(to bottom,transparent 72%,var(--ca) 100%)}.about-ph-txt{padding:clamp(32px,6vw,48px) clamp(20px,4vw,36px)}
-  .two-ci{grid-template-columns:1fr;gap:32px}.two-ci .simg{margin-left:calc(-1*clamp(20px,4vw,40px));margin-right:calc(-1*clamp(20px,4vw,40px));height:clamp(360px,80vw,500px)!important}
+  .two-ci{grid-template-columns:1fr;gap:32px}.two-ci .simg{margin-left:calc(-1*clamp(20px,4vw,40px));margin-right:calc(-1*clamp(20px,4vw,40px));width:auto;aspect-ratio:3/4}
   .cards,.ways,.svc-grid,.ch-grid,.bk,.tg-lt,.tstats,.steps,.tgrid{grid-template-columns:1fr}
   .bg-group,.btn-group,.cta-a{flex-direction:column}
   .fgrid{grid-template-columns:1fr}.ffull{grid-column:1}
@@ -387,9 +405,9 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
       <div class="lang-pill" id="lang-d" onclick="toggleLang()">
         <span id="lbl-en">EN</span><span id="lbl-zh" class="lactive">中文</span>
       </div>
-      <button class="nbtn" data-page="checkout"><span class="en-content">Book a Session</span><span class="zh-content">预约质询</span></button>
+      <button class="nbtn" data-page="checkout"><span class="en-content">Book a Session</span><span class="zh-content">预约咨询</span></button>
     </div>
-    <button class="ham" id="ham"><span></span><span></span><span></span></button>
+    <button class="ham" id="ham" aria-label="Menu" aria-expanded="false" aria-controls="mob"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -406,7 +424,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
     <div class="lang-pill" onclick="toggleLang()">
       <span id="lbl-en-m">EN</span><span id="lbl-zh-m" class="lactive">中文</span>
     </div>
-    <button class="btn bp" data-page="checkout" style="padding:10px 16px;font-size:.68rem;"><span class="en-content">Book a Session</span><span class="zh-content">预约质询</span></button>
+    <button class="btn bp" data-page="checkout" style="padding:10px 16px;font-size:.68rem;"><span class="en-content">Book a Session</span><span class="zh-content">预约咨询</span></button>
   </div>
 </div>
 
@@ -417,7 +435,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 <div id="page-home" class="page active">
 
   <div class="hero">
-    <div class="hero-p"><img src="JY%20Pic%202.jpeg" alt="Joyce Yap"></div>
+    <div class="hero-p"><img src="JY%20Pic%202.jpeg" alt="Joyce Yap, Metaphysics Consultant" fetchpriority="high" decoding="async"></div>
     <div class="hero-ts">
       <div class="hero-m"></div>
       <div class="hero-t">
@@ -430,7 +448,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
         <p class="hero-body en-content">Through numerology, metaphysical insight, and lived wisdom, Joyce Yap helps women understand themselves, their timing, and the hidden patterns shaping their lives — so they can move forward with clarity, strength, and self-trust.</p>
         <p class="hero-body zh-content">透过数字学与玄学洞察，Joyce Yap 帮助女性看见自己的生命规律、把握时机，认清那些无声塑造她们人生的隐藏课题——让你不只是努力，而是觉醒。然后，以力量与自信，走向真正属于你的前路。</p>
         <div class="bg-group">
-          <a class="btn bp" data-page="checkout"><span class="en-content">Book a Session</span><span class="zh-content">预约质询</span></a>
+          <a class="btn bp" data-page="checkout"><span class="en-content">Book a Session</span><span class="zh-content">预约咨询</span></a>
           <a class="btn bs" data-page="work"><span class="en-content">Explore Services</span><span class="zh-content">了解服务</span></a>
         </div>
       </div>
@@ -453,7 +471,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
       <div class="en-content"><span class="ey">Why Joyce</span><h2>Not all guidance is the same.</h2><div class="div"></div><p>Some can interpret systems. Some can offer advice. Some can say the right words.</p><p>But very few can help a woman feel truly seen while also helping her understand what is happening beneath the surface of her life.</p><p>She does not create dependency. She helps women return to their own clarity.</p><div class="sig">When a woman sees clearly, she moves differently.</div></div>
       <div class="zh-content"><span class="ey">为何选择 Joyce</span><h2>不是每一种指引，都一样。</h2><div class="div"></div><p>有人能解读系统。有人能给出建议。有人能说出你想听的话。</p><p>但极少有人，能在帮助女性真正被看见的同时，也让她真正看清楚——那些在生命表面之下，默默运作的事。</p><p>她不制造依赖。她帮助女性，回到自己的力量里。</p><div class="sig">当一个女人看清楚自己——她走路的方式，就变了。</div></div>
     </div>
-    <div class="simg" style="height:560px;"><img src="JY%20Pic%204.jpeg" alt="Joyce Yap" style="object-position:center 20%;"></div>
+    <div class="simg"><img src="JY%20Pic%204.jpeg" alt="Joyce Yap, Metaphysics Consultant" loading="lazy" decoding="async" style="object-position:center 20%;"></div>
   </div></div></section>
 
   <div class="emp"><div class="emp-in">
@@ -484,7 +502,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 
   <section><div class="con">
     <div class="en-content"><span class="ey">Ways to Work With Joyce</span><h2>Choose what feels right for where you are.</h2><div class="div"></div></div>
-    <div class="zh-content"><span class="ey">与 Joyce 携手的方式</span><h2>与 Joyce 携手的方式</h2><div class="div"></div></div>
+    <div class="zh-content"><span class="ey">与 Joyce 携手的方式</span><h2>选择最适合你现阶段的方式。</h2><div class="div"></div></div>
     <div class="ways">
       <div class="way"><span class="way-n">01</span><h4 class="en-content">Numerology Life Path Reading</h4><h4 class="zh-content">数字学人生蓝图深度解读</h4><p class="en-content">Understand your natural design, patterns, and life themes.</p><p class="zh-content">了解你的天命规律与人生课题。</p></div>
       <div class="way"><span class="way-n">02</span><h4 class="en-content">1-to-1 Clarity &amp; Breakthrough Session</h4><h4 class="zh-content">一对一深度突破咨询</h4><p class="en-content">For emotional heaviness, repeated blocks, and major life decisions.</p><p class="zh-content">适合情感沉重、重复卡点或面对重大人生抉择的你。</p></div>
@@ -536,7 +554,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
     <h2 class="zh-content">今天，你不需要所有答案。</h2>
     <p class="en-content">But one clear insight can change the way you move forward.</p>
     <p class="zh-content">但一个清晰的洞察，就能让你走出不同的方向。</p>
-    <div class="cta-a"><a class="btn bg" data-page="checkout"><span class="en-content">Book a Session</span><span class="zh-content">预约质询</span></a><a class="btn bl2" data-page="work"><span class="en-content">Browse Services</span><span class="zh-content">了解服务</span></a></div>
+    <div class="cta-a"><a class="btn bg" data-page="checkout"><span class="en-content">Book a Session</span><span class="zh-content">预约咨询</span></a><a class="btn bl2" data-page="work"><span class="en-content">Browse Services</span><span class="zh-content">了解服务</span></a></div>
     <p class="cta-n en-content">All sessions are online. Available in English or Chinese.</p>
     <p class="cta-n zh-content">所有咨询均通过线上进行，可选择英文或中文。</p>
   </div></div>
@@ -549,7 +567,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 
   <div class="about-ph">
     <div class="about-ph-inner">
-      <div class="about-ph-img"><img src="JY%20Pic%203.jpeg" alt="Joyce Yap"></div>
+      <div class="about-ph-img"><img src="JY%20Pic%203.jpeg" alt="Joyce Yap, Metaphysics Consultant" decoding="async"></div>
       <div class="about-ph-txt">
         <div class="about-ph-txt-in">
           <div class="en-content"><span class="ey">About Joyce Yap</span><h1>Helping People Gain Clarity for Better Life Decisions</h1><div class="div"></div><p>Through numerology, metaphysical insight, and lived wisdom, Joyce helps individuals understand themselves and the hidden patterns shaping their lives.</p></div>
@@ -564,7 +582,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
       <div class="en-content"><span class="ey">Who She Is</span><h2>Some women do not need more advice. They need deeper understanding.</h2><div class="div"></div><p>Joyce Yap helps women understand their pain, patterns, and life path — not from theory alone, but from lived experience and deep observation of human patterns.</p><p>Her work sits at the intersection of numerology, metaphysical insight, and genuine emotional depth. The result is guidance that sees beyond the surface.</p></div>
       <div class="zh-content"><span class="ey">她是谁</span><h2>有些女性，不需要更多建议。她们需要的，是真正被看见。</h2><div class="div"></div><p>Joyce Yap 帮助女性理解自己的痛苦、规律与人生路径——不来自理论，而来自真实走过的生命，以及她对人性规律长年深沉的观察。</p></div>
     </div>
-    <div class="simg" style="height:560px;"><img src="JY%20Web%20Pic%202.jpg" alt="Joyce Yap" style="object-position:center 20%;"></div>
+    <div class="simg"><img src="JY%20Web%20Pic%202.jpg" alt="Portrait of Joyce Yap" loading="lazy" decoding="async" style="object-position:center 20%;"></div>
   </div></div></section>
 
   <section class="sec-alt"><div class="con"><div class="two-c">
@@ -596,7 +614,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 
   <section><div class="con"><div class="en-content"><span class="ey">Recognition</span><h2>Recognised for leadership, vision, and transformational work.</h2><div class="div"></div></div><div class="zh-content"><span class="ey">荣誉认可</span><h2>荣获领导力、远见与转化性工作的认可</h2><div class="div"></div></div><div class="rec"><div class="ri"><span class="ry">2024</span><p class="en-content">Malaysia's Top 50 CEOs</p><p class="zh-content">2024年马来西亚50大CEO</p></div><div class="ri"><span class="ry">2024</span><p class="en-content">Most Successful People — Malaysia &amp; Singapore</p><p class="zh-content">2024年马来西亚与新加坡最成功人士</p></div><div class="ri"><span class="ry">2026</span><p class="en-content">Appointed VP of Malaysia Education Empowerment Organisation (MEEO) Southern Region</p><p class="zh-content">受委为马来西亚教育赋能组织（MEEO）南区副会长</p></div><div class="ri"><span class="ry">2026</span><p class="en-content">Trust &amp; Integrity Award and Honorary Member — Malaysia Corruption Watch</p><p class="zh-content">诚信与信任奖及荣誉会员 — 马来西亚反腐监察</p></div></div></div></section>
 
-  <section class="sec-dk tc"><div class="con-n" style="position:relative;z-index:1;"><div class="en-content"><span class="ey ey-l">Begin Your Journey</span><h2 style="font-style:italic;">If you are here, something in you may already be ready.</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">Book a Session</a><a class="btn bl2" data-page="work">Browse Services</a></div></div><div class="zh-content"><span class="ey ey-l">开始你的旅程</span><h2 style="font-style:italic;">如果你来到这里，你内心的某个部分，也许已经准备好了。</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">预约质询</a><a class="btn bl2" data-page="work">了解服务</a></div></div></div></section>
+  <section class="sec-dk tc"><div class="con-n" style="position:relative;z-index:1;"><div class="en-content"><span class="ey ey-l">Begin Your Journey</span><h2 style="font-style:italic;">If you are here, something in you may already be ready.</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">Book a Session</a><a class="btn bl2" data-page="work">Browse Services</a></div></div><div class="zh-content"><span class="ey ey-l">开始你的旅程</span><h2 style="font-style:italic;">如果你来到这里，你内心的某个部分，也许已经准备好了。</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">预约咨询</a><a class="btn bl2" data-page="work">了解服务</a></div></div></div></section>
 
   <footer><div class="ft-in"><div><div class="ft-logo">Joyce <span>Metaphysics Consultant</span></div><div class="ft-tag en-content">Helping People Gain Clarity for Better Life Decisions</div><div class="ft-tag zh-content">帮助人们看清自己，做出更好的人生抉择</div><div class="social-icons"><a class="social-icon" href="https://www.facebook.com/profile.php?id=61572509262878" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a class="social-icon" href="https://www.instagram.com/joyce_metaphysics_consultant" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a><a class="social-icon" href="https://www.youtube.com/channel/UC0ftC311sIwgS51DnvJugXg" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></div></div><div class="ft-links"><a data-page="home"><span class="en-content">Home</span><span class="zh-content">首页</span></a><a data-page="about"><span class="en-content">About</span><span class="zh-content">关于</span></a><a data-page="work"><span class="en-content">Services</span><span class="zh-content">服务</span></a><a data-page="faq">FAQ</a><a data-page="testimonials"><span class="en-content">Testimonials</span><span class="zh-content">客户见证</span></a><a data-page="career"><span class="en-content">Career</span><span class="zh-content">招募</span></a><a data-page="contact"><span class="en-content">Contact</span><span class="zh-content">联系</span></a></div></div><div class="ft-copy"><span class="en-content">&copy; 2026 Joyce Yap · Joyce Metaphysics Consultant. All rights reserved.</span><span class="zh-content">&copy; 2026 Joyce Yap · Joyce Metaphysics Consultant. 版权所有。</span></div></footer>
 </div><!-- /about -->
@@ -660,7 +678,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
         <div class="en-content"><span class="ey">Child Talent, Character &amp; Behaviour Analysis</span><h2>Understanding your child changes everything about how you support them.</h2><div class="div"></div><p>Every child arrives with a unique design — their own strengths, communication style, learning patterns, and emotional tendencies. When you understand that design, you stop trying to change your child and start working <em>with</em> who they actually are.</p><div class="sig">The child who is understood grows differently from the child who is corrected.</div></div>
         <div class="zh-content"><span class="ey">儿童天赋、性格与行为分析</span><h2>了解你的孩子，改变你支持他们的方式。</h2><div class="div"></div><p>每个孩子都带着独特的天性而来——自己的优势、沟通方式、学习规律和情感倾向。当你了解这一天性，你就不再试图改变孩子，而是开始配合他们真实的样子一起成长。</p><div class="sig">被理解的孩子，成长轨迹与被纠正的孩子截然不同。</div></div>
       </div>
-      <div><div class="child-c" id="svc-child"><div class="child-card"><div class="ci">🌱</div><h5 class="en-content">Natural Strengths &amp; Talents</h5><h5 class="zh-content">天生优势与天赋</h5><p class="en-content">What your child is naturally wired to excel at.</p><p class="zh-content">孩子天生擅长的领域。</p></div><div class="child-card"><div class="ci">💬</div><h5 class="en-content">Communication Style</h5><h5 class="zh-content">沟通方式</h5><p class="en-content">How your child processes information and connects.</p><p class="zh-content">孩子如何处理信息与建立连结。</p></div><div class="child-card"><div class="ci">🔄</div><h5 class="en-content">Behaviour Patterns</h5><h5 class="zh-content">行为规律</h5><p class="en-content">Why your child behaves the way they do.</p><p class="zh-content">孩子行为方式背后的规律。</p></div><div class="child-card"><div class="ci">🧭</div><h5 class="en-content">Growth Pathways</h5><h5 class="zh-content">成长路径</h5><p class="en-content">Where your child will thrive naturally.</p><p class="zh-content">孩子最能自然茁壮成长的领域。</p></div></div></div>
+      <div><div class="child-c" id="svc-child"><div class="child-card"><div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V10"/><path d="M12 10C12 6 9 3.5 4.5 3.5c0 4.5 2.5 7 7.5 6.5z"/><path d="M12 13c0-3.5 2.5-5.5 7-5.5 0 4-2.5 6-7 5.5z"/></svg></div><h5 class="en-content">Natural Strengths &amp; Talents</h5><h5 class="zh-content">天生优势与天赋</h5><p class="en-content">What your child is naturally wired to excel at.</p><p class="zh-content">孩子天生擅长的领域。</p></div><div class="child-card"><div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div><h5 class="en-content">Communication Style</h5><h5 class="zh-content">沟通方式</h5><p class="en-content">How your child processes information and connects.</p><p class="zh-content">孩子如何处理信息与建立连结。</p></div><div class="child-card"><div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 3v6h-6"/></svg></div><h5 class="en-content">Behaviour Patterns</h5><h5 class="zh-content">行为规律</h5><p class="en-content">Why your child behaves the way they do.</p><p class="zh-content">孩子行为方式背后的规律。</p></div><div class="child-card"><div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></div><h5 class="en-content">Growth Pathways</h5><h5 class="zh-content">成长路径</h5><p class="en-content">Where your child will thrive naturally.</p><p class="zh-content">孩子最能自然茁壮成长的领域。</p></div></div></div>
     </div>
     <div style="margin-top:52px;background:var(--c);padding:40px 36px;border-top:2px solid var(--g);max-width:860px;">
       <span class="stag en-content">45-Minute Online Session · For Parents</span>
@@ -804,7 +822,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
     </div>
   </div></section>
 
-  <section class="sec-dk tc" style="padding:80px 0;"><div class="con-n" style="position:relative;z-index:1;"><div class="en-content"><span class="ey ey-l">Your Turn</span><h2 style="font-style:italic;">Ready to write your own story?</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">Book a Session</a><a class="btn bl2" data-page="work">Browse Services</a></div></div><div class="zh-content"><span class="ey ey-l">轮到你了</span><h2 style="font-style:italic;">准备好书写属于你的故事了吗？</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">预约质询</a><a class="btn bl2" data-page="work">了解服务</a></div></div></div></section>
+  <section class="sec-dk tc" style="padding:80px 0;"><div class="con-n" style="position:relative;z-index:1;"><div class="en-content"><span class="ey ey-l">Your Turn</span><h2 style="font-style:italic;">Ready to write your own story?</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">Book a Session</a><a class="btn bl2" data-page="work">Browse Services</a></div></div><div class="zh-content"><span class="ey ey-l">轮到你了</span><h2 style="font-style:italic;">准备好书写属于你的故事了吗？</h2><div class="div div-c" style="background:var(--gl);"></div><div class="cta-a"><a class="btn bg" data-page="checkout">预约咨询</a><a class="btn bl2" data-page="work">了解服务</a></div></div></div></section>
 
   <footer><div class="ft-in"><div><div class="ft-logo">Joyce <span>Metaphysics Consultant</span></div><div class="ft-tag en-content">Helping People Gain Clarity for Better Life Decisions</div><div class="ft-tag zh-content">帮助人们看清自己，做出更好的人生抉择</div><div class="social-icons"><a class="social-icon" href="https://www.facebook.com/profile.php?id=61572509262878" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a class="social-icon" href="https://www.instagram.com/joyce_metaphysics_consultant" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a><a class="social-icon" href="https://www.youtube.com/channel/UC0ftC311sIwgS51DnvJugXg" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></div></div><div class="ft-links"><a data-page="home"><span class="en-content">Home</span><span class="zh-content">首页</span></a><a data-page="about"><span class="en-content">About</span><span class="zh-content">关于</span></a><a data-page="work"><span class="en-content">Services</span><span class="zh-content">服务</span></a><a data-page="faq">FAQ</a><a data-page="testimonials"><span class="en-content">Testimonials</span><span class="zh-content">客户见证</span></a><a data-page="career"><span class="en-content">Career</span><span class="zh-content">招募</span></a><a data-page="contact"><span class="en-content">Contact</span><span class="zh-content">联系</span></a></div></div><div class="ft-copy"><span class="en-content">&copy; 2026 Joyce Yap · Joyce Metaphysics Consultant. All rights reserved.</span><span class="zh-content">&copy; 2026 Joyce Yap · Joyce Metaphysics Consultant. 版权所有。</span></div></footer>
 </div><!-- /testimonials -->
@@ -820,20 +838,22 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
     <div>
       <form id="contact-form" novalidate>
         <div class="fgrid">
-          <div class="fg"><label class="fl en-content">Full Name</label><label class="fl zh-content">全名</label><input id="cf-name" class="fi" type="text" placeholder="" required></div>
-          <div class="fg"><label class="fl en-content">Email Address</label><label class="fl zh-content">电子邮件</label><input id="cf-email" class="fi" type="email" placeholder="" required></div>
+          <div class="fg"><label class="fl en-content">Full Name</label><label class="fl zh-content">全名</label><input id="cf-name" class="fi" type="text" placeholder="" required maxlength="120" autocomplete="name"></div>
+          <div class="fg"><label class="fl en-content">Email Address</label><label class="fl zh-content">电子邮件</label><input id="cf-email" class="fi" type="email" placeholder="" required maxlength="160" autocomplete="email"></div>
           <div class="fg"><label class="fl en-content">Phone Number</label><label class="fl zh-content">电话号码</label>
             <div style="display:flex;gap:8px;">
               <select id="cf-country" class="fsel" style="flex:0 0 auto;width:auto;max-width:180px;"><option value="+60">🇲🇾 +60 MY</option><option value="+65">🇸🇬 +65 SG</option><option value="+86">🇨🇳 +86 CN</option><option value="+852">🇭🇰 +852 HK</option><option value="+886">🇹🇼 +886 TW</option><option value="+62">🇮🇩 +62 ID</option><option value="+66">🇹🇭 +66 TH</option><option value="+63">🇵🇭 +63 PH</option><option value="+84">🇻🇳 +84 VN</option><option value="+61">🇦🇺 +61 AU</option><option value="+44">🇬🇧 +44 GB</option><option value="+1">🇺🇸 +1 US</option></select>
-              <input id="cf-phone" class="fi" type="tel" placeholder="12-345 6789" style="flex:1;">
+              <input id="cf-phone" class="fi" type="tel" placeholder="12-345 6789" style="flex:1;" maxlength="24" autocomplete="tel-national">
             </div>
           </div>
           <div class="fg ffull"><label class="fl en-content">I am interested in</label><label class="fl zh-content">感兴趣的服务</label>
             <select id="cf-service-en" class="fsel en-content"><option>— Please select —</option><option>Corporate and Advisory Services</option><option>Programs</option><option>Others</option></select>
             <select id="cf-service-zh" class="fsel zh-content"><option>— 请选择 —</option><option>企业与顾问服务</option><option>课程</option><option>其他</option></select>
           </div>
-          <div class="fg ffull"><label class="fl en-content">Your Message</label><label class="fl zh-content">你的留言</label><textarea id="cf-message" class="fta" placeholder=""></textarea><div class="fn2 en-content">The more you share, the better Joyce can prepare for your session or recommend the right service.</div><div class="fn2 zh-content">分享越多，Joyce 越能为你的咨询做好准备或推荐合适的服务。</div></div>
+          <div class="fg ffull"><label class="fl en-content">Your Message</label><label class="fl zh-content">你的留言</label><textarea id="cf-message" class="fta" placeholder="" maxlength="2000"></textarea><div class="fn2 en-content">The more you share, the better Joyce can prepare for your session or recommend the right service.</div><div class="fn2 zh-content">分享越多，Joyce 越能为你的咨询做好准备或推荐合适的服务。</div></div>
         </div>
+        <div class="hp-field" aria-hidden="true"><label for="cf-website">Website</label><input id="cf-website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="cf-err" id="cf-err"><span class="en-content">Please fill in your name and a valid email address before sending.</span><span class="zh-content">请先填写你的全名与有效的电子邮件，再发送留言。</span></div>
         <div style="display:flex;gap:14px;align-items:center;margin-top:20px;flex-wrap:wrap;">
           <button type="submit" class="btn bp"><span class="en-content">Send Message</span><span class="zh-content">发送留言</span></button>
           <span style="font-size:.75rem;color:var(--bl);font-style:italic;" class="en-content">Your details are private and will never be shared.</span>
@@ -925,7 +945,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 <!-- ══ PAYMENT MODAL ══ -->
 <div id="payment-modal" class="pmodal-overlay" style="display:none;" role="dialog" aria-modal="true">
   <div class="pmodal-box">
-    <button class="pmodal-close" id="pmodal-close-btn">&times;</button>
+    <button class="pmodal-close" id="pmodal-close-btn" aria-label="Close payment window">&times;</button>
     <div class="pmodal-service-label en-content">Selected Session</div><div class="pmodal-service-label zh-content">已选咨询</div>
     <div class="pmodal-service-name" id="pmodal-heading"></div>
     <div class="pmodal-service-price" id="pmodal-price"></div>
@@ -934,7 +954,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
         <div class="pmodal-step-title en-content">Scan &amp; Pay</div><div class="pmodal-step-title zh-content">扫码付款</div>
         <p class="pmodal-step-desc en-content">Scan the QR code below using Touch 'n Go eWallet to complete payment.</p>
         <p class="pmodal-step-desc zh-content">请使用 Touch 'n Go 电子钱包扫描以下二维码完成付款。</p>
-        <div class="tng-qr-wrap"><img src="TNG-QR.jpeg" alt="Touch 'n Go QR"><div class="tng-qr-label en-content">Touch 'n Go eWallet</div><div class="tng-qr-label zh-content">Touch 'n Go 电子钱包</div></div>
+        <div class="tng-qr-wrap"><img src="TNG-QR.jpeg" alt="Touch 'n Go eWallet payment QR code" loading="lazy" decoding="async"><div class="tng-qr-label en-content">Touch 'n Go eWallet</div><div class="tng-qr-label zh-content">Touch 'n Go 电子钱包</div></div>
       </div></div>
       <hr class="pmodal-step-divider">
       <div class="pmodal-step"><div class="pmodal-step-num">2</div><div class="pmodal-step-body">
@@ -943,12 +963,12 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
         <p class="pmodal-step-desc zh-content" id="pmodal-step2-desc-zh">付款后，请填写以下表格，以便我们为您准备咨询。</p>
         <div id="pmodal-form-success" class="pmodal-success"><div class="pmodal-success-icon">&#10003;</div><h3 class="en-content">Details Received</h3><h3 class="zh-content">资料已收到</h3><p class="en-content">Thank you! We have received your details and will be in touch shortly.</p><p class="zh-content">谢谢！我们已收到您的资料，将尽快与您联系。</p></div>
         <form id="pmodal-form" class="pmodal-form" novalidate>
-          <div class="pmodal-field"><label for="pmodal-name"><span class="en-content">Full Name</span><span class="zh-content">全名</span></label><input type="text" id="pmodal-name" required placeholder="e.g. Joyce Yap"><p class="pmodal-error-msg" id="err-name"><span class="en-content">Please enter your full name.</span><span class="zh-content">请填写全名。</span></p></div>
-          <div class="pmodal-field"><label for="pmodal-email"><span class="en-content">Email Address</span><span class="zh-content">电子邮件</span></label><input type="email" id="pmodal-email" required placeholder="you@email.com"><p class="pmodal-error-msg" id="err-email"><span class="en-content">Please enter a valid email address.</span><span class="zh-content">请填写有效的电子邮件地址。</span></p></div>
+          <div class="pmodal-field"><label for="pmodal-name"><span class="en-content">Full Name</span><span class="zh-content">全名</span></label><input type="text" id="pmodal-name" required placeholder="e.g. Joyce Yap" maxlength="120" autocomplete="name"><p class="pmodal-error-msg" id="err-name"><span class="en-content">Please enter your full name.</span><span class="zh-content">请填写全名。</span></p></div>
+          <div class="pmodal-field"><label for="pmodal-email"><span class="en-content">Email Address</span><span class="zh-content">电子邮件</span></label><input type="email" id="pmodal-email" required placeholder="you@email.com" maxlength="160" autocomplete="email"><p class="pmodal-error-msg" id="err-email"><span class="en-content">Please enter a valid email address.</span><span class="zh-content">请填写有效的电子邮件地址。</span></p></div>
           <div class="pmodal-field"><label><span class="en-content">Phone Number</span><span class="zh-content">电话号码</span></label>
             <div class="pmodal-phone-row">
               <select id="pmodal-country-code" aria-label="Country code"><option value="+60">🇲🇾 +60 Malaysia</option><option value="+65">🇸🇬 +65 Singapore</option><option value="+86">🇨🇳 +86 China</option><option value="+852">🇭🇰 +852 Hong Kong</option><option value="+886">🇹🇼 +886 Taiwan</option><option value="+62">🇮🇩 +62 Indonesia</option><option value="+66">🇹🇭 +66 Thailand</option><option value="+63">🇵🇭 +63 Philippines</option><option value="+84">🇻🇳 +84 Vietnam</option><option value="+61">🇦🇺 +61 Australia</option><option value="+44">🇬🇧 +44 United Kingdom</option><option value="+1">🇺🇸 +1 United States</option><option value="+81">🇯🇵 +81 Japan</option><option value="+82">🇰🇷 +82 South Korea</option><option value="+91">🇮🇳 +91 India</option><option value="+971">🇦🇪 +971 UAE</option></select>
-              <input type="tel" id="pmodal-phone" required placeholder="12-345 6789">
+              <input type="tel" id="pmodal-phone" required placeholder="12-345 6789" maxlength="24" autocomplete="tel-national">
             </div>
             <p class="pmodal-error-msg" id="err-phone"><span class="en-content">Please enter your phone number.</span><span class="zh-content">请填写电话号码。</span></p>
           </div>
@@ -958,6 +978,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
             <p class="pmodal-error-msg" id="err-tob"><span class="en-content">Please enter your time of birth or check "I don't know".</span><span class="zh-content">请填写出生时间，或勾选"不知道"。</span></p>
           </div>
           <div class="pmodal-field"><label for="pmodal-lang"><span class="en-content">Preferred Session Language</span><span class="zh-content">咨询偏好语言</span></label><select id="pmodal-lang" required><option value="" disabled selected></option><option value="English">English</option><option value="Chinese">Chinese 中文</option></select><p class="pmodal-error-msg" id="err-lang"><span class="en-content">Please select your preferred language.</span><span class="zh-content">请选择你的偏好语言。</span></p></div>
+          <div class="hp-field" aria-hidden="true"><label for="pmodal-website">Website</label><input id="pmodal-website" type="text" tabindex="-1" autocomplete="off"></div>
           <div><button type="submit" class="btn bp pmodal-submit"><span class="en-content">Submit Details</span><span class="zh-content">提交资料</span></button></div>
         </form>
       </div></div>
@@ -974,6 +995,8 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
     </div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
 <script>
 // ── Language ──
 // ── Google Sheets URL — replace with your deployed Apps Script URL ──
@@ -984,6 +1007,7 @@ var currentModalService = { id:'', nameEn:'', nameZh:'', price:'' };
 function toggleLang() {
   currentLang = currentLang === 'zh' ? 'en' : 'zh';
   document.body.classList.toggle('zh', currentLang === 'zh');
+  document.documentElement.lang = currentLang;
   // update pill labels
   ['','-m'].forEach(function(s){
     var en = document.getElementById('lbl-en'+s);
@@ -1004,9 +1028,11 @@ function showPage(id) {
   document.querySelectorAll('[data-page]').forEach(function(el){
     el.classList.toggle('active', el.dataset.page === id);
   });
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   document.getElementById('mob').classList.remove('open');
+  var hamBtn = document.getElementById('ham');
+  if (hamBtn) hamBtn.setAttribute('aria-expanded', 'false');
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
 }
 document.querySelectorAll('[data-page]').forEach(function(el){
   el.addEventListener('click', function(e){
@@ -1029,7 +1055,7 @@ window.addEventListener('scroll', function(){
 // ── Hamburger ──
 var ham = document.getElementById('ham');
 var mob = document.getElementById('mob');
-ham.addEventListener('click', function(e){ e.stopPropagation(); mob.classList.toggle('open'); });
+ham.addEventListener('click', function(e){ e.stopPropagation(); mob.classList.toggle('open'); ham.setAttribute('aria-expanded', mob.classList.contains('open') ? 'true' : 'false'); });
 document.addEventListener('click', function(e){
   if (mob.classList.contains('open') && !mob.contains(e.target) && !ham.contains(e.target)) mob.classList.remove('open');
 });
@@ -1090,11 +1116,13 @@ function updateCheckoutOrder(card) {
   var nameZh = card.dataset.nameZh;
   var price = card.dataset.price;
   var content = document.getElementById('checkout-order-content');
-  content.innerHTML = '<div class="checkout-order-item"><span class="checkout-order-item-name en-content">'+nameEn+'</span><span class="checkout-order-item-name zh-content">'+nameZh+'</span><span class="checkout-order-item-price">'+price+'</span></div>';
-  if (currentLang === 'zh') {
-    content.querySelectorAll('.en-content').forEach(function(el){ el.style.display='none'; });
-    content.querySelectorAll('.zh-content').forEach(function(el){ el.style.display='block'; });
-  }
+  content.textContent = '';
+  var item = document.createElement('div'); item.className = 'checkout-order-item';
+  var nEn = document.createElement('span'); nEn.className = 'checkout-order-item-name en-content'; nEn.textContent = nameEn;
+  var nZh = document.createElement('span'); nZh.className = 'checkout-order-item-name zh-content'; nZh.textContent = nameZh;
+  var pr = document.createElement('span'); pr.className = 'checkout-order-item-price'; pr.textContent = price;
+  item.appendChild(nEn); item.appendChild(nZh); item.appendChild(pr);
+  content.appendChild(item);
   var payBtn = document.getElementById('checkout-pay-btn');
   payBtn.style.opacity = '1';
   payBtn.style.pointerEvents = 'auto';
@@ -1212,18 +1240,22 @@ if (pmodalForm) {
       var tob = document.getElementById('pmodal-tob');
       var tobAmpm = document.getElementById('pmodal-tob-ampm');
       var tobNa = document.getElementById('pmodal-tob-na');
-      var data = {
-        formType: 'booking',
-        service: currentModalService.nameEn + ' (' + currentModalService.price + ')',
-        name: name.value.trim(),
-        email: email.value.trim(),
-        phone: document.getElementById('pmodal-country-code').value.replace('+','') + ' ' + phone.value.trim(),
-        dob: dob.value.trim(),
-        timeOfBirth: tobNa.checked ? 'Unknown' : (tob.value.trim() + ' ' + tobAmpm.value),
-        preferredLanguage: langEl.value,
-        timestamp: new Date().toISOString()
-      };
-      fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) });
+      var hp = document.getElementById('pmodal-website');
+      function cap(v, n){ return (v || '').trim().slice(0, n); }
+      if (!hp || !hp.value) {
+        var data = {
+          formType: 'booking',
+          service: cap(currentModalService.nameEn, 120) + ' (' + cap(currentModalService.price, 12) + ')',
+          name: cap(name.value, 120),
+          email: cap(email.value, 160),
+          phone: document.getElementById('pmodal-country-code').value.replace('+','') + ' ' + cap(phone.value, 24),
+          dob: cap(dob.value, 10),
+          timeOfBirth: tobNa.checked ? 'Unknown' : (cap(tob.value, 5) + ' ' + tobAmpm.value),
+          preferredLanguage: langEl.value,
+          timestamp: new Date().toISOString()
+        };
+        fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) });
+      }
       pmodalForm.style.display = 'none';
       document.getElementById('pmodal-form-success').style.display = 'block';
     }
@@ -1235,23 +1267,68 @@ var contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', function(e){
     e.preventDefault();
-    var serviceEnEl = document.getElementById('cf-service-en');
-    var serviceZhEl = document.getElementById('cf-service-zh');
-    var data = {
-      formType: 'contact',
-      name: (document.getElementById('cf-name') || {}).value || '',
-      email: (document.getElementById('cf-email') || {}).value || '',
-      phone: ((document.getElementById('cf-country') || {}).value || '').replace('+','') + ' ' + ((document.getElementById('cf-phone') || {}).value || ''),
-      service: currentLang === 'zh' ? (serviceZhEl ? serviceZhEl.value : '') : (serviceEnEl ? serviceEnEl.value : ''),
-      message: (document.getElementById('cf-message') || {}).value || '',
-      timestamp: new Date().toISOString()
-    };
-    fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) });
+    var nameEl = document.getElementById('cf-name');
+    var emailEl = document.getElementById('cf-email');
+    var errBox = document.getElementById('cf-err');
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var okC = true;
+    if (!nameEl.value.trim()) { nameEl.classList.add('field-err'); okC = false; } else { nameEl.classList.remove('field-err'); }
+    if (!emailRe.test(emailEl.value.trim())) { emailEl.classList.add('field-err'); okC = false; } else { emailEl.classList.remove('field-err'); }
+    if (!okC) { if (errBox) errBox.style.display = 'block'; return; }
+    if (errBox) errBox.style.display = 'none';
+    var hp = document.getElementById('cf-website');
+    function cap(v, n){ return (v || '').trim().slice(0, n); }
+    if (!hp || !hp.value) {
+      var serviceEnEl = document.getElementById('cf-service-en');
+      var serviceZhEl = document.getElementById('cf-service-zh');
+      var data = {
+        formType: 'contact',
+        name: cap(nameEl.value, 120),
+        email: cap(emailEl.value, 160),
+        phone: ((document.getElementById('cf-country') || {}).value || '').replace('+','') + ' ' + cap((document.getElementById('cf-phone') || {}).value, 24),
+        service: currentLang === 'zh' ? (serviceZhEl ? serviceZhEl.value : '') : (serviceEnEl ? serviceEnEl.value : ''),
+        message: cap((document.getElementById('cf-message') || {}).value, 2000),
+        timestamp: new Date().toISOString()
+      };
+      fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) });
+    }
     var success = document.getElementById('form-success');
     if (success) success.style.display = 'block';
     contactForm.reset();
   });
 }
+
+// ── Motion (GSAP + ScrollTrigger, respects prefers-reduced-motion) ──
+(function(){
+  if (!window.gsap || !window.ScrollTrigger) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero entrance — text children stagger up, photo settles from a slow zoom
+  var heroT = document.querySelector('#page-home .hero-t');
+  if (heroT) {
+    gsap.from(heroT.children, { y: 26, opacity: 0, duration: .9, ease: 'power3.out', stagger: .09, delay: .15, clearProps: 'all' });
+    gsap.from('#page-home .hero-p img', { scale: 1.05, duration: 1.6, ease: 'power2.out', clearProps: 'scale' });
+  }
+
+  // Section headings and standalone statements rise in on scroll
+  gsap.utils.toArray('section h2, .ph h1, .emp-line, .qb blockquote, .fcta h2, .t-fq').forEach(function(el){
+    gsap.from(el, { y: 24, opacity: 0, duration: .8, ease: 'power3.out', clearProps: 'all',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+  });
+
+  // Card grids stagger in as a group
+  gsap.utils.toArray('.cards, .ways, .steps, .tgrid, .tg-lt, .bk, .ch-grid, .tstats, .child-c, .rec, .svc-grid').forEach(function(grid){
+    gsap.from(grid.children, { y: 24, opacity: 0, duration: .7, ease: 'power3.out', stagger: .07, clearProps: 'all',
+      scrollTrigger: { trigger: grid, start: 'top 85%', once: true } });
+  });
+
+  // Portraits settle from a gentle zoom as they enter
+  gsap.utils.toArray('.simg img, .about-ph-img img').forEach(function(img){
+    gsap.from(img, { scale: 1.06, duration: 1.3, ease: 'power2.out', clearProps: 'scale',
+      scrollTrigger: { trigger: img, start: 'top 90%', once: true } });
+  });
+})();
 </script>
 
 </body>
