@@ -142,8 +142,31 @@
       min-height: 100svh;
       display: flex; align-items: center;
       padding: clamp(120px, 14vw, 160px) var(--sp-h) var(--sp-v);
+      background: #1E1810;
     }
-    .hero-inner { width: 100%; max-width: 1100px; margin: 0 auto; }
+    .hero-video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      opacity: 0.62; z-index: 0; pointer-events: none;
+    }
+    /* split-banner overlay: heavy left (text), light right (video shines through) */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        linear-gradient(to right,
+          rgba(20,14,8,0.92) 0%,
+          rgba(20,14,8,0.78) 35%,
+          rgba(20,14,8,0.42) 58%,
+          rgba(20,14,8,0.18) 100%),
+        linear-gradient(to bottom,
+          rgba(20,14,8,0.5) 0%,
+          transparent 20%,
+          transparent 75%,
+          rgba(20,14,8,0.65) 100%);
+    }
+    .hero-inner { width: 100%; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+    .hero-orb-1, .hero-orb-2, .hero-ring { z-index: 2; }
     .hero-tag {
       display: block; font-family: 'DM Sans', sans-serif;
       font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
@@ -210,6 +233,26 @@
 
     /* === REVELATION === */
     .reveal { padding: var(--sp-v) var(--sp-h); }
+    .reveal-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+      opacity: 0.32; z-index: 0; pointer-events: none;
+    }
+    .reveal::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        linear-gradient(to right,
+          rgba(20,14,8,0.94) 0%,
+          rgba(20,14,8,0.80) 40%,
+          rgba(20,14,8,0.50) 65%,
+          rgba(20,14,8,0.26) 100%),
+        linear-gradient(to bottom,
+          rgba(20,14,8,0.55) 0%,
+          transparent 25%,
+          transparent 72%,
+          rgba(20,14,8,0.65) 100%);
+    }
     .reveal-wrap { max-width: 900px; margin: 0 auto; }
     .reveal-wrap h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); margin-bottom: 1.75rem; }
     .reveal-body p { font-size: clamp(1rem, 1.5vw, 1.1rem); line-height: 2; max-width: 700px; }
@@ -364,8 +407,9 @@
       width: clamp(220px, 42vw, 540px); height: clamp(220px, 42vw, 540px);
       background: radial-gradient(ellipse, rgba(196,168,130,0.05) 0%, transparent 65%);
       right: -8%; top: 50%; transform: translateY(-50%);
+      z-index: 2;
     }
-    .reveal-wrap { position: relative; z-index: 1; }
+    .reveal-wrap { position: relative; z-index: 2; }
 
     /* === SCROLL REVEAL === */
     .sr {
@@ -414,6 +458,9 @@
 
   <!-- HERO — PAIN -->
   <section id="hero" class="sec-dk">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="Depress.mp4" type="video/mp4">
+    </video>
     <div class="hero-orb-1" aria-hidden="true"></div>
     <div class="hero-orb-2" aria-hidden="true"></div>
     <div class="hero-ring hero-ring-1" aria-hidden="true"></div>
@@ -555,6 +602,7 @@
 
   <!-- REVELATION — climax -->
   <section class="sec-dk reveal">
+    <img src="loveyourself2.png" class="reveal-bg" alt="" aria-hidden="true" loading="lazy">
     <div class="rev-orb" aria-hidden="true"></div>
     <div class="reveal-wrap">
       <div class="zh-content">
@@ -673,6 +721,10 @@
     window.addEventListener('scroll', function() {
       if (window.scrollY > 300) document.getElementById('float-wa').classList.add('visible');
     }, { passive: true });
+
+    // Ensure video loops on browsers that ignore the loop attribute
+    var hv = document.querySelector('.hero-video');
+    if (hv) { hv.addEventListener('ended', function() { hv.currentTime = 0; hv.play(); }); }
 
     // Scroll reveal
     (function() {
