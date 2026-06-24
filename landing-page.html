@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人生不是运气，而是模式。 | Joyce Metaphysics Consultant</title>
+  <meta name="description" content="感情、事业、人生——不同的问题，同一个规律。Joyce Yap 带你透过数字学，看懂生命里反复出现的根源。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* === TOKENS === */
+    :root {
+      --cream: #FAF8F5;
+      --cream-alt: #F0EBE2;
+      --cream-deep: #E8E0D4;
+      --brown-deep: #2A2018;
+      --brown-mid: #6B5B4E;
+      --brown-light: #9C8C80;
+      --gold: #8B7355;
+      --gold-light: #C4A882;
+      --sp-v: clamp(64px, 9vw, 110px);
+      --sp-h: clamp(20px, 5vw, 40px);
+    }
+
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      color: var(--brown-mid);
+      background: var(--cream);
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    p { font-size: clamp(0.95rem, 1.2vw, 1.05rem); }
+    p + p { margin-top: 1.4em; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; font-style: italic; line-height: 1.2; color: var(--brown-deep); text-wrap: balance; }
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 400; font-style: italic; line-height: 1.25; color: var(--brown-deep); text-wrap: balance; }
+    a { text-decoration: none; color: inherit; }
+
+    /* === BILINGUAL === */
+    .en-content, .en-inline { display: none; }
+    .zh-content { display: block; }
+    .zh-inline { display: inline; }
+    body:not(.zh) .zh-content { display: none; }
+    body:not(.zh) .en-content { display: block; }
+    body:not(.zh) .zh-inline { display: none; }
+    body:not(.zh) .en-inline { display: inline; }
+
+    /* === LAYOUT === */
+    .con   { max-width: 1100px; margin: 0 auto; padding: 0 var(--sp-h); }
+    .con-n { max-width: 800px;  margin: 0 auto; padding: 0 var(--sp-h); }
+    .con-s { max-width: 620px;  margin: 0 auto; padding: 0 var(--sp-h); }
+
+    /* === SECTIONS === */
+    .sec-dk {
+      background: linear-gradient(180deg, #2A2018 0%, #1E1810 100%);
+      color: rgba(250,248,245,0.88);
+      position: relative;
+    }
+    .sec-dk h1, .sec-dk h2, .sec-dk h3 { color: #FAF8F5; }
+    .sec-dk p { color: rgba(250,248,245,0.75); }
+    .sec-alt  { background: var(--cream-alt); }
+    .sec-warm { background: var(--cream-deep); }
+    .sec-dk::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035; mix-blend-mode: overlay;
+    }
+
+    /* === BUTTONS === */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.9rem 2.2rem; border: none; cursor: pointer;
+      transition: letter-spacing 0.25s, background 0.2s;
+    }
+    .btn:hover { letter-spacing: 0.19em; }
+    .btn.bp  { background: var(--brown-deep); color: var(--cream); }
+    .btn.bp:hover { background: #3a2e22; }
+    .btn.bg  { background: var(--gold); color: var(--cream); }
+    .btn.bg:hover { background: #7a6448; }
+    .btn.bl2 { background: transparent; border: 1px solid rgba(250,248,245,0.45); color: var(--cream); }
+    .btn.bl2:hover { border-color: var(--cream); }
+
+    /* === EYEBROW === */
+    .ey {
+      display: block; font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .sec-dk .ey { color: var(--gold-light); }
+
+    /* === NAV === */
+    .lp-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem var(--sp-h);
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250,248,245,0.93); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--cream-deep);
+    }
+    .lp-nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.88rem, 1.8vw, 1.05rem); font-weight: 500;
+      letter-spacing: 0.04em; color: var(--brown-deep);
+    }
+    .lp-nav-r { display: flex; align-items: center; gap: 1rem; }
+    #lang-btn {
+      font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--brown-mid); background: none;
+      border: 1px solid var(--cream-deep); padding: 0.38rem 0.85rem;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s;
+    }
+    #lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .nav-socials { display: flex; align-items: center; gap: 0.6rem; }
+    .nav-social {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      color: var(--brown-mid); border: 1px solid var(--cream-deep);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .nav-social svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .nav-social.yt svg { fill: currentColor; stroke: none; }
+    .nav-social:hover { border-color: var(--gold); color: var(--gold); }
+    @media (max-width: 480px) {
+      .nav-social { width: 28px; height: 28px; }
+      .nav-socials { gap: 0.35rem; }
+      .lp-nav-r { gap: 0.6rem; }
+    }
+    @media (max-width: 380px) { .nav-socials { display: none; } }
+
+    /* === HERO === */
+    #hero {
+      min-height: 100svh;
+      display: flex; align-items: center;
+      padding: clamp(120px, 14vw, 160px) var(--sp-h) var(--sp-v);
+    }
+    .hero-inner { width: 100%; max-width: 1100px; margin: 0 auto; }
+    .hero-tag {
+      display: block; font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.75rem;
+    }
+    .hero-inner h1 { margin-bottom: 1.5rem; }
+    body.zh .hero-inner h1 { font-size: clamp(1.85rem, 3.4vw, 2.9rem); }
+    .hero-sub {
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      color: rgba(250,248,245,0.68); max-width: 520px; margin-bottom: 2.5rem;
+      line-height: 1.9;
+    }
+    .scroll-hint {
+      margin-top: clamp(3rem, 6vw, 5rem);
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.66rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(196,168,130,0.5);
+    }
+    .scroll-hint svg { animation: bob 2s ease-in-out infinite; }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+
+    /* === AGITATION === */
+    .agit { padding: var(--sp-v) var(--sp-h); }
+    .agit-inner { max-width: 760px; margin: 0 auto; }
+    .agit h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 1.75rem; }
+
+
+    /* === INSIGHT SECTIONS === */
+    .insight { padding: var(--sp-v) var(--sp-h); }
+    .insight-wrap { max-width: 880px; margin: 0 auto; }
+    .pull-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 400; font-style: italic;
+      line-height: 1.35; color: var(--brown-deep);
+      border-left: 3px solid var(--gold);
+      padding-left: clamp(1.5rem, 3vw, 2.5rem);
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+    .sec-dk .pull-q { color: var(--cream); border-left-color: var(--gold-light); }
+    .insight-body { max-width: 680px; }
+    .insight-body p { line-height: 2; }
+    .mirror-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.35rem); font-style: italic;
+      color: var(--gold); margin-top: clamp(2rem, 4vw, 3rem);
+      padding-top: clamp(1.5rem, 3vw, 2.5rem);
+      border-top: 1px solid var(--cream-deep);
+    }
+    .sec-dk .mirror-q { color: var(--gold-light); border-top-color: rgba(196,168,130,0.18); }
+    .insight-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 1.75rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--brown-deep); border-bottom: 1px solid var(--gold);
+      padding-bottom: 0.18rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .insight-cta:hover { color: var(--gold); border-color: var(--gold-light); }
+    .sec-dk .insight-cta { color: var(--gold-light); border-bottom-color: rgba(196,168,130,0.4); }
+    .sec-dk .insight-cta:hover { color: var(--cream); border-bottom-color: var(--gold-light); }
+    @media (max-width: 560px) { .insight-cta { font-size: 0.72rem; } }
+
+    /* === REVELATION === */
+    .reveal { padding: var(--sp-v) var(--sp-h); }
+    .reveal-wrap { max-width: 900px; margin: 0 auto; }
+    .reveal-wrap h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); margin-bottom: 1.75rem; }
+    .reveal-body p { font-size: clamp(1rem, 1.5vw, 1.1rem); line-height: 2; max-width: 700px; }
+    .reveal-body .pull-q { margin-top: clamp(2.5rem, 5vw, 4rem); }
+
+    /* === TESTIMONIALS === */
+    .testi { padding: var(--sp-v) var(--sp-h); }
+    .testi-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--cream-deep);
+    }
+    .testi-card {
+      background: var(--cream); padding: clamp(1.75rem, 3vw, 2.75rem);
+      border-top: 1px solid var(--gold);
+    }
+    .testi-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem); font-style: italic;
+      font-weight: 400; color: var(--brown-deep); line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .testi-name {
+      font-family: 'DM Sans', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+    }
+    .t-verified { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--gold-light); padding: 3px 9px; margin-top: 10px; color: var(--gold); }
+    .t-verified svg { width: 9px; height: 9px; flex-shrink: 0; }
+    .t-verified span { font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; }
+    body.zh .t-verified .zh-content { display: inline; }
+    @media (max-width: 860px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .testi-grid { grid-template-columns: 1fr; } }
+
+    /* === FINAL CTA === */
+    .fcta { padding: var(--sp-v) var(--sp-h); text-align: center; }
+    .fcta h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 1.25rem; }
+    .fcta p { max-width: 580px; margin: 0 auto 2rem; font-size: clamp(0.95rem, 1.3vw, 1.05rem); line-height: 1.9; }
+    @media (max-width: 560px) { .fcta .btn { width: 100%; justify-content: center; } }
+    .cta-sub {
+      display: block; margin-top: 1.25rem;
+      font-size: 0.78rem; color: var(--brown-light); letter-spacing: 0.04em;
+    }
+    .cta-wa-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.9rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #1a9e4f;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--brown-deep); color: rgba(250,248,245,0.45);
+      padding: clamp(2rem, 4vw, 3rem) var(--sp-h); text-align: center;
+      font-size: 0.76rem; letter-spacing: 0.07em; position: relative;
+    }
+    footer::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03; mix-blend-mode: overlay;
+    }
+    footer a { color: rgba(196,168,130,0.65); transition: color 0.2s; }
+    footer a:hover { color: var(--gold-light); }
+
+    /* === ANIMATIONS === */
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0   rgba(139,115,85,0.38); }
+      70%  { box-shadow: 0 0 0 14px rgba(139,115,85,0);   }
+      100% { box-shadow: 0 0 0 0   rgba(139,115,85,0);   }
+    }
+    @keyframes pulse-ring-lt {
+      0%   { box-shadow: 0 0 0 0   rgba(196,168,130,0.32); }
+      70%  { box-shadow: 0 0 0 14px rgba(196,168,130,0);   }
+      100% { box-shadow: 0 0 0 0   rgba(196,168,130,0);   }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(7px); }
+    }
+    .btn.bp { animation: pulse-ring 2.8s ease-out infinite; }
+    .btn.bg { animation: pulse-ring-lt 2.8s ease-out infinite; }
+    .btn:hover { animation-play-state: paused; }
+
+    /* hero entrance */
+    .hero-tag  { animation: fade-up 0.8s ease-out 0.2s both; }
+    .hero-inner h1 { animation: fade-up 0.9s ease-out 0.4s both; }
+    .hero-sub  { animation: fade-up 0.9s ease-out 0.6s both; }
+    .hero-inner .btn { animation: fade-up 0.9s ease-out 0.8s both; }
+    .scroll-hint { animation: fade-up 0.9s ease-out 1.1s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn.bp, .btn.bg { animation: none; }
+      .hero-tag, .hero-inner h1, .hero-sub, .hero-inner .btn, .scroll-hint { animation: none; opacity: 1; }
+    }
+
+    /* === HERO ORBS & RINGS === */
+    #hero { overflow: hidden; }
+    .hero-orb-1, .hero-orb-2 { position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero-orb-1 {
+      width: clamp(320px, 52vw, 720px); height: clamp(320px, 52vw, 720px);
+      background: radial-gradient(ellipse, rgba(196,168,130,0.08) 0%, transparent 65%);
+      right: -6%; top: 50%; transform: translateY(-50%);
+    }
+    .hero-orb-2 {
+      width: clamp(160px, 26vw, 380px); height: clamp(160px, 26vw, 380px);
+      background: radial-gradient(ellipse, rgba(196,168,130,0.05) 0%, transparent 65%);
+      left: -6%; bottom: 12%;
+    }
+    .hero-ring {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      border: 1px solid rgba(196,168,130,0.07);
+    }
+    .hero-ring-1 {
+      width: clamp(420px, 65vw, 860px); height: clamp(420px, 65vw, 860px);
+      right: -10%; top: 50%; transform: translateY(-50%);
+    }
+    .hero-ring-2 {
+      width: clamp(260px, 42vw, 580px); height: clamp(260px, 42vw, 580px);
+      right: 2%; top: 50%; transform: translateY(-50%);
+    }
+    @media (max-width: 560px) { .hero-orb-1, .hero-ring-1, .hero-ring-2 { display: none; } }
+
+    /* === INSIGHT DECORATIVE NUMBERS === */
+    .insight { position: relative; overflow: hidden; }
+    .insight-bg-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(90px, 16vw, 180px);
+      font-weight: 300; font-style: italic; line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(139,115,85,0.055);
+      position: absolute; right: -0.06em; bottom: -0.18em;
+      user-select: none; pointer-events: none; z-index: 0;
+    }
+    .insight-wrap { position: relative; z-index: 1; }
+
+    /* === AGITATION LEFT ACCENT === */
+    .agit { position: relative; }
+    .agit::before {
+      content: '';
+      position: absolute; left: clamp(20px,5vw,40px); top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold-light) 30%, var(--gold-light) 70%, transparent);
+      opacity: 0.16;
+    }
+
+    /* === REVELATION ORB === */
+    .reveal { position: relative; overflow: hidden; }
+    .rev-orb {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      width: clamp(220px, 42vw, 540px); height: clamp(220px, 42vw, 540px);
+      background: radial-gradient(ellipse, rgba(196,168,130,0.05) 0%, transparent 65%);
+      right: -8%; top: 50%; transform: translateY(-50%);
+    }
+    .reveal-wrap { position: relative; z-index: 1; }
+
+    /* === SCROLL REVEAL === */
+    .sr {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.72s cubic-bezier(0.22,1,0.36,1);
+    }
+    .sr.in { opacity: 1; transform: translateY(0); }
+    .sr.d1 { transition-delay: 0.08s; }
+    .sr.d2 { transition-delay: 0.18s; }
+    .sr.d3 { transition-delay: 0.3s; }
+    @media (prefers-reduced-motion: reduce) { .sr { opacity: 1; transform: none; } }
+
+    /* === FLOATING WA === */
+    .float-wa {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      width: 52px; height: 52px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+      opacity: 0; transition: opacity 0.4s, transform 0.2s, box-shadow 0.2s;
+    }
+    .float-wa.visible { opacity: 1; }
+    .float-wa:hover { transform: scale(1.1); box-shadow: 0 6px 26px rgba(0,0,0,0.28); }
+  </style>
+</head>
+<body class="zh">
+
+  <!-- NAV -->
+  <nav class="lp-nav">
+    <a href="https://www.joyceyapmetaphysics.com/" class="lp-nav-logo">Joyce Metaphysics Consultant</a>
+    <div class="lp-nav-r">
+      <button id="lang-btn" onclick="toggleLang()">EN</button>
+      <div class="nav-socials">
+        <a class="nav-social" href="https://www.facebook.com/profile.php?id=61572509262878" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a class="nav-social" href="https://www.instagram.com/joyce_metaphysics_consultant" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="nav-social yt" href="https://www.youtube.com/channel/UC0ftC311sIwgS51DnvJugXg" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO — PAIN -->
+  <section id="hero" class="sec-dk">
+    <div class="hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb-2" aria-hidden="true"></div>
+    <div class="hero-ring hero-ring-1" aria-hidden="true"></div>
+    <div class="hero-ring hero-ring-2" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="zh-content">
+        <span class="hero-tag">内观洞察 · 关于你自己的真相</span>
+        <h1>你有没有想过——<br>你人生里反复出现的困境，<br>其实都有同一个根源。</h1>
+        <p class="hero-sub">感情、事业、人际……不同的问题，同一个规律。一旦你看清楚，很多事情就会开始改变。</p>
+        <a href="#agit" class="btn bg">了解更多</a>
+      </div>
+      <div class="en-content">
+        <span class="hero-tag">Self Insights · One Truth About You</span>
+        <h1>Have you ever wondered —<br>why the same struggles<br>keep coming back?</h1>
+        <p class="hero-sub">Different problems. The same pattern. In love, career, and life — they all trace back to one thing. Once you see it, everything shifts.</p>
+        <a href="#agit" class="btn bg">Discover More</a>
+      </div>
+      <div class="scroll-hint">
+        <span class="zh-inline">向下</span><span class="en-inline">Scroll</span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM AGITATION — CURIOSITY -->
+  <section class="agit sec-alt" id="agit">
+    <div class="agit-inner">
+      <div class="zh-content">
+        <span class="ey">这些年，我发现一件事</span>
+        <h2>很多人不是没有努力。<br>而是从来没有真正看懂自己。</h2>
+        <p>这些年做咨询，我见过很多努力的人。他们在感情里反复受伤，在事业里不断碰壁，走到人生的某个阶段，突然觉得——我是不是哪里出了问题？</p>
+        <p>可是问题从来不是你不够好。</p>
+        <p>问题是——你有没有看懂自己的规律？你的思维模式、你的情感需求、你的人生节奏……这些都刻在你出生那一刻的密码里。当你不了解自己，就算机会来了，也抓不住。就算贵人来了，也认不出来。就算好运来了，也留不住。</p>
+        <p>以下的每一个洞察，来自我这些年咨询里反复看见的真相。它们关于爱情，关于事业，关于人生的下半场。每一个，都可能说的是你。</p>
+      </div>
+      <div class="en-content">
+        <span class="ey">After years of consultations, I discovered something</span>
+        <h2>Most people aren't failing for lack of effort.<br>They've never truly understood themselves.</h2>
+        <p>Over the years, I've met so many hardworking people. They kept getting hurt in relationships. They kept hitting walls in their careers. And at some point, they'd ask — is something wrong with me?</p>
+        <p>Nothing is wrong with you.</p>
+        <p>The question is — have you ever understood your own patterns? Your thinking style. Your emotional needs. Your life rhythm. These are written into the blueprint of who you are. When you don't know yourself, opportunities slip past. The right people don't stay. Good fortune can't find you.</p>
+        <p>Each of the following insights comes from what I've seen repeated, again and again, across hundreds of consultations. About love. About career. About the second half of life. Every one might feel like it was written for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHT A — RELATIONSHIPS -->
+  <section class="insight">
+    <span class="insight-bg-num" aria-hidden="true">01</span>
+    <div class="insight-wrap">
+      <div class="zh-content">
+        <span class="ey">第一个真相 · 关系</span>
+        <blockquote class="pull-q">「很多感情/婚姻失败，不是因为不爱。<br>而是一开始，就不适合。」</blockquote>
+        <div class="insight-body">
+          <p>我们太容易被感觉吸引了。聊得来，有火花，很浪漫——就以为遇到对的人。可是婚姻不是谈恋爱。婚姻是两个不同成长背景、不同价值观、不同思维模式的人，一起走几十年。</p>
+          <p>有些人天生重感情，有些人天生重事业。有些人需要陪伴，有些人需要空间。如果两个人的核心需求完全不同，就算再相爱，未来也会出现很多矛盾。</p>
+          <p>结婚之前，很多人花了几百个小时筹备婚礼，却没有花几个小时讨论婚姻。婚礼只有一天，婚姻却可能长达几十年。真正让婚姻出现问题的，往往不是大事，而是生活里价值观的长期碰撞。</p>
+          <p>所以，爱一个人之前，先看懂自己。再看懂对方。因为爱情让你心动，适合，才能让你走得长久。</p>
+          <p class="mirror-q">你知道自己真正需要什么样的伴侣吗？</p>
+          <a href="https://www.joyceyapmetaphysics.com/#work" class="insight-cta">了解你的关系蓝图 →</a>
+        </div>
+      </div>
+      <div class="en-content">
+        <span class="ey">Insight One · Marriages/Relationships</span>
+        <blockquote class="pull-q">"Many marriages/relationship fail — not from a lack of love,<br>but because they were never truly compatible."</blockquote>
+        <div class="insight-body">
+          <p>We're too easily drawn to feelings. Good conversations. Sparks. Romance. And we mistake that for finding the right person. But marriage/relationship isn't dating — it's two people with different backgrounds, different values, different ways of thinking, choosing to walk together for decades.</p>
+          <p>Some people are naturally emotional. Others are career-driven. Some need closeness. Others need space. When two people's core needs are fundamentally different, love alone won't be enough.</p>
+          <p>Before the wedding, most couples spend hundreds of hours planning the event. Almost none planning the marriage. A wedding lasts a day. A marriage can last a lifetime. What breaks most marriages isn't one big event — it's years of unresolved collisions in values.</p>
+          <p>So before loving someone, understand yourself first. Then understand them. Love creates the spark. Compatibility determines the distance you travel together.</p>
+          <p class="mirror-q">Do you truly know what kind of partner you actually need?</p>
+          <a href="https://www.joyceyapmetaphysics.com/#work" class="insight-cta">Discover Your Relationship Blueprint →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHT B — CAREER -->
+  <section class="insight sec-alt">
+    <span class="insight-bg-num" aria-hidden="true">02</span>
+    <div class="insight-wrap">
+      <div class="zh-content">
+        <span class="ey">第二个真相 · 事业</span>
+        <blockquote class="pull-q">「很多人不是能力不够。<br>而是方向错了——或者，时机不对。」</blockquote>
+        <div class="insight-body">
+          <p>你有没有发现，越努力，有时候反而越焦虑。不是因为你不行，而是你一直在跑，却不知道自己要去哪里。</p>
+          <p>人生跟种树一样。春天适合播种，夏天适合成长，秋天适合收获，冬天适合沉淀。如果你在冬天逼自己开花，你只会觉得自己很失败。但问题不是你不够好，而是你不了解自己现在的人生阶段。</p>
+          <p>同样30岁，有些人开始起飞，有些人却越来越迷茫。差距来自于有没有看懂自己的人生节奏。有些人正在收获期，过去十年的努力开始开花结果。有些人正在转型期，人生在逼他离开旧赛道，重新开始。</p>
+          <p>卡住，不一定是坏事。有时候，人生是在逼你换方向，而不是继续往前冲。选对赛道，比拼命努力更重要。</p>
+          <p class="mirror-q">你现在走的路，是属于你的路吗？</p>
+          <a href="https://www.joyceyapmetaphysics.com/#work" class="insight-cta">看清你的人生节奏 →</a>
+        </div>
+      </div>
+      <div class="en-content">
+        <span class="ey">Insight Two · Career</span>
+        <blockquote class="pull-q">"Most people don't lack ability.<br>They have the wrong direction — or the wrong timing."</blockquote>
+        <div class="insight-body">
+          <p>Have you noticed — the harder you push sometimes, the more anxious you feel? It's not that you're not capable. It's that you keep running, but you don't know where you're actually going.</p>
+          <p>Life moves like seasons. Spring is for planting. Summer is for growing. Autumn is for harvesting. Winter is for stillness. If you force yourself to bloom in winter, you'll feel like a failure. But the problem isn't you — it's that you don't understand which season you're in.</p>
+          <p>Two people, same age. One is thriving. One feels completely lost. The gap isn't talent — it's whether they understand the rhythm their life is actually in. Some are in a harvest season, their decade of effort finally bearing fruit. Others are in transition — life is forcing them off the old track to begin again.</p>
+          <p>Being stuck isn't always failure. Sometimes life is redirecting you, not punishing you. Choosing the right lane matters more than running harder in the wrong one.</p>
+          <p class="mirror-q">Is the path you're on actually yours?</p>
+          <a href="https://www.joyceyapmetaphysics.com/#work" class="insight-cta">Find Your True Direction →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHT C — LIFE STAGES -->
+  <section class="insight">
+    <span class="insight-bg-num" aria-hidden="true">03</span>
+    <div class="insight-wrap">
+      <div class="zh-content">
+        <span class="ey">第三个真相 · 人生阶段</span>
+        <blockquote class="pull-q">「人生走到下半场——<br>你有没有开始，为自己而活？」</blockquote>
+        <div class="insight-body">
+          <p>这些年我接触很多人，大家最常说的一句话是：没有人真正懂我。不是没人懂，是我们习惯扮演坚强，习惯当别人的依靠，却忘了表达自己的需要。</p>
+          <p>很多父母以为，等孩子长大以后，人生就轻松了。可是很多人的迷茫，恰恰是从孩子长大以后才开始。过去二十多年，你忙着赚钱，忙着养家，忙着照顾孩子。有一天孩子毕业了，你突然发现——自己不知道下一步该做什么。</p>
+          <p>孩子毕业了，你的人生不应该毕业。</p>
+          <p>还有很多人到了50岁以后，开始告诉自己：我老了，不适合谈恋爱了，不适合开始新的事业了。可是我想问——是谁规定50岁以后不能重新开始？人生从来不会因为年龄结束。它只会因为你停止相信而停止。真正吸引爱情的，从来不是年龄，而是生命力。</p>
+          <p class="mirror-q">人生的下半场，你打算为谁而活？</p>
+          <a href="https://www.joyceyapmetaphysics.com/#work" class="insight-cta">为自己的人生下半场做准备 →</a>
+        </div>
+      </div>
+      <div class="en-content">
+        <span class="ey">Insight Three · Life Stages</span>
+        <blockquote class="pull-q">"In the second half of life —<br>have you started living for yourself?"</blockquote>
+        <div class="insight-body">
+          <p>The most common thing I hear from people after 40: "Nobody truly understands me." It's not that nobody does. It's that we've spent so long being strong for others — the pillar, the provider — that we forgot how to express our own needs.</p>
+          <p>Many parents believe life gets easier once the children grow up. But for so many, the real confusion begins exactly then. For 20+ years, you poured yourself into your family. Then one day the children leave — and you realise you don't know what to do with yourself anymore.</p>
+          <p>Your children graduated. Your life shouldn't.</p>
+          <p>And there are those past 50 who quietly tell themselves: I'm too old now. For love. For new beginnings. For starting over. But who wrote that rule? Life doesn't end with age. It ends when you stop believing it's worth living. What truly attracts love was never about age — it's about vitality.</p>
+          <p class="mirror-q">In the second half of your life — who are you living for?</p>
+          <a href="https://www.joyceyapmetaphysics.com/#work" class="insight-cta">Begin Your Next Chapter →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVELATION — climax -->
+  <section class="sec-dk reveal">
+    <div class="rev-orb" aria-hidden="true"></div>
+    <div class="reveal-wrap">
+      <div class="zh-content">
+        <span class="ey">当你看懂自己</span>
+        <h2>关系会变。事业会变。<br>命运，也会改变。</h2>
+        <div class="reveal-body">
+          <p>这些年，很多人来找我，第一句话都是：Joyce，我什么时候会发财？我什么时候会结婚？我什么时候会转运？</p>
+          <p>以前的我，很喜欢回答这些问题。可是这些年以后，我越来越少这样做了。因为我发现——未来很重要，但没有大家想象中那么重要。</p>
+          <p>真正重要的是，你知不知道自己是谁。因为当一个人不了解自己，就算机会来了，也抓不住。就算贵人来了，也认不出来。就算好运来了，也留不住。</p>
+          <blockquote class="pull-q">「真正困住你的，从来不是命运。<br>而是，还没看清自己。」</blockquote>
+        </div>
+      </div>
+      <div class="en-content">
+        <span class="ey">When you truly understand yourself</span>
+        <h2>Relationships shift. Careers shift.<br>Destiny shifts.</h2>
+        <div class="reveal-body">
+          <p>Over the years, so many people come to me with the same first question: Joyce, when will my luck change? When will I find love? When will I finally succeed?</p>
+          <p>I used to love answering those questions. But over time I've done it less and less. Because I've realised — the future matters, but not as much as everyone thinks.</p>
+          <p>What truly matters is whether you know who you are. Because when you don't understand yourself, opportunities slip past unrecognised. The right people can't reach you. Good fortune can't stay.</p>
+          <blockquote class="pull-q">"What's been holding you back was never fate.<br>It was never truly seeing yourself."</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi sec-alt">
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="zh-content">
+          <p class="testi-q">「一开始我对算命持有疑虑——我从未认真看待这些。但 Joyce 精准地指出了我从未看见的规律，让我深刻地重新认识自己。现在我对生活和工作方向有了前所未有的清晰感。」</p>
+          <span class="testi-name">Shawn Lim · 新山</span>
+          <div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div>
+        </div>
+        <div class="en-content">
+          <p class="testi-q">"I came in sceptical — metaphysics wasn't something I took seriously. But Joyce named patterns in me with a precision that made me stop and reflect. The clarity I walked away with, around work and direction, was genuinely unexpected."</p>
+          <span class="testi-name">Shawn Lim · Johor Bahru</span>
+          <div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="zh-content">
+          <p class="testi-q">「我来的时候感觉自己一直在兜圈——同样的问题在生活里不断重复，Joyce 的咨询之后，我终于明白了为什么。那份清晰，改变了一切。」</p>
+          <span class="testi-name">Sarah L. · 创业者 · 吉隆坡</span>
+          <div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div>
+        </div>
+        <div class="en-content">
+          <p class="testi-q">"I came in feeling like I was going in circles — the same issues, different years. After my session with Joyce, something clicked. I finally understood why. That clarity changed everything."</p>
+          <span class="testi-name">Sarah L. · Entrepreneur · Kuala Lumpur</span>
+          <div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="zh-content">
+          <p class="testi-q">「Joyce 不只是告诉你发生了什么——她让你感觉终于可以不带评判地理解自己。坦白说，我很喜欢JOYCE的方式，她不是命理师，比较像引导我成长的引路人。」</p>
+          <span class="testi-name">Michelle T. · 市场总监 · 新加坡</span>
+          <div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div>
+        </div>
+        <div class="en-content">
+          <p class="testi-q">"Joyce doesn't just tell you what's happening — she helps you feel like you finally have permission to understand yourself without judgement. I left feeling lighter than I had in years."</p>
+          <span class="testi-name">Michelle T. · Marketing Director · Singapore</span>
+          <div class="t-verified"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg><span class="en-content">Verified Client</span><span class="zh-content">已验证客户</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="fcta sec-warm">
+    <div class="con-s">
+      <div class="zh-content">
+        <h2>准备好看懂自己了吗？</h2>
+        <p>如果这些洞察让你有所触动，这正是起点。了解 Joyce 的咨询服务，看清你的人生蓝图，做出更好的人生决定。</p>
+        <a href="https://www.joyceyapmetaphysics.com/#work" class="btn bp">了解咨询服务</a>
+        <span class="cta-sub">或通过 WhatsApp 直接联系 Joyce</span>
+        <a href="https://wa.me/60167286134" class="cta-wa-link" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.952 9.952 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.952 7.952 0 01-4.049-1.106l-.29-.173-3.008.848.854-2.927-.19-.302A7.952 7.952 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+          WhatsApp Joyce
+        </a>
+      </div>
+      <div class="en-content">
+        <h2>Ready to truly understand yourself?</h2>
+        <p>If these insights resonated, this is just the beginning. Explore Joyce's consultation services and discover what your life blueprint reveals about love, career, and the path ahead.</p>
+        <a href="https://www.joyceyapmetaphysics.com/#work" class="btn bp">Explore Services</a>
+        <span class="cta-sub">Or reach Joyce directly on WhatsApp</span>
+        <a href="https://wa.me/60167286134" class="cta-wa-link" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.952 9.952 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.952 7.952 0 01-4.049-1.106l-.29-.173-3.008.848.854-2.927-.19-.302A7.952 7.952 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+          WhatsApp Joyce
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="https://www.joyceyapmetaphysics.com/">Joyce Metaphysics Consultant</a>
+      &nbsp;·&nbsp;
+      <span class="zh-inline">© 2026 版权所有</span><span class="en-inline">© 2026 All Rights Reserved</span>
+    </p>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/60167286134" class="float-wa" id="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp Joyce">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.952 9.952 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.952 7.952 0 01-4.049-1.106l-.29-.173-3.008.848.854-2.927-.19-.302A7.952 7.952 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+  </a>
+
+  <script>
+    function toggleLang() {
+      document.body.classList.toggle('zh');
+      const zh = document.body.classList.contains('zh');
+      document.documentElement.lang = zh ? 'zh' : 'en';
+      document.getElementById('lang-btn').textContent = zh ? 'EN' : '中文';
+    }
+
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) document.getElementById('float-wa').classList.add('visible');
+    }, { passive: true });
+
+    // Scroll reveal
+    (function() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const selectors = [
+        '.agit-inner .ey', '.agit-inner h2', '.agit-inner > div > p',
+        '.insight-wrap .ey', '.insight-wrap .pull-q', '.insight-wrap .insight-body',
+        '.insight-wrap .mirror-q', '.insight-wrap .insight-cta',
+        '.reveal-wrap .ey', '.reveal-wrap h2', '.reveal-wrap .reveal-body',
+        '.testi-card',
+        '.fcta h2', '.fcta p', '.fcta .btn', '.fcta .cta-sub', '.fcta .cta-wa-link'
+      ];
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+
+      selectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(el, i) {
+          el.classList.add('sr');
+          if (i === 1) el.classList.add('d1');
+          if (i === 2) el.classList.add('d2');
+          if (i >= 3) el.classList.add('d3');
+          obs.observe(el);
+        });
+      });
+
+      // Stagger testimonial cards
+      document.querySelectorAll('.testi-card').forEach(function(el, i) {
+        el.classList.add('sr', ['','d1','d2'][i] || 'd3');
+        obs.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
