@@ -1021,6 +1021,7 @@ footer{background:#111008;padding:clamp(44px,6vw,68px) 40px clamp(28px,4vw,40px)
 // ── Language ──
 // ── Google Sheets URL — replace with your deployed Apps Script URL ──
 var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwivr05GrRPRrwmzf4Q0CJ_ZFhteAJffnbU00dghPb7m2zev30AUZAXkLmY3UGTq6rnKw/exec';
+var _ST = 'jmc_K9x2mQvR4nLp8wZt';
 
 var currentLang = 'zh';
 var currentModalService = { id:'', nameEn:'', nameZh:'', price:'' };
@@ -1328,7 +1329,7 @@ if (pmodalForm) {
             data.person3Tob = p3tobNaEl.checked ? 'Unknown' : (cap(p3tobEl.value, 5) + ' ' + p3tobAmpmEl.value);
           }
         }
-        fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) });
+        fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(Object.assign({_token:_ST}, data)) });
       }
       pmodalForm.style.display = 'none';
       document.getElementById('pmodal-form-success').style.display = 'block';
@@ -1364,7 +1365,7 @@ if (contactForm) {
         message: cap((document.getElementById('cf-message') || {}).value, 2000),
         timestamp: new Date().toISOString()
       };
-      fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(data) });
+      fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(Object.assign({_token:_ST}, data)) });
     }
     var success = document.getElementById('form-success');
     if (success) success.style.display = 'block';
