@@ -1172,7 +1172,7 @@ function openPaymentModal(serviceId, nameEn, nameZh, price) {
   document.getElementById('pmodal-price').textContent = price;
   var calStep = document.getElementById('pmodal-step-calendar');
   calStep.style.display = (serviceId === 'rm88') ? 'none' : '';
-  var links = { 'rm488':'https://calendly.com/joycemetaphysicsconsultant/30min','rm688-numerology':'https://calendly.com/joycemetaphysicsconsultant/45-minute-numerology-consult','rm688-child':'https://calendly.com/joycemetaphysicsconsultant/45-minute-numerology-consult','rm1076':'https://calendly.com/joycemetaphysicsconsultant/75-minutes-numerology-consult','rm488-compat':'https://calendly.com/joycemetaphysicsconsultant/45-minute-numerology-consult' };
+  var links = { 'rm488':'https://cal.id/joyce-metaphysics-consultant/30-minutes-numerology-consultation','rm688-numerology':'https://cal.id/joyce-metaphysics-consultant/45-minutes-numerology-consultation','rm688-child':'https://cal.id/joyce-metaphysics-consultant/45-minutes-numerology-consultation','rm1076':'https://cal.id/joyce-metaphysics-consultant/75-minutes-numerology-consultation','rm488-compat':'https://cal.id/joyce-metaphysics-consultant/45-minutes-numerology-consultation' };
   var calBtn = document.getElementById('pmodal-calendly-btn');
   if (calBtn && links[serviceId]) calBtn.href = links[serviceId];
   var isChild = (serviceId === 'rm688-child');
